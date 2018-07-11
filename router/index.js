@@ -28,8 +28,8 @@ router.get('/', (req, res) => {
 });
 
 router.post('/send', async (req, res, next) => {
-    console.log('req file',req.file);
     await upload(req, res, async (err) => {
+        console.log('uploaded?');
         if(err){
             // logger.info(`'error by uploading file:', ${err}`, 'Error');
             console.log('error by uploading file:', err)
