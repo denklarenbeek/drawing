@@ -11,7 +11,7 @@ const maxSize = 1000 * 1000;
 
 // Set storage engine
 const storage = multer.diskStorage({
-    destination: '/temp',
+    destination: '/tmp',
     filename: function(req, file, cb){
         cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
     }
