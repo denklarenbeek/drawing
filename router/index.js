@@ -31,10 +31,10 @@ router.post('/send', async (req, res, next) => {
     console.log(req.file);
     await upload(req, res, async (err) => {
         if(err){
-            logger.info(`'error by uploading file:', ${err}`, 'Error');
+            // logger.info(`'error by uploading file:', ${err}`, 'Error');
             console.log('error by uploading file:', err)
         } else {
-            logger.info(`File is uploaded to the diskstorage: ${req.file.filename}`, 'Info');
+            // logger.info(`File is uploaded to the diskstorage: ${req.file.filename}`, 'Info');
             console.log(`File is uploaded to the diskstorage: ${req.file.filename} `);
         }
     
