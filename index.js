@@ -2,7 +2,6 @@ const express = require('express');
 const keys = require('./config/keys');
 const mongoose = require('mongoose');
 const logger = require('morgan');
-const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const router = require('./router/index');
 const path = require('path');
@@ -22,7 +21,6 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
 app.use(logger('dev'));
-app.use(cookieParser());
 
 // Set a static folder to css/js and image files
 app.use(express.static(path.join(__dirname, 'public')));
