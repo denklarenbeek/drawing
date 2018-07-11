@@ -1,4 +1,7 @@
 /node_modules
 /public/uploads
-
 /config/keys_dev.js
+config/keys_dev.js
+variables.env
+/variables.envconfig.py
+variables.env

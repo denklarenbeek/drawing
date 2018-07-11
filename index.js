@@ -11,9 +11,9 @@ const path = require('path');
 
 const app = express();
 
-console.log(app.get('env' === 'development'));
-
 const port = process.env.PORT || 8080;
+
+const S3_BUCKET = keys.S3_BUCKET;
 
 const mongoURI = `mongodb://${keys.DBUSER}:${keys.DBPASS}@ds113799.mlab.com:13799/drawing`;
 mongoose.connect(mongoURI, { useNewUrlParser: true })
