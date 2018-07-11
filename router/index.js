@@ -7,6 +7,7 @@ const File = require('../models/Files');
 const mail = require('../handlers/mailer');
 
 const maxSize = 1000 * 1000;
+const yeah = 'newstring';
 
 // Set storage engine
 const storage = multer.diskStorage({
