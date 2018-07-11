@@ -46,10 +46,10 @@ router.post('/send', async (req, res, next) => {
     
         await fileUpload.save((err, file, rows) => {
             if(err) {
-                logger.info(`'error on saving in the db:', ${err}`, 'Error');
+                // logger.info(`'error on saving in the db:', ${err}`, 'Error');
                 console.log('error on saving in the db')
             } else {
-                logger.info(`database item has been created: ${file.filename}`, 'Info');
+                // logger.info(`database item has been created: ${file.filename}`, 'Info');
                 console.log(`database item has been created: ${file.filename}`)
             };
         });
