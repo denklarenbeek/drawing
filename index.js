@@ -1,5 +1,3 @@
-require("dotenv").config({ path: "variables.env" });
-
 const express = require('express');
 const keys = require('./config/keys');
 const mongoose = require('mongoose');
@@ -12,8 +10,6 @@ const path = require('path');
 const app = express();
 
 const port = process.env.PORT || 8080;
-
-const S3_BUCKET = keys.S3_BUCKET;
 
 const mongoURI = `mongodb://${keys.DBUSER}:${keys.DBPASS}@ds113799.mlab.com:13799/drawing`;
 mongoose.connect(mongoURI, { useNewUrlParser: true })
