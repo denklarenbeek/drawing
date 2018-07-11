@@ -3,4 +3,5 @@
 /config/keys_dev.js
 config/keys_dev.js
 variables.env
-/variables.env
+/variables.envconfig.py
+variables.env
