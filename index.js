@@ -1,10 +1,7 @@
-require("dotenv").config({ path: "variables.env" });
-
 const express = require('express');
 const keys = require('./config/keys');
 const mongoose = require('mongoose');
 const logger = require('morgan');
-const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const router = require('./router/index');
 const path = require('path');
@@ -12,8 +9,6 @@ const path = require('path');
 const app = express();
 
 const port = process.env.PORT || 8080;
-
-const S3_BUCKET = keys.S3_BUCKET;
 
 const mongoURI = `mongodb://${keys.DBUSER}:${keys.DBPASS}@ds113799.mlab.com:13799/drawing`;
 mongoose.connect(mongoURI, { useNewUrlParser: true })
@@ -26,7 +21,6 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
 app.use(logger('dev'));
-app.use(cookieParser());
 
 // Set a static folder to css/js and image files
 app.use(express.static(path.join(__dirname, 'public')));
