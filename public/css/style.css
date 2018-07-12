@@ -205,4 +205,11 @@ label[for="file"] i {
   h1 {
     color: #002f49;
   }
+
+  label[for=file] {
+    margin-left: auto;
+    margin-right: auto;
+    width: 200px;
+    height: 200px;
+  }
 }
