@@ -1,2 +1,12 @@
 Wed Jul 11 2018 19:21:24 GMT+0200 (CEST) : File is uploaded to the diskstorage: file-1531329684571.jpg
 Wed Jul 11 2018 19:22:15 GMT+0200 (CEST) : File is uploaded to the diskstorage: file-1531329735117.jpg
+InfoThu Jul 12 2018 17:01:28 GMT+0200 (CEST) : File is uploaded to the diskstorage: undefined
+InfoThu Jul 12 2018 17:01:29 GMT+0200 (CEST) : database item has been created: undefined
+InfoThu Jul 12 2018 17:02:24 GMT+0200 (CEST) : File is uploaded to the diskstorage: undefined
+InfoThu Jul 12 2018 17:02:24 GMT+0200 (CEST) : database item has been created: undefined
+InfoThu Jul 12 2018 17:04:25 GMT+0200 (CEST) : File is uploaded to the diskstorage: undefined
+InfoThu Jul 12 2018 17:04:26 GMT+0200 (CEST) : database item has been created: undefined
+InfoThu Jul 12 2018 17:06:49 GMT+0200 (CEST) : File is uploaded to the diskstorage: undefined
+InfoThu Jul 12 2018 17:06:49 GMT+0200 (CEST) : database item has been created: undefined
+InfoThu Jul 12 2018 17:07:50 GMT+0200 (CEST) : File is uploaded to the diskstorage: undefined
+InfoThu Jul 12 2018 17:07:50 GMT+0200 (CEST) : database item has been created: undefined
