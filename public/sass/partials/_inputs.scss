@@ -1,0 +1,117 @@
+input,
+textarea {
+  width: 100%;
+  color: #002f49;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  background: transparent !important;
+  -webkit-text-fill-color: #002f49;
+  -webkit-box-shadow: 0 0 0px 1000px #edeff1 inset !important;
+}
+
+input[type="email"],
+input[type="text"],
+textarea {
+  outline: none;
+  border: none;
+  background: inherit;
+  border-bottom: 1px solid #002f49;
+  line-height: 1.5rem;
+  padding: 10px 0 10px 20px;
+  font-size: 0.9rem;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+input[type="submit"] {
+  text-align: center;
+  background-color: #fc3;
+  color: #002f49;
+  cursor: pointer;
+  border-radius: 3px;
+  outline: 0;
+  border: 1px solid #dfb432;
+  padding: 8px 15px;
+  margin-top: 2rem;
+}
+
+input[type="submit"]:hover {
+  outline: 0;
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.5);
+}
+
+input[type="submit"]:active {
+  outline: 0;
+  box-shadow: 0 1px #dfb432;
+}
+
+textarea {
+  border: 1px dashed #002f49;
+  margin-top: 10px;
+  overflow: auto;
+}
+
+/* Transition styling of labels*/
+input[type="email"]:focus ~ label,
+input[type="email"]:valid ~ label,
+input[type="text"]:focus ~ label,
+input[type="text"]:valid ~ label,
+textarea:focus ~ label,
+textarea:valid ~ label,
+.input-has-value ~ label {
+  top: -10px;
+  color: #002f49;
+  font-size: 0.8rem;
+}
+
+label {
+  display: block;
+  position: absolute;
+  top: 15px;
+  cursor: text;
+  transition: top 0.5s;
+  text-transform: uppercase;
+  padding-left: 20px;
+  color: #8b9ba8;
+}
+
+label[for="file"] {
+  transform: none;
+  display: inline-block;
+  position: relative;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px dashed #002f49;
+  cursor: pointer;
+  margin-bottom: 20px;
+  padding-left: 0;
+}
+
+label[for="file"] i {
+  font-size: 1.5rem;
+}
+
+#output-upload img {
+  width: 80%;
+}
+
+#output-upload .remove-picture {
+  display: absolute;
+  top: 40%;
+  left: 35%;
+  font-size: 3rem;
+  cursor: pointer;
+}
+
+#output-upload .remove-picture:hover {
+  @include prefix(transform, scale(1.5), webkit ms);
+  transition: 0.5s;
+}

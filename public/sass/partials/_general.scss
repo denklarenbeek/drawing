@@ -1,0 +1,58 @@
+* {
+    font-family: "ABeeZee", sans-serif;
+    box-sizing: border-box;
+  }
+  
+  .wrapper {
+    min-height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .container {
+    display: flex;
+    justify-content: center;
+    width: 80%;
+  }
+  
+  .container-left {
+    width: 30%;
+    border-radius: 4px 0 0 4px;
+    background: #002f49;
+    padding: 40px 20px;
+    text-align: center;
+  }
+  
+  .container-right {
+    width: 70%;
+    border-radius: 0 4px 4px 0;
+    background: #edeff1;
+    padding: 40px;
+  }
+  
+  .container-right {
+    color: white;
+  }
+  
+  h1 {
+    margin: 0;
+    color: white;
+  }
+  
+  form > div {
+    margin-bottom: 1.8rem;
+    position: relative;
+    overflow: visible;
+  }
+  
+  form > div i {
+    position: absolute;
+    font-size: 1.5rem;
+    top: 10px;
+    left: -35px;
+    color: #002f49;
+  }
+  
+  
