@@ -10,6 +10,7 @@ const cookieParser = require('cookie-parser');
 const promisify = require('es6-promisify');
 const flash = require('connect-flash');
 const passport = require('passport');
+const helpers = require('./helpers');
 require('./handlers/passport');
 require('./models/User');
 
@@ -54,6 +55,7 @@ app.use(flash());
 
 app.use((req, res, next) => {
     res.locals.flashes = req.flash();
+    res.locals.h = helpers;
     res.locals.user = req.user || null;
     res.locals.currentPath = req.path;
     next();

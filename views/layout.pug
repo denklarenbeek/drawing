@@ -8,20 +8,29 @@ html
     link(rel='stylesheet', href='css/style.css')
     meta(name="viewport" content="width=device-width, initial-scale=1")
   body
-    header
-      nav
+    if user
+      header
         .left-navbar
           a(href='/')
             img(src='img/logo.png')
-        if user
-          .right-navbar
-            a(href='/logout')
-              i(class="fal fa-sign-out-alt")
+        .right-navbar
+          a(href='' id='menu-collapse' onclick="controlCollapNavbar(event)")
+            i(class="fa fa-list-ul icon-outline")
+        .collapse-navbar
+          each item in h.menu
+            .menu-item
+              a(href=item.slug)
+                - const icon = item.icon
+                .menu-item-icon
+                  i(class='fa fa-' + icon + ' icon-outline')
+                p=item.title
+                
     .wrapper
-        block content
+      block content
         
     block scripts
-        script(src="js/main.js")
+      script(src="js/main.js")
+      script(src="js/modules/navbar.js")
                     
                     
 

@@ -1,3 +1,17 @@
+a {
+  text-decoration: none;
+  color: #002f49; }
+
+.icon {
+  color: #002f49;
+  font-size: 2.5em; }
+
+.icon-outline {
+  color: #A9B7C0;
+  font-size: 2.5em; }
+  .icon-outline:hover {
+    color: #002f49; }
+
 input,
 textarea {
   width: 100%;
@@ -107,25 +121,73 @@ label[for="file"] i {
   transform: scale(1.5);
   transition: 0.5s; }
 
+header {
+  width: 100%;
+  height: 60px;
+  background-color: #fff;
+  border-top: 2px solid #fc3;
+  border-bottom: 1px solid #d2d2d2;
+  box-shadow: 0 1px 1px #d2d2d2;
+  margin-bottom: 2px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 5px 0 5px; }
+  header .left-navbar {
+    height: 40px; }
+    header .left-navbar img {
+      width: 50px; }
+  header a {
+    color: #002f49; }
+
+.body-left {
+  position: absolute;
+  right: 40%;
+  transition: 0.5s; }
+  .body-left .collapse-navbar {
+    display: block; }
+
+.collapse-navbar {
+  display: none;
+  position: absolute;
+  width: 40%;
+  top: 0;
+  right: -40%; }
+  .collapse-navbar .menu-item {
+    padding-left: 0px;
+    padding-bottom: 15px;
+    padding-top: 15px;
+    width: 100%;
+    padding-right: 0px;
+    border-top: 0;
+    margin-top: 0;
+    -webkit-box-shadow: inset 3px 0px 10px -5px #888888;
+    box-shadow: inset 3px 0px 10px -5px #888888; }
+    .collapse-navbar .menu-item-icon {
+      width: 50px;
+      margin-right: 20px; }
+    .collapse-navbar .menu-item:hover {
+      background-color: #DEE2E5;
+      cursor: pointer; }
+    .collapse-navbar .menu-item:hover a i, .collapse-navbar .menu-item:hover a p {
+      color: #002f49; }
+  .collapse-navbar a {
+    display: flex;
+    margin-left: 20px;
+    align-items: center; }
+    .collapse-navbar a i {
+      margin-right: 20px; }
+    .collapse-navbar a p {
+      display: inline-block;
+      text-transform: uppercase;
+      color: #A9B7C0;
+      font-size: 11px;
+      font-weight: 400;
+      margin: 0; }
+
 * {
   font-family: "ABeeZee", sans-serif;
   box-sizing: border-box; }
-
-header {
-  top: 10px;
-  right: 10px;
-  font-size: 2rem;
-  padding: 5px 5px 0 5px;
-  text-align: right; }
-  header nav {
-    display: flex;
-    justify-content: space-between; }
-    header nav .left-navbar {
-      height: 40px; }
-      header nav .left-navbar img {
-        height: 100%; }
-  header a {
-    color: #002f49; }
 
 .wrapper {
   min-height: 100vh;
@@ -197,7 +259,7 @@ form > div i {
     border-radius: 0 0 0 0;
     border-bottom: 1px solid #d2d2d2;
     box-shadow: 0 1px 1px #d2d2d2;
-    background: white;
+    background: #fafafa;
     color: #002f49; }
 
   .container-right {
