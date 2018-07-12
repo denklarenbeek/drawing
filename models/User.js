@@ -19,6 +19,9 @@ const userSchema = new Schema({
         required: 'Please fill in a name',
         trim: true
     },
+    admin: {
+        type: Boolean
+    },
     resetPasswordToken: String,
     resetPasswordExpires: Date
 });

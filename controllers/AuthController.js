@@ -6,11 +6,15 @@ const promisify = require('es6-promisify');
 const mail = require('../handlers/mailer');
 
 exports.register = async (req, res, next) => {
-    const user = new User({ email: req.body.email, name: req.body.name });
+    if(req.body.admin){
+        req.body.admin = true;
+    } else {
+        req.body.admin = false;
+    };
+    const user = new User({ email: req.body.email, name: req.body.name, admin: req.body.admin});
     const register = promisify(User.register, User);
-    console.log(user);
     await register(user, req.body.password);
-    
+    res.redirect('/');
 };
 
 exports.login = passport.authenticate('local', {
@@ -34,6 +38,15 @@ exports.isLoggedIn = (req, res, next) => {
     req.flash('error', 'Ooops you must be logged in to do that!')
     res.redirect('/login');
 };
+
+exports.isAdmin = (req, res, next) => {
+    if(req.user.admin){
+        next();
+        return
+    }
+    req.flash('error', 'Ooops you must be an admin to do that')
+    res.redirect('/');
+}
 
 exports.forgot = async (req, res) => {
     // 1. See if the user exists in the database
