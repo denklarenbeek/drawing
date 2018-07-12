@@ -6,15 +6,16 @@ const path = require("path");
 const File = require("../models/Files");
 const mail = require("../handlers/mailer");
 
+const sendDrawingController = require('../controllers/SendDrawingController');
+
 router.get("/", (req, res) => {
   res.render("index");
 });
 
-router.post("/send", async (req, res, next) => {
-  
-  
-
-  res.redirect("/");
-});
+router.post("/send", 
+    sendDrawingController.upload, 
+    sendDrawingController.saveActionToDB, 
+    sendDrawingController.sendMail
+);
 
 module.exports = router;

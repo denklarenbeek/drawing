@@ -7,41 +7,34 @@ const File = require("../models/Files");
 const mail = require("../handlers/mailer");
 
 // Set storage engine
-const storage = multer.memoryStorage();
+const multerOptions = {
+    storage: multer.memoryStorage()
+};
 
 // Init upload
-const upload = multer({
-  storage: storage
-}).single("file");
+exports.upload = multer(multerOptions).single("file");
 
-exports.uploadToMemory(req, res, async err => {
-    upload(req, res, async err => {
-        if (err) {
-        console.log("error by uploading file:", err);
-        } else {
-        console.log(`File is uploaded to the memoryStorage: ${req.file.originalname} `);
-        }
-    });
-});
-
+exports.saveActionToDB = async (req, res, next) => {
     // Create a model to save in the database
     const fileUpload = new File({
-      fromEmail: "<dk@bigbrother.nl>",
-      fromName: '"Dennis Klarenbeek 👻"',
-      email: req.body.email,
-      subject: req.body.subject,
-      msg: req.body.msg,
-      filename: req.file.originalname
+        fromEmail: "<dk@bigbrother.nl>",
+        fromName: '"Dennis Klarenbeek 👻"',
+        email: req.body.email,
+        subject: req.body.subject,
+        msg: req.body.msg,
+        filename: req.file.originalname
     });
-
     await fileUpload.save((err, file, rows) => {
-      if (err) {
-        console.log("error on saving in the db");
-      } else {
-        console.log(`database item has been created: ${file.filename}`);
-      }
+        if (err) {
+            console.log("error on saving in the db");
+        } else {
+            console.log(`database item has been created: ${file.filename}`);
+        }
     });
+    next();
+};
 
+exports.sendMail = async (req, res) => {
     // Mail the uploaded attachment
     await mail.send({
       fromEmail: "dennis.klarenbeek@icloud.com",
@@ -59,4 +52,5 @@ exports.uploadToMemory(req, res, async err => {
         }
       ]
     });
-  });
+    res.redirect('/');
+};
