@@ -8,7 +8,8 @@ input:-webkit-autofill:hover,
 input:-webkit-autofill:focus {
   background: transparent !important;
   -webkit-text-fill-color: #002f49;
-  -webkit-box-shadow: 0 0 0px 1000px #edeff1 inset !important; }
+  -webkit-box-shadow: 0 0 0px 1000px #edeff1 inset !important;
+  box-shadow: 0 0 0px 1000px #edeff1 inset !important; }
 
 input[type="email"],
 input[type="text"],
