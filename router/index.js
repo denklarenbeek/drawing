@@ -1,10 +1,5 @@
 const express = require("express");
-const mongoose = require("mongoose");
 const router = express.Router();
-const multer = require("multer");
-const path = require("path");
-const File = require("../models/Files");
-const mail = require("../handlers/mailer");
 
 const sendDrawingController = require('../controllers/SendDrawingController');
 
@@ -17,5 +12,9 @@ router.post("/send",
     sendDrawingController.saveActionToDB, 
     sendDrawingController.sendMail
 );
+
+router.get('/login', (req, res) => {
+    res.render('login');
+})
 
 module.exports = router;

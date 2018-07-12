@@ -12,6 +12,7 @@ input:-webkit-autofill:focus {
 
 input[type="email"],
 input[type="text"],
+input[type="password"],
 textarea {
   outline: none;
   border: none;
@@ -53,6 +54,8 @@ input[type="email"]:focus ~ label,
 input[type="email"]:valid ~ label,
 input[type="text"]:focus ~ label,
 input[type="text"]:valid ~ label,
+input[type="password"]:focus ~ label,
+input[type="password"]:valid ~ label,
 textarea:focus ~ label,
 textarea:valid ~ label,
 .input-has-value ~ label {
@@ -151,6 +154,13 @@ form > div i {
   left: -35px;
   color: #002f49; }
 
+.login-field {
+  width: 40%;
+  background-color: #edeff1;
+  padding: 40px; }
+  .login-field form {
+    width: 100%; }
+
 @media only screen and (max-width: 640px) {
   .container {
     flex-direction: column;
@@ -190,6 +200,9 @@ form > div i {
     height: 140px; }
 
   input[type=submit] {
-    line-height: 1.5rem; } }
+    line-height: 1.5rem; }
+
+  .login-field {
+    width: 80%; } }
 
 /*# sourceMappingURL=style.css.map */

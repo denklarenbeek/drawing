@@ -1,24 +1,25 @@
 input,
 textarea {
   width: 100%;
-  color: #002f49;
+  color: $primary-color;
 }
 
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus {
   background: transparent !important;
-  -webkit-text-fill-color: #002f49;
+  -webkit-text-fill-color: $primary-color;
   -webkit-box-shadow: 0 0 0px 1000px #edeff1 inset !important;
 }
 
 input[type="email"],
 input[type="text"],
+input[type="password"],
 textarea {
   outline: none;
   border: none;
   background: inherit;
-  border-bottom: 1px solid #002f49;
+  border-bottom: 1px solid $primary-color;
   line-height: 1.5rem;
   padding: 10px 0 10px 20px;
   font-size: 0.9rem;
@@ -30,12 +31,12 @@ input[type="file"] {
 
 input[type="submit"] {
   text-align: center;
-  background-color: #fc3;
-  color: #002f49;
+  background-color: $secondary-color;
+  color: $primary-color;
   cursor: pointer;
   border-radius: 3px;
   outline: 0;
-  border: 1px solid #dfb432;
+  border: 1px solid $secondary-darker;
   padding: 8px 15px;
   margin-top: 2rem;
 }
@@ -47,11 +48,11 @@ input[type="submit"]:hover {
 
 input[type="submit"]:active {
   outline: 0;
-  box-shadow: 0 1px #dfb432;
+  box-shadow: 0 1px $secondary-darker;
 }
 
 textarea {
-  border: 1px dashed #002f49;
+  border: 1px dashed $primary-color;
   margin-top: 10px;
   overflow: auto;
 }
@@ -61,11 +62,13 @@ input[type="email"]:focus ~ label,
 input[type="email"]:valid ~ label,
 input[type="text"]:focus ~ label,
 input[type="text"]:valid ~ label,
+input[type="password"]:focus ~ label,
+input[type="password"]:valid ~ label,
 textarea:focus ~ label,
 textarea:valid ~ label,
 .input-has-value ~ label {
   top: -10px;
-  color: #002f49;
+  color: $primary-color;
   font-size: 0.8rem;
 }
 
@@ -89,7 +92,7 @@ label[for="file"] {
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px dashed #002f49;
+  border: 1px dashed $primary-color;
   cursor: pointer;
   margin-bottom: 20px;
   padding-left: 0;
