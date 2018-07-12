@@ -1,0 +1,17 @@
+extends layout
+
+block content
+    .login-field
+        form(action="/register" method="POST")
+            .input-name
+                input(type='text' name='name' id='name' required)
+                label(for='name') Naam
+            .input-email
+                input(type='email'  name='email'  id='email' required onblur='movelabel(this)')
+                label(for='email') Email adres
+                i(class='fal fa-envelope-square')
+            .input-password
+                input(type='password' name='password' id='password' required)
+                label(for='password') Wachtwoord
+                i(class="fal fa-unlock")
+            input(type='submit' value='Login')

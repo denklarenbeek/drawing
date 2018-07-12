@@ -1,10 +1,17 @@
 const express = require('express');
+const session = require('express-session');
 const keys = require('./config/keys');
 const mongoose = require('mongoose');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
 const router = require('./router/index');
 const path = require('path');
+const cookieParser = require('cookie-parser');
+const promisify = require('es6-promisify');
+const flash = require('connect-flash');
+const passport = require('passport');
+require('./handlers/passport');
+require('./models/User');
 
 const app = express();
 
@@ -28,6 +35,29 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Body Parser to access the form info
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+
+app.use(cookieParser());
+
+app.use(session({
+    secret: keys.SECRET,
+    key: keys.KEY,
+    resave: false,
+    saveUninitialized: false
+}));
+
+// // Passport JS is what we use to handle our logins
+app.use(passport.initialize());
+app.use(passport.session());
+
+// // The flash middleware let's us use req.flash('error', 'Shit!'), which will then pass that message to the next page the user requests
+app.use(flash());
+
+app.use((req, res, next) => {
+    res.locals.flashes = req.flash();
+    res.locals.user = req.user || null;
+    res.locals.currentPath = req.path;
+    next();
+});
 
 // Set up routes
 app.use('/', router);

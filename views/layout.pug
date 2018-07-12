@@ -8,6 +8,15 @@ html
     link(rel='stylesheet', href='css/style.css')
     meta(name="viewport" content="width=device-width, initial-scale=1")
   body
+    header
+      nav
+        .left-navbar
+          a(href='/')
+            img(src='img/logo.png')
+        if user
+          .right-navbar
+            a(href='/logout')
+              i(class="fal fa-sign-out-alt")
     .wrapper
         block content
         
