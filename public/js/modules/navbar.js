@@ -9,4 +9,4 @@ function controlCollapNavbar(e){
     } else {
         body.classList.add('body-left');
     } 
-}
+};

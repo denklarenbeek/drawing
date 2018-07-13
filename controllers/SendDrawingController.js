@@ -12,9 +12,10 @@ const multerOptions = {
 };
 
 // Init upload
-exports.upload = multer(multerOptions).single("file");
+exports.upload =  multer(multerOptions).single("file");
 
 exports.saveActionToDB = async (req, res, next) => {
+
     // Create a model to save in the database
     const fileUpload = new File({
         fromEmail: req.user.email,

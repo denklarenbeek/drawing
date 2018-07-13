@@ -15,15 +15,22 @@ router.post("/send",
     sendDrawingController.sendMail
 );
 
-router.get('/register', authController.isLoggedIn, authController.isAdmin, (req, res, next) => {
+router.get('/register', 
+    authController.isLoggedIn, 
+    authController.isAdmin, 
+    (req, res, next) => {
     res.render('register')
 });
 
-router.post('/register', authController.isLoggedIn, authController.isAdmin, authController.register)
+router.post('/register', 
+    authController.isLoggedIn, 
+    authController.isAdmin, 
+    authController.register
+);
 
 router.get('/login', (req, res) => {
     res.render('login');
-})
+});
 
 router.post('/login', authController.login);
 
