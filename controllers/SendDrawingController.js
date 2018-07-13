@@ -4,6 +4,7 @@ const router = express.Router();
 const multer = require("multer");
 const path = require("path");
 const File = require("../models/Files");
+const User = require('../models/User');
 const mail = require("../handlers/mailer");
 const cloudinary = require('cloudinary');
 const fs = require('fs');
@@ -39,7 +40,9 @@ exports.saveActionToDB = async (req, res, next) => {
         if (err) {
             console.log("error on saving in the db");
         } else {
+            req.file.db_id = file._id;
             console.log(`database item has been created: ${file.filename}`);
+            
         }
     });
     next();
@@ -67,21 +70,16 @@ exports.sendMail = async (req, res) => {
 };
 
 exports.uploadToCloud = async (req, res, next) => {
-    await cloudinary.v2.uploader.upload_stream({resource_type: 'raw'}, {
-        eager: 
-        {
-            width: 150, height: 100, crop: "thumb", gravity: "face"
-        },
-            eager_async: true, 
-            eager_notification_url: "https://mysite/upload_success"
-        }, 
-        function(error, result){
-            if(error){
-                 console.log(error);
-                 next();
+    cloudinary.v2.uploader.upload_stream({resource_type: 'raw'}, 
+        async function(error, result) {
+            if(error) {
+                console.log(error);
+                next();
             }
-            console.log(result.url);
-            req.file.url = result.url;
+            const file = await File.findById(req.file.db_id);
+            file.fileurl = result.url
+            await file.save();
+            console.log('Picture is uploaded and added to db');
         })
         .end(req.file.buffer);
     next();

@@ -28,6 +28,9 @@ const fileSchema = new Schema({
     filename: {
         type: String
     },
+    fileurl: {
+        type: String
+    },
     date: {
         type: Date
     }

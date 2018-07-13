@@ -12,6 +12,7 @@ router.post("/send",
     authController.isLoggedIn,
     sendDrawingController.upload, 
     sendDrawingController.saveActionToDB, 
+    sendDrawingController.uploadToCloud,
     sendDrawingController.sendMail
 );
 
