@@ -25,7 +25,7 @@ html
                   i(class='fa fa-' + icon + ' icon-outline')
                 p=item.title
                 
-    .wrapper
+    .wrapper(class=(currentPath.startsWith('/login') ? 'fixed' : ''))
       block content
         
     block scripts
