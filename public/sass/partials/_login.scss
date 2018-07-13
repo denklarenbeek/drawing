@@ -1,7 +1,67 @@
+.login-header {
+    color: $primary-color;
+    font-size: 17px;
+    font-weight: 300;
+    background-color: #fff;
+    position: relative;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 30%;
+
+    img {
+        height: 65%;
+        vertical-align: middle;
+        position: relative;
+        z-index: 2;
+        
+    }
+}
+
+.login-arrow {
+    background-color: $secondary-color;
+    width: 70%;
+    height: 110px;
+    position: relative;
+    margin-top: -70px;
+    z-index: 101;
+
+    &-text {
+        text-align: right;
+        position: relative;
+        color: #002744;
+        margin-top: 15px;
+        height: 100%;
+        line-height: 225%;
+        display: flex;
+        align-items: center;
+
+        h1 {
+            font-size: 8vmin;
+            font-weight: 200;
+            margin-left: 7px;
+        }
+    }
+
+    &-right {
+        width: 0;
+        height: 0;
+        border-top: 55px solid transparent;
+        border-bottom: 55px solid transparent;
+        border-left: 55px solid $secondary-color;
+        position: absolute;
+        top: 0;
+        left: 100%;
+    }
+}
+
 .login-field {
-    width: 40%;
+    height: 70%;
+    width: 100%;
     background-color: $background-color;
     padding: 40px;
+    margin-top: -55px;
+    padding-top: 100px;
 
     form {
         width: 100%;

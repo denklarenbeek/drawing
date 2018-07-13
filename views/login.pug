@@ -1,6 +1,12 @@
 extends layout
 
 block content
+    .login-header
+        img(src='img/logo-eye-opening.jpg')
+    .login-arrow
+        .login-arrow-text
+            h1 Sales Applicatie
+        .login-arrow-right
     .login-field
         form(action="/login" method="POST")
             .input-email
