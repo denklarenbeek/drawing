@@ -41,6 +41,12 @@ textarea {
 input[type="file"] {
   display: none; }
 
+labe[for='file'] {
+  margin-left: auto;
+  margin-right: auto;
+  width: 150px;
+  height: 150px; }
+
 input[type="submit"],
 button.step {
   text-align: center;
@@ -51,7 +57,8 @@ button.step {
   outline: 0;
   border: 1px solid #dfb432;
   padding: 8px 15px;
-  margin-top: 2rem; }
+  margin-top: 2rem;
+  line-height: 1.5rem; }
 
 input[type="submit"]:hover {
   outline: 0;
@@ -66,6 +73,9 @@ textarea {
   margin-top: 10px;
   overflow: auto;
   resize: vertical; }
+
+textarea#msg {
+  height: 140px; }
 
 /* Transition styling of labels*/
 input[type="email"]:focus ~ label,
@@ -226,17 +236,18 @@ header {
 
 .content-tile {
   width: 100%;
-  border-radius: 0 4px 4px 0;
+  border-radius: 0 0 0 0;
   background: #edeff1;
   padding: 40px;
-  position: relative; }
+  position: relative;
+  height: 80%; }
 
 .content-tile {
   color: white; }
 
 h1 {
   margin: 0;
-  color: white; }
+  color: #002f49; }
 
 form > div {
   margin-bottom: 1.8rem;
@@ -328,25 +339,5 @@ section.active {
     color: #002f49;
     cursor: pointer;
     display: none; }
-
-@media only screen and (max-width: 640px) {
-  .content-tile {
-    height: 80%;
-    border-radius: 0 0 0 0; }
-
-  h1 {
-    color: #002f49; }
-
-  label[for=file] {
-    margin-left: auto;
-    margin-right: auto;
-    width: 150px;
-    height: 150px; }
-
-  textarea #msg {
-    height: 140px; }
-
-  input[type=submit] {
-    line-height: 1.5rem; } }
 
 /*# sourceMappingURL=style.css.map */
