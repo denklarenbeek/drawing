@@ -1,0 +1,26 @@
+section {
+    display: none
+}
+
+section.active {
+    display: block;
+}
+
+#pcf-1,
+#pcf-2,
+#pcf-margin,
+#pcf-volume {
+    margin-top: 30px;
+}
+
+.back-arrow {
+    position: absolute;
+    top: 20px;
+
+    i {
+        font-size: 2em;
+        color: $primary-color;
+        cursor: pointer;
+        display: none;
+    }
+}

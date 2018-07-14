@@ -1,28 +1,10 @@
 @media only screen and (max-width: 640px) {
-    .container {
-        flex-direction: column;
-        width: 100%;
-        height: 100%;
-    }
 
-    .container-left,
-    .container-right {
-        width: 100%;
-    }
     .container-left {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 0;
-        height: 100px;
-        border-radius: 0 0 0 0;
-        border-bottom: 1px solid #d2d2d2;
-        box-shadow: 0 1px 1px #d2d2d2;
-        background: #fafafa;
-        color: #002f49;
+        
     }
 
-    .container-right {
+    .content-tile {
         height: 80%;
         border-radius: 0 0 0 0;
     }

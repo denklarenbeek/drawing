@@ -60,10 +60,13 @@
     width: 100%;
     background-color: $background-color;
     padding: 40px;
-    margin-top: -55px;
-    padding-top: 100px;
 
     form {
         width: 100%;
     }
+}
+
+.wrapper.fixed .login-field {
+    margin-top: -55px;
+    padding-top: 100px;
 }

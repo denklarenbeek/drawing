@@ -2,9 +2,9 @@ extends layout
 
 block content
     .container
-        .container-left
+        .title-tile
             h1 Send the drawing
-        .container-right
+        .content-tile
             form(action='/send' method='POST' enctype='multipart/form-data')
                 .input-email
                     input(type='email'  name='email'  id='email' required onblur='movelabel(this)')

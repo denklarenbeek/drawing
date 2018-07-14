@@ -26,7 +26,6 @@ const multerOptions = {
 exports.upload =  multer(multerOptions).single("file");
 
 exports.saveActionToDB = async (req, res, next) => {
-    console.log(req.file.url);
     // Create a model to save in the database
     const fileUpload = new File({
         fromEmail: req.user.email,

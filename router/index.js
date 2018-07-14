@@ -37,4 +37,8 @@ router.post('/login', authController.login);
 
 router.get('/logout', authController.logout);
 
+router.get('/pcf', (req, res) => {
+    res.render('pcf')
+});
+
 module.exports = router;
