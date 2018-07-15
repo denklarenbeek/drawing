@@ -39,7 +39,7 @@ router.post('/login', authController.login);
 
 router.get('/logout', authController.logout);
 
-router.get('/pcf', (req, res) => {
+router.get('/pcf', authController.isLoggedIn, (req, res) => {
     res.render('pcf')
 });
 
@@ -48,7 +48,7 @@ router.get('/products', (req, res) => {
 });
 
 // api endpoints
-router.get('/api/v1/calculate-roi', priceCastController.calculateROI);
+router.get('/api/v1/calculate-roi', authController.isLoggedIn, priceCastController.calculateROI);
 router.post('/api/v1/products', productsController.createProduct);
 
 module.exports = router;
