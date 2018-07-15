@@ -3,6 +3,8 @@ const router = express.Router();
 
 const sendDrawingController = require('../controllers/SendDrawingController');
 const authController = require('../controllers/AuthController');
+const priceCastController = require('../controllers/priceCastController');
+const productsController = require('../controllers/productsController');
 
 router.get("/", authController.isLoggedIn, (req, res) => {
   res.render("index");
@@ -40,5 +42,13 @@ router.get('/logout', authController.logout);
 router.get('/pcf', (req, res) => {
     res.render('pcf')
 });
+
+router.get('/products', (req, res) => {
+    res.render('pcfEdit');
+});
+
+// api endpoints
+router.get('/api/v1/calculate-roi', priceCastController.calculateROI);
+router.post('/api/v1/products', productsController.createProduct);
 
 module.exports = router;

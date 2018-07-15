@@ -14,7 +14,7 @@ block content
                 button(class='step' data-improvement='volume') Volume
                 button(class='step' data-improvement='margin') Margin
             section(id='pcf-margin')
-                form(action='/pcf-calulate' method='POST')
+                form(action='/' class='pcf-calculate-form')
                     .input-group
                         input(type='number' name='volume' id='volume' required)
                         label(for='volume') Volume per week
@@ -25,7 +25,7 @@ block content
                         i(class="fal fa-chart-line")
                     input(type='submit' value='Bereken')
             section(id='pcf-volume')
-                form(action='/pcf-calulate' method='POST')
+                form(action='/' class='pcf-calculate-form')
                     .input-group
                         input(type='number' name='volume' id='volume' required)
                         label(for='volume') Volume per week
@@ -39,5 +39,18 @@ block content
                         label(for='margin') Marge
                         i(class="fas fa-euro-sign")
                     input(type='submit' value='Bereken')
-
+            section(id='pcf-roi')
+                table
+                    tr
+                        td fee
+                        td roi
+                        td setup
+                    tr
+                        td fee
+                        td roi
+                        td setup
+                    tr
+                        td fee
+                        td roi
+                        td setup
         
