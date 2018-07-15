@@ -204,6 +204,24 @@ header {
       font-weight: 400;
       margin: 0; }
 
+table {
+  background: white;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  color: #002f49;
+  margin-bottom: 50px;
+  padding: 10px; }
+
+table > thead > tr > th {
+  vertical-align: middle; }
+
+td {
+  vertical-align: middle !important;
+  padding: 12px; }
+
+td:nth-child(1) {
+  font-weight: bold; }
+
 * {
   font-family: "ABeeZee", sans-serif;
   box-sizing: border-box; }
@@ -330,6 +348,21 @@ section.active {
 #pcf-margin,
 #pcf-volume {
   margin-top: 30px; }
+
+#pcf-roi {
+  display: flex; }
+
+#roi-12,
+#roi-24,
+#roi-36 {
+  width: 33%; }
+
+#roi-12 p,
+#roi-24 p,
+#roi-36 p {
+  text-align: right;
+  width: 60%;
+  margin: 0 auto; }
 
 .back-arrow {
   position: absolute;

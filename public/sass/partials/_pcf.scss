@@ -13,6 +13,24 @@ section.active {
     margin-top: 30px;
 }
 
+#pcf-roi {
+    display: flex;
+}
+
+#roi-12,
+#roi-24,
+#roi-36 {
+    width: 33%;
+}
+
+#roi-12 p,
+#roi-24 p,
+#roi-36 p {
+    text-align: right;
+    width: 60%;
+    margin: 0 auto;
+}
+
 .back-arrow {
     position: absolute;
     top: 20px;

@@ -22,7 +22,8 @@ exports.calculateROI = async (req, res, next) => {
         const investment = productRelated[i].fee * 12;
         const returnProduct = {};
         returnProduct.fee = productRelated[i].fee
-        returnProduct.setup = productRelated[i].fee
+        returnProduct.setup = productRelated[i].setup
+        returnProduct.duration = productRelated[i].duration
 
         if(improvement === 'volume'){
             volumeimpr = req.query.volumeimpr;

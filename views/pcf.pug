@@ -39,18 +39,30 @@ block content
                         label(for='margin') Marge
                         i(class="fas fa-euro-sign")
                     input(type='submit' value='Bereken')
-            section(id='pcf-roi')
+            section(id='pcf-roi-table')
                 table
-                    tr
-                        td fee
-                        td roi
-                        td setup
-                    tr
-                        td fee
-                        td roi
-                        td setup
-                    tr
-                        td fee
-                        td roi
-                        td setup
+                    thead
+                        tr
+                            th 
+                            th Fee
+                            th ROI%
+                            th Setup
+                    tbody
+                        tr
+                            td 12 months
+                            td fee
+                            td ROI
+                            td Setup
+                        tr
+                            td 24 months
+                            td fee
+                            td ROI
+                            td Setup
+                        tr
+                            td 36 months
+                            td fee
+                            td ROI
+                            td Setup
+                input(type='submit' value='Bereken opnieuw' id='calc-roi-again')
+                    
         
