@@ -8,18 +8,20 @@ block content
             .back-arrow
                 i(class="fas fa-long-arrow-left")
             section(id='pcf-1' class='active')
+                h2 Is there hardware needed?
                 button(class='step' data-client='customer') Customer
                 button(class='step' data-client='lead') Lead
             section(id='pcf-2')
+                h2 Do you want to focus on a volume boost or margin improvement?
                 button(class='step' data-improvement='volume') Volume
                 button(class='step' data-improvement='margin') Margin
             section(id='pcf-margin')
                 form(action='/' class='pcf-calculate-form')
                     .input-group
-                        input(type='number' name='volume' id='volume' data-tooltip=true data-tooltipinfo='Vul hier het totale volume per week in' required)
+                        input(type='number' name='volume' id='volume' required)
                         label(for='volume' ) Volume per week
                         i(class="fal fa-car")
-                    .input-group
+                    .input-group.tooltip(data-tooltip='true' data-tooltipinfo='Marge verbetering per liter')
                         input(type='number' name='marge-impr' id='marge-impr' step='0.001' pattern="^\d+(?:\.\d{1,2})?€" required)
                         label(for='marge-impr') Marge verbetering
                         i(class="fal fa-chart-line")
@@ -30,11 +32,11 @@ block content
                         input(type='number' name='volume' id='volume' required)
                         label(for='volume') Volume per week
                         i(class="fal fa-car")
-                    .input-group
+                    .input-group.tooltip(data-tooltip='true' data-tooltipinfo='Volume boost per week')
                         input(type='number' name='volume-impr' id='volume-impr' required)
                         label(for='volume-impr') Volume verbetering
                         i(class="fal fa-chart-line")
-                    .input-group
+                    .input-group.tooltip(data-tooltip='true' data-tooltipinfo='Gemiddelde marge per liter')
                         input(type='number' name='margin' id='margin' step='0.001' pattern="^\d+(?:\.\d{1,2})?€" required)
                         label(for='margin') Marge
                         i(class="fas fa-euro-sign")

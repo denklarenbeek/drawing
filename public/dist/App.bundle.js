@@ -63,84 +63,11 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
-/******/ ({
-
-/***/ 0:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _tooltip = __webpack_require__(1);
-
-var _tooltip2 = _interopRequireDefault(_tooltip);
-
-var _pcf = __webpack_require__(409);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var x = document.getElementById('pcf');
-
-(0, _tooltip2.default)();
-(0, _pcf.pcfButtonNavigate)(x);
-(0, _pcf.backArrowFunc)(x);
-(0, _pcf.calcRoi)(x);
-(0, _pcf.roiAgain)(x);
-
-/***/ }),
-
-/***/ 1:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
-function setToolTips() {
-
-  var labels = [].concat(_toConsumableArray(document.querySelectorAll('.tooltip')));
-
-  var _loop = function _loop(i) {
-    var inputContainer = labels[i];
-    var icon = document.createElement('i');
-    icon.className = 'fal fa-info-circle tooltip';
-    var tipText = labels[i].dataset.tooltipinfo;
-    var span = document.createElement('span');
-    span.className = 'tooltip';
-    span.innerHTML = tipText;
-    var arrow = document.createElement('i');
-    arrow.className = 'tooltip-arrow';
-    icon.addEventListener('click', function () {
-      span.style.display = 'inline-block';
-      arrow.style.display = 'inline-block';
-      setTimeout(function () {
-        span.style.display = 'none';
-        arrow.style.display = 'none';
-      }, 5000);
-    });
-    inputContainer.appendChild(icon);
-    inputContainer.appendChild(span);
-    inputContainer.appendChild(arrow);
-  };
-
-  for (var i = 0; i < labels.length; i++) {
-    _loop(i);
-  };
-};
-
-exports.default = setToolTips;
-
-/***/ }),
-
-/***/ 409:
+/******/ ([
+/* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -289,7 +216,76 @@ exports.backArrowFunc = backArrowFunc;
 exports.calcRoi = calcRoi;
 exports.roiAgain = roiAgain;
 
-/***/ })
+/***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
 
-/******/ });
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+function setToolTips() {
+
+  var labels = [].concat(_toConsumableArray(document.querySelectorAll('.tooltip')));
+
+  var _loop = function _loop(i) {
+    var inputContainer = labels[i];
+    var icon = document.createElement('i');
+    icon.className = 'fal fa-info-circle tooltip';
+    var tipText = labels[i].dataset.tooltipinfo;
+    var span = document.createElement('span');
+    span.className = 'tooltip';
+    span.innerHTML = tipText;
+    var arrow = document.createElement('i');
+    arrow.className = 'tooltip-arrow';
+    icon.addEventListener('click', function () {
+      span.style.display = 'inline-block';
+      arrow.style.display = 'inline-block';
+      setTimeout(function () {
+        span.style.display = 'none';
+        arrow.style.display = 'none';
+      }, 5000);
+    });
+    inputContainer.appendChild(icon);
+    inputContainer.appendChild(span);
+    inputContainer.appendChild(arrow);
+  };
+
+  for (var i = 0; i < labels.length; i++) {
+    _loop(i);
+  };
+};
+
+exports.default = setToolTips;
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _tooltip = __webpack_require__(1);
+
+var _tooltip2 = _interopRequireDefault(_tooltip);
+
+var _pcf = __webpack_require__(0);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var x = document.getElementById('pcf');
+
+(0, _tooltip2.default)();
+(0, _pcf.pcfButtonNavigate)(x);
+(0, _pcf.backArrowFunc)(x);
+(0, _pcf.calcRoi)(x);
+(0, _pcf.roiAgain)(x);
+
+/***/ })
+/******/ ]);
 //# sourceMappingURL=App.bundle.js.map
