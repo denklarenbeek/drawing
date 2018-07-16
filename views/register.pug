@@ -5,21 +5,22 @@ block content
         .title-tile
             h1 Registreer nieuw gebruiker
         .content-tile
-            form(action="/register" method="POST")
-                .input-name
-                    input(type='text' name='name' id='name' required)
-                    label(for='name') Naam
-                    i(class='fal fa-user-circle')
-                .input-email
-                    input(type='email'  name='email'  id='email' required onblur='movelabel(this)')
-                    label(for='email') Email adres
-                    i(class='fal fa-envelope-square')
-                .input-password
-                    input(type='password' name='password' id='password' required)
-                    label(for='password') Wachtwoord
-                    i(class="fal fa-unlock")
-                .input-admin
-                    label(for='admin') Admin:
-                    input(type='checkbox' name='admin' id='admin' value='true')
-                    i(class="fal fa-cogs")
-                input(type='submit' value='Registreer')
+            .inner 
+                form(action="/register" method="POST")
+                    .input-name
+                        input(type='text' name='name' id='name' required)
+                        label(for='name') Naam
+                        i(class='fal fa-user-circle')
+                    .input-email
+                        input(type='email'  name='email'  id='email' required onblur='movelabel(this)')
+                        label(for='email') Email adres
+                        i(class='fal fa-envelope-square')
+                    .input-password
+                        input(type='password' name='password' id='password' required)
+                        label(for='password') Wachtwoord
+                        i(class="fal fa-unlock")
+                    .input-admin
+                        label(for='admin') Admin:
+                        input(type='checkbox' name='admin' id='admin' value='true')
+                        i(class="fal fa-cogs")
+                    input(type='submit' value='Registreer')

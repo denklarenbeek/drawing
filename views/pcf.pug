@@ -5,66 +5,67 @@ block content
         .title-tile
             h1 PriceCast calculator
         .content-tile#pcf
-            .back-arrow
-                i(class="fas fa-long-arrow-left")
-            section(id='pcf-1' class='active')
-                h2 Is there hardware needed?
-                button(class='step' data-client='customer') Customer
-                button(class='step' data-client='lead') Lead
-            section(id='pcf-2')
-                h2 Do you want to focus on a volume boost or margin improvement?
-                button(class='step' data-improvement='volume') Volume
-                button(class='step' data-improvement='margin') Margin
-            section(id='pcf-margin')
-                form(action='/' class='pcf-calculate-form')
-                    .input-group
-                        input(type='number' name='volume' id='volume' required)
-                        label(for='volume' ) Volume per week
-                        i(class="fal fa-car")
-                    .input-group.tooltip(data-tooltip='true' data-tooltipinfo='Marge verbetering per liter')
-                        input(type='number' name='marge-impr' id='marge-impr' step='0.001' pattern="^\d+(?:\.\d{1,2})?€" required)
-                        label(for='marge-impr') Marge verbetering
-                        i(class="fal fa-chart-line")
-                    input(type='submit' value='Bereken')
-            section(id='pcf-volume')
-                form(action='/' class='pcf-calculate-form')
-                    .input-group
-                        input(type='number' name='volume' id='volume' required)
-                        label(for='volume') Volume per week
-                        i(class="fal fa-car")
-                    .input-group.tooltip(data-tooltip='true' data-tooltipinfo='Volume boost per week')
-                        input(type='number' name='volume-impr' id='volume-impr' required)
-                        label(for='volume-impr') Volume verbetering
-                        i(class="fal fa-chart-line")
-                    .input-group.tooltip(data-tooltip='true' data-tooltipinfo='Gemiddelde marge per liter')
-                        input(type='number' name='margin' id='margin' step='0.001' pattern="^\d+(?:\.\d{1,2})?€" required)
-                        label(for='margin') Marge
-                        i(class="fas fa-euro-sign")
-                    input(type='submit' value='Bereken')
-            section(id='pcf-roi-table')
-                table
-                    thead
-                        tr
-                            th 
-                            th Fee
-                            th ROI%
-                            th Setup
-                    tbody
-                        tr
-                            td 12 months
-                            td fee
-                            td ROI
-                            td Setup
-                        tr
-                            td 24 months
-                            td fee
-                            td ROI
-                            td Setup
-                        tr
-                            td 36 months
-                            td fee
-                            td ROI
-                            td Setup
-                input(type='submit' value='Bereken opnieuw' id='calc-roi-again')
+            .inner
+                .back-arrow
+                    i(class="fas fa-long-arrow-left")
+                section(id='pcf-1' class='active')
+                    h2 Berekening voor een klant of potentiele klant?
+                    button(class='step' data-client='customer') Customer
+                    button(class='step' data-client='lead') Lead
+                section(id='pcf-2')
+                    h2 Wil je de focus op een volume boost of margin verbetering?
+                    button(class='step' data-improvement='volume') Volume
+                    button(class='step' data-improvement='margin') Margin
+                section(id='pcf-margin')
+                    form(action='/' class='pcf-calculate-form')
+                        .input-group
+                            input(type='number' name='volume' id='volume' required)
+                            label(for='volume' ) Volume per week
+                            i(class="fal fa-car")
+                        .input-group.tooltip(data-tooltip='true' data-tooltipinfo='Marge verbetering per liter')
+                            input(type='number' name='marge-impr' id='marge-impr' step='0.001' pattern="^\d+(?:\.\d{1,2})?€" required)
+                            label(for='marge-impr') Marge verbetering
+                            i(class="fal fa-chart-line")
+                        input(type='submit' value='Bereken')
+                section(id='pcf-volume')
+                    form(action='/' class='pcf-calculate-form')
+                        .input-group
+                            input(type='number' name='volume' id='volume' required)
+                            label(for='volume') Volume per week
+                            i(class="fal fa-car")
+                        .input-group.tooltip(data-tooltip='true' data-tooltipinfo='Volume boost per week')
+                            input(type='number' name='volume-impr' id='volume-impr' required)
+                            label(for='volume-impr') Volume verbetering
+                            i(class="fal fa-chart-line")
+                        .input-group.tooltip(data-tooltip='true' data-tooltipinfo='Gemiddelde marge per liter')
+                            input(type='number' name='margin' id='margin' step='0.001' pattern="^\d+(?:\.\d{1,2})?€" required)
+                            label(for='margin') Marge
+                            i(class="fas fa-euro-sign")
+                        input(type='submit' value='Bereken')
+                section(id='pcf-roi-table')
+                    table
+                        thead
+                            tr
+                                th 
+                                th Fee
+                                th ROI%
+                                th Setup
+                        tbody
+                            tr
+                                td 12 months
+                                td fee
+                                td ROI
+                                td Setup
+                            tr
+                                td 24 months
+                                td fee
+                                td ROI
+                                td Setup
+                            tr
+                                td 36 months
+                                td fee
+                                td ROI
+                                td Setup
+                    input(type='submit' value='Bereken opnieuw' id='calc-roi-again')
                     
         

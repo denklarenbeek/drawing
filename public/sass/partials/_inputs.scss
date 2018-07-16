@@ -55,15 +55,31 @@ button.step {
   line-height: 1.5rem;
 }
 
-input[type="submit"]:hover {
-  outline: 0;
-  box-shadow: 0 0 1px rgba(0, 0, 0, 0.5);
+input[type='submit']{
+  @media only screen and (min-width: $break-small){
+    width: 60%;
+  }
+
+  &:hover {
+    outline: 0;
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0.5);
+  }
+
+  &:active {
+    outline: 0;
+    box-shadow: 0 1px $secondary-darker;
+  }
 }
 
-input[type="submit"]:active {
-  outline: 0;
-  box-shadow: 0 1px $secondary-darker;
-}
+// input[type="submit"]:hover {
+//   outline: 0;
+//   box-shadow: 0 0 1px rgba(0, 0, 0, 0.5);
+// }
+
+// input[type="submit"]:active {
+//   outline: 0;
+//   box-shadow: 0 1px $secondary-darker;
+// }
 
 textarea {
   border: 1px dashed $primary-color;
@@ -143,4 +159,14 @@ button.step {
   width: 100px;
   height: 100px;
   margin-right: 30px;
+
+  &:hover {
+    outline: 0;
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0.5);
+  }
+
+  &:active {
+    outline: 0;
+    box-shadow: 0 1px $secondary-darker;
+  }
 }

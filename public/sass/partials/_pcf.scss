@@ -10,7 +10,24 @@ section.active {
 #pcf-2,
 #pcf-margin,
 #pcf-volume {
+    @media only screen and (min-width: $break-small){
+        text-align: center;
+    }
+}
+
+#pcf-2,
+#pcf-margin,
+#pcf-volume {
     margin-top: 30px;
+}
+
+#pcf-margin form,
+#pcf-volume form {
+    @media only screen and (min-width: $break-small){
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+    }
 }
 
 #pcf-roi {
@@ -35,10 +52,18 @@ section.active {
     position: absolute;
     top: 20px;
 
+    @media only screen and (min-width: $break-small) {
+        left: 20px;
+    }
+
     i {
         font-size: 2em;
         color: $primary-color;
         cursor: pointer;
         display: none;
+
+        @media only screen and (min-width: $break-small){
+            font-size: 3em;
+        }
     }
 }

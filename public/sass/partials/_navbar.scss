@@ -29,6 +29,10 @@ header {
     right: 40%;
     transition: 0.5s;
 
+    @media only screen and (min-width: $break-small) {
+		right: 20%;
+	}
+
     .collapse-navbar {
         display: block;
     }
@@ -41,6 +45,11 @@ header {
     width: 40%;
     top: 0;
     right: -40%;
+
+    @media only screen and (min-width: $break-small) {
+        width: 20%;
+        right: -20%;
+	}
 
     .menu-item {
         padding-left: 0px;

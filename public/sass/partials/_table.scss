@@ -5,15 +5,24 @@ table {
 	color: $primary-color;
   margin-bottom: 50px;
   padding: 10px;
+
+  @media only screen and (min-width: $break-small){
+    width: 100%;
+    text-align: right;
+  }
 }
 
 table>thead>tr>th {
 	vertical-align: middle;
 }
 
-td {
+td, th {
   vertical-align: middle!important;
-  padding: 12px;
+  padding: 10px;
+
+  @media only screen and (min-width: $break-small){
+    font-size: 1.2em;
+  }
 }
 
 td:nth-child(1){
