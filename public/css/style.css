@@ -36,7 +36,10 @@ textarea {
   border-bottom: 1px solid #002f49;
   line-height: 1.5rem;
   padding: 10px 0 10px 0px;
-  font-size: 0.9rem; }
+  font-size: 0.9rem;
+  border-radius: 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0; }
 
 input[type="file"] {
   display: none; }
