@@ -4,7 +4,7 @@ block content
     .container
         .title-tile
             h1 PriceCast calculator
-        .content-tile
+        .content-tile#pcf
             .back-arrow
                 i(class="fas fa-long-arrow-left")
             section(id='pcf-1' class='active')
@@ -16,8 +16,8 @@ block content
             section(id='pcf-margin')
                 form(action='/' class='pcf-calculate-form')
                     .input-group
-                        input(type='number' name='volume' id='volume' required)
-                        label(for='volume') Volume per week
+                        input(type='number' name='volume' id='volume' data-tooltip=true data-tooltipinfo='Vul hier het totale volume per week in' required)
+                        label(for='volume' ) Volume per week
                         i(class="fal fa-car")
                     .input-group
                         input(type='number' name='marge-impr' id='marge-impr' step='0.001' pattern="^\d+(?:\.\d{1,2})?€" required)

@@ -19,7 +19,9 @@ function showHideArrow(tabNr) {
   }
 }
 
-if (location.pathname === "/pcf") {
+function pcfButtonNavigate(el){
+  if(!el) return;
+
   const buttons = document.querySelectorAll("button");
   for (let i = 0; i < buttons.length; i++) {
     buttons[i].addEventListener("click", () => {
@@ -55,7 +57,9 @@ if (location.pathname === "/pcf") {
   }
 }
 
-if (location.pathname === "/pcf") {
+function backArrowFunc(el) {
+  if(!el) return;
+
   const backArrow = document.querySelector(".back-arrow i");
 
   backArrow.addEventListener("click", () => {
@@ -71,7 +75,9 @@ if (location.pathname === "/pcf") {
   });
 }
 
-if (location.pathname === "/pcf") {
+function calcRoi(el) {
+  if(!el) return;
+
   const form = document.querySelectorAll(".pcf-calculate-form");
   for (let i = 0; i < form.length; i++) {
     form[i].addEventListener("submit", e => {
@@ -118,10 +124,14 @@ if (location.pathname === "/pcf") {
   }
 }
 
-if (location.pathname === "/pcf") {
+function roiAgain(el) {
+  if(!el) return;
+
   const button = document.getElementById('calc-roi-again');
   button.addEventListener('click', (e) => {
     e.preventDefault();
     location.reload();
   })
 }
+
+export {pcfButtonNavigate, backArrowFunc, calcRoi, roiAgain}

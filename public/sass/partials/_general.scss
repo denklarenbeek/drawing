@@ -65,5 +65,39 @@
     left: -35px;
     color: $primary-color;
   }
+
+  span.tooltip {
+    display: none;
+    position: absolute;
+    bottom: 45px;
+    left: 80%;
+    width: 100px;
+    word-wrap: break-word;
+    font-size: 0.8em;
+    padding: 10px;
+    background-color: rgba(0,0,0,0.7);
+    border-radius: 5px;
+    color: white;
+    border-bottom-color: rgba(0,0,0,0.7);
+    text-align: center;
+  }
+
+  i.tooltip {
+    left: 90%;
+    cursor: pointer;
+  }
   
+  i.tooltip-arrow {
+    display: none;
+    color: rgba(0,0,0,0.7);
+    width: 0;
+    height: 0;
+    border-top: 10px solid;
+    border-bottom: 15px solid transparent;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    position: absolute;
+    top: 0;
+    left: 89%;
+  }
   
