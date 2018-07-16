@@ -287,11 +287,17 @@ form > div i {
   left: -35px;
   color: #002f49; }
 
+div.tooltip-container {
+  left: 100%;
+  position: absolute;
+  display: inline-block;
+  top: 0; }
+
 span.tooltip {
   display: none;
   position: absolute;
-  bottom: 45px;
-  left: 80%;
+  bottom: 0px;
+  left: -70px;
   width: 100px;
   word-wrap: break-word;
   font-size: 0.8em;
@@ -303,7 +309,6 @@ span.tooltip {
   text-align: center; }
 
 i.tooltip {
-  left: 90%;
   cursor: pointer; }
 
 i.tooltip-arrow {
@@ -317,7 +322,7 @@ i.tooltip-arrow {
   border-right: 15px solid transparent;
   position: absolute;
   top: 0;
-  left: 89%; }
+  left: -37px; }
 
 .login-header {
   color: #002f49;

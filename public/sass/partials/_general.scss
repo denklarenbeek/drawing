@@ -72,11 +72,18 @@
     color: $primary-color;
   }
 
+  div.tooltip-container {
+    left: 100%;
+    position: absolute;
+    display: inline-block;
+    top: 0;
+  }
+
   span.tooltip {
     display: none;
     position: absolute;
-    bottom: 45px;
-    left: 80%;
+    bottom: 0px;
+    left: -70px;
     width: 100px;
     word-wrap: break-word;
     font-size: 0.8em;
@@ -89,7 +96,6 @@
   }
 
   i.tooltip {
-    left: 90%;
     cursor: pointer;
   }
   
@@ -104,6 +110,6 @@
     border-right: 15px solid transparent;
     position: absolute;
     top: 0;
-    left: 89%;
+    left: -37px;
   }
   

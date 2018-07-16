@@ -4,6 +4,8 @@ function setToolTips(){
 
   for(let i=0; i < labels.length; i++){
     const inputContainer = labels[i];
+    const tooltip = document.createElement('div');
+    tooltip.className = 'tooltip-container';
     const icon = document.createElement('i');
     icon.className = 'fal fa-info-circle tooltip';
     const tipText = labels[i].dataset.tooltipinfo;
@@ -20,9 +22,11 @@ function setToolTips(){
         arrow.style.display = 'none';
       }, 5000);
     });
-    inputContainer.appendChild(icon);
-    inputContainer.appendChild(span);
-    inputContainer.appendChild(arrow);
+
+    tooltip.appendChild(icon);
+    tooltip.appendChild(span);
+    tooltip.appendChild(arrow)
+    inputContainer.appendChild(tooltip);
   };
 };
 
