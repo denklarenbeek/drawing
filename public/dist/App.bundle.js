@@ -80,17 +80,7 @@ function animateLogin(el) {
   if (!el) return;
 
   var button = document.querySelector('.login-field form button[type="submit"]');
-  console.log(button);
   var form = document.querySelector('.login-field form');
-
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-    button.innerHTML = '<i class="fal fa-lock-alt"></i>';
-    var icon = document.createElement('i');
-    setTimeout(function () {
-      form.submit();
-    }, 1000);
-  });
 };
 
 exports.animateLogin = animateLogin;

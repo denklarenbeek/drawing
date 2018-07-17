@@ -79,6 +79,8 @@ button[type='submit']:active {
 
 button[type="submit"] {
   width: 100%; }
+  button[type="submit"] i {
+    animation: name duration timing-function delay iteration-count direction fill-mode; }
 
 textarea {
   border: 1px dashed #002f49;

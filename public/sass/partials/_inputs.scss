@@ -75,6 +75,10 @@ button[type='submit'] {
 
 button[type="submit"] {
   width: 100%;
+
+  i {
+    animation: name duration timing-function delay iteration-count direction fill-mode;
+  }
 }
 
 // input[type="submit"]:hover {
