@@ -63,11 +63,40 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 2);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+function animateLogin(el) {
+  if (!el) return;
+
+  var button = document.querySelector('.login-field form button[type="submit"]');
+  console.log(button);
+  var form = document.querySelector('.login-field form');
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    button.innerHTML = '<i class="fal fa-lock-alt"></i>';
+    var icon = document.createElement('i');
+    setTimeout(function () {
+      form.submit();
+    }, 1000);
+  });
+};
+
+exports.animateLogin = animateLogin;
+
+/***/ }),
+/* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -217,7 +246,7 @@ exports.calcRoi = calcRoi;
 exports.roiAgain = roiAgain;
 
 /***/ }),
-/* 1 */
+/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -268,27 +297,31 @@ function setToolTips() {
 exports.default = setToolTips;
 
 /***/ }),
-/* 2 */
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _tooltip = __webpack_require__(1);
+var _tooltip = __webpack_require__(2);
 
 var _tooltip2 = _interopRequireDefault(_tooltip);
 
-var _pcf = __webpack_require__(0);
+var _pcf = __webpack_require__(1);
+
+var _loginAnimation = __webpack_require__(0);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var x = document.getElementById('pcf');
+var loginField = document.querySelector('.login-field');
 
 (0, _tooltip2.default)();
 (0, _pcf.pcfButtonNavigate)(x);
 (0, _pcf.backArrowFunc)(x);
 (0, _pcf.calcRoi)(x);
 (0, _pcf.roiAgain)(x);
+(0, _loginAnimation.animateLogin)(loginField);
 
 /***/ })
 /******/ ]);

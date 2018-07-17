@@ -51,6 +51,7 @@ labe[for='file'] {
   height: 150px; }
 
 input[type="submit"],
+button[type="submit"],
 button.step {
   text-align: center;
   background-color: #fc3;
@@ -64,14 +65,20 @@ button.step {
   line-height: 1.5rem; }
 
 @media only screen and (min-width: 768px) {
-  input[type='submit'] {
+  input[type='submit'],
+  button[type='submit'] {
     width: 60%; } }
-input[type='submit']:hover {
+input[type='submit']:hover,
+button[type='submit']:hover {
   outline: 0;
   box-shadow: 0 0 1px rgba(0, 0, 0, 0.5); }
-input[type='submit']:active {
+input[type='submit']:active,
+button[type='submit']:active {
   outline: 0;
   box-shadow: 0 1px #dfb432; }
+
+button[type="submit"] {
+  width: 100%; }
 
 textarea {
   border: 1px dashed #002f49;
