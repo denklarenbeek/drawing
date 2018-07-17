@@ -67,7 +67,25 @@
 /******/ })
 /************************************************************************/
 /******/ ([
-/* 0 */,
+/* 0 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+function animateLogin(el) {
+  if (!el) return;
+
+  var button = document.querySelector('.login-field form button[type="submit"]');
+  var form = document.querySelector('.login-field form');
+};
+
+exports.animateLogin = animateLogin;
+
+/***/ }),
 /* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -281,15 +299,19 @@ var _tooltip2 = _interopRequireDefault(_tooltip);
 
 var _pcf = __webpack_require__(1);
 
+var _loginAnimation = __webpack_require__(0);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var x = document.getElementById('pcf');
+var loginField = document.querySelector('.login-field');
 
 (0, _tooltip2.default)();
 (0, _pcf.pcfButtonNavigate)(x);
 (0, _pcf.backArrowFunc)(x);
 (0, _pcf.calcRoi)(x);
 (0, _pcf.roiAgain)(x);
+(0, _loginAnimation.animateLogin)(loginField);
 
 /***/ })
 /******/ ]);
