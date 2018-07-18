@@ -41,5 +41,5 @@ exports.send = async options => {
     } else {
         console.log('file has been sent to:', info.accepted);
     };
-});
+  });
 };

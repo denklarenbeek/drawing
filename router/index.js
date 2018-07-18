@@ -5,6 +5,7 @@ const sendDrawingController = require('../controllers/SendDrawingController');
 const authController = require('../controllers/AuthController');
 const priceCastController = require('../controllers/priceCastController');
 const productsController = require('../controllers/productsController');
+const generateController = require('../controllers/generateController');
 
 router.get("/", authController.isLoggedIn, (req, res) => {
   res.render("index");
@@ -50,5 +51,7 @@ router.get('/products', (req, res) => {
 // api endpoints
 router.get('/api/v1/calculate-roi', authController.isLoggedIn, priceCastController.calculateROI);
 router.post('/api/v1/products', productsController.createProduct);
+
+router.post('/api/v1/generate-pcf-contract', generateController.testPdf);
 
 module.exports = router;
