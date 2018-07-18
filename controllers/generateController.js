@@ -22,7 +22,7 @@ exports.generatePCFContract = async (req, res, next) => {
   }
 
   res.setHeader("Content-Type", "application/pdf"); 
-  const pdfWriter = hummus.createWriterToModify(new hummus.PDFRStreamForFile('./public/templates/pcfcontract.pdf'), new hummus.PDFStreamForResponse(res))
+  const pdfWriter = hummus.createWriterToModify(new hummus.PDFRStreamForFile(__dirname + '/public/templates/pcfcontract.pdf'), new hummus.PDFStreamForResponse(res))
   // const pdfWriter = hummus.createWriterToModify(new hummus.PDFRStreamForFile('./public/templates/pcfcontract.pdf'), new hummus.PDFWStreamForFile(internalStream));
 
   const focoFont = pdfWriter.getFontForFile('./templates/fonts/foco_lt.ttf');
