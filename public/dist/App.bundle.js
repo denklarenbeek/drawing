@@ -76,7 +76,7 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.submitForm = exports.addLocationRow = undefined;
+exports.showEmailField = exports.submitForm = exports.addLocationRow = undefined;
 
 var _axios = __webpack_require__(13);
 
@@ -147,14 +147,17 @@ function submitForm(el) {
             contract_duration: document.getElementById('contract_duration').value
         };
 
+        var send_to_email = document.getElementById('send_to_email').value || '';
+
         var options = {
             send_by_email: document.getElementById('send_by_email').checked,
+            send_to_email: send_to_email,
             preview_online: document.getElementById('preview_online').checked
         };
 
         var locations = document.querySelectorAll('tbody tr');
         var modLocations = [];
-        console.log(locations);
+
         for (var i = 0; i < locations.length; i++) {
             var returnLocation = {};
             returnLocation.name = document.getElementById('location_name-' + i).value;
@@ -171,19 +174,30 @@ function submitForm(el) {
         }, { responseType: 'blob' }).then(function (res) {
             var file = new Blob([res.data], { type: 'application/pdf' });
             var fileURL = URL.createObjectURL(file);
-            console.log(res);
             window.open(fileURL);
+            location.href = '/create-pcf';
         }).catch(function (err) {
             console.log(err);
         });
+    });
+}
 
-        // Finaly redirect the page, depending on the custom field
-        console.log(debitor, dates, options, modLocations);
+function showEmailField(el) {
+    if (!el) return;
+
+    var input = document.getElementById('send_by_email');
+    input.addEventListener('change', function () {
+        if (this.checked) {
+            document.getElementById('send_to_email_container').style.display = 'block';
+        } else {
+            document.getElementById('send_to_email_container').style.display = 'none';
+        }
     });
 }
 
 exports.addLocationRow = addLocationRow;
 exports.submitForm = submitForm;
+exports.showEmailField = showEmailField;
 
 /***/ }),
 /* 1 */
@@ -436,6 +450,7 @@ var pcf = document.getElementById('createpcf');
 (0, _loginAnimation.animateLogin)(loginField);
 (0, _createPcf.addLocationRow)(pcf);
 (0, _createPcf.submitForm)(pcf);
+(0, _createPcf.showEmailField)(pcf);
 
 /***/ }),
 /* 5 */

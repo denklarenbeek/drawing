@@ -554,5 +554,7 @@ section.active {
 #createpcf label[for='preview_online'] {
   left: 40px;
   top: 22px; }
+#createpcf #send_to_email_container {
+  display: none; }
 
 /*# sourceMappingURL=style.css.map */

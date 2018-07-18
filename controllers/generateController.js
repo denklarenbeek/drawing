@@ -6,7 +6,7 @@ const moment = require('moment');
 moment.locale('nl');
 
 
-exports.generatePCFContract = async (req, res) => {
+exports.generatePCFContract = async (req, res, next) => {
   const debitor = req.body.debitor;
   const dates = req.body.dates;
   const options = req.body.options;
@@ -15,23 +15,15 @@ exports.generatePCFContract = async (req, res) => {
     company: debitor.company,
     street: debitor.street,
     city: `${debitor.zippcode} ${debitor.city.toUpperCase()}`,
-    coutry: debitor.country,
+    country: debitor.country,
     starting_date: await moment(dates.starting_date).format('D MMMM YYYY'),
     fee: `€ ${locations[0].fee}`,
     contract_duration: dates.contract_duration
   }
-  // const sendMail = options.send_by_email;
-  // const file = await pdfGenerator.pcfContract(data);
 
-  // res.json({
-  //   filepath: file
-  // });
-
-  res.setHeader("Content-Type", "application/pdf");
-
-  const contractName = `${data.company.toLowerCase()}-${Date.now()}`;
-  const filepath = `./public/tmp/${contractName}.pdf` 
+  res.setHeader("Content-Type", "application/pdf"); 
   const pdfWriter = hummus.createWriterToModify(new hummus.PDFRStreamForFile('./public/templates/pcfcontract.pdf'), new hummus.PDFStreamForResponse(res))
+  // const pdfWriter = hummus.createWriterToModify(new hummus.PDFRStreamForFile('./public/templates/pcfcontract.pdf'), new hummus.PDFWStreamForFile(internalStream));
 
   const focoFont = pdfWriter.getFontForFile('./public/templates/fonts/foco_lt.ttf');
   const textOptions = {font:focoFont,size:9,colorspace:'gray',color:0x00}
@@ -56,8 +48,30 @@ exports.generatePCFContract = async (req, res) => {
     .writeText(data.starting_date, 310, 720, textOptions)
     .writeText(data.contract_duration, 459, 706, textOptions)
   page5Modifier.endContext().writePage();
-
+  
+  const filepath = await pdfGenerator.pcfContract(data);
+  res.filepath = filepath;
   await pdfWriter.end();
-  res.send();
+  next();
+}
 
+exports.sendContract = async (req, res, next) => {
+  if(req.body.options.send_by_email){
+    await mail.send({
+      fromEmail: req.user.email,
+      fromName: req.user.name,
+      toEmail: req.body.options.send_to_email,
+      toName: '',
+      subject: 'pcf contract',
+      msg: 'Kijk eens! Uw PriceCast Fuel overeenkomst',
+      template: "attachment",
+      attachments: [
+        {
+          filename: 'PriceCast Fuel Overeenkomst',
+          path: res.filepath,
+        }
+      ]
+    });
+  }
+  res.send();
 }

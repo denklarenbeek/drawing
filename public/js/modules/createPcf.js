@@ -64,14 +64,17 @@ function submitForm(el){
             contract_duration: document.getElementById('contract_duration').value
         }
 
+        let send_to_email = document.getElementById('send_to_email').value || '';
+
         const options = {
             send_by_email: document.getElementById('send_by_email').checked,
+            send_to_email: send_to_email,
             preview_online: document.getElementById('preview_online').checked
         }
         
         const locations = document.querySelectorAll('tbody tr');
         let modLocations = [];
-        console.log(locations);
+        
         for (let i=0; i < locations.length; i++){
             let returnLocation = {};
             returnLocation.name = document.getElementById(`location_name-${i}`).value;
@@ -89,18 +92,27 @@ function submitForm(el){
         .then((res) => {
             var file = new Blob([res.data], {type: 'application/pdf'});
             var fileURL = URL.createObjectURL(file);
-            console.log(res);
             window.open(fileURL);
+            location.href = '/create-pcf';
         })
         .catch((err) => {
             console.log(err)
         });
-
-        // Finaly redirect the page, depending on the custom field
-        console.log(debitor, dates, options, modLocations);
-
     })
 
 }
 
-export {addLocationRow, submitForm}
+function showEmailField(el){
+    if(!el) return;
+
+    const input = document.getElementById('send_by_email');
+    input.addEventListener('change', function(){
+        if(this.checked){
+            document.getElementById('send_to_email_container').style.display = 'block';
+        } else {
+            document.getElementById('send_to_email_container').style.display = 'none';
+        }
+    })
+}
+
+export {addLocationRow, submitForm, showEmailField}

@@ -56,6 +56,6 @@ router.get('/products', (req, res) => {
 router.get('/api/v1/calculate-roi', authController.isLoggedIn, priceCastController.calculateROI);
 router.post('/api/v1/products', productsController.createProduct);
 
-router.post('/api/v1/generate-pcf-contract', authController.isLoggedIn, generateController.generatePCFContract);
+router.post('/api/v1/generate-pcf-contract', authController.isLoggedIn, generateController.generatePCFContract, generateController.sendContract);
 
 module.exports = router;
