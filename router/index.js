@@ -44,7 +44,7 @@ router.get('/pcf', authController.isLoggedIn, (req, res) => {
     res.render('pcf')
 });
 
-router.get('/create-pcf', (req, res) => {
+router.get('/create-pcf', authController.isLoggedIn, (req, res) => {
     res.render('createPcf');
 });
 

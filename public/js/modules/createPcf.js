@@ -1,26 +1,33 @@
-let debitor = {};
+import axios from 'axios';
 
 function addLocationRow(el){
     if(!el) return
     const tbody = document.querySelector('table tbody');
     const button = document.getElementById('createNewRow');
+     
     button.addEventListener('click', () => {
+
+        const index = document.querySelectorAll('table tbody tr').length;
         const row = document.createElement('tr');
         const columnOne = document.createElement('td');
         const inputName = document.createElement('input');
         inputName.type = 'text';
+        inputName.name = 'location_name';
+        inputName.id = `location_name-${index}`
         columnOne.appendChild(inputName);
         row.appendChild(columnOne);
         
         const columnTwo = document.createElement('td');
         const inputHardware = document.createElement('input');
         inputHardware.type = 'checkbox';
+        inputHardware.id = `location_hardware-${index}`
         columnTwo.appendChild(inputHardware);
         row.appendChild(columnTwo);
 
         const columnThree = document.createElement('td');
         const inputFee = document.createElement('input');
         inputFee.type = 'number';
+        inputFee.id = `location_fee-${index}`;
         columnThree.appendChild(inputFee);
         row.appendChild(columnThree);
 
@@ -39,4 +46,61 @@ function addLocationRow(el){
     });
 };
 
-export {addLocationRow}
+function submitForm(el){
+    if(!el) return
+    const form = document.getElementById('firstform');
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const debitor = {
+            company: document.getElementById('company').value,
+            street: document.getElementById('street').value,
+            zippcode: document.getElementById('zippcode').value,
+            city: document.getElementById('city').value,
+            country: document.getElementById('country').value
+        }
+
+        const dates = {
+            starting_date: document.getElementById('starting_date').value,
+            contract_duration: document.getElementById('contract_duration').value
+        }
+
+        const options = {
+            send_by_email: document.getElementById('send_by_email').checked,
+            preview_online: document.getElementById('preview_online').checked
+        }
+        
+        const locations = document.querySelectorAll('tbody tr');
+        let modLocations = [];
+        console.log(locations);
+        for (let i=0; i < locations.length; i++){
+            let returnLocation = {};
+            returnLocation.name = document.getElementById(`location_name-${i}`).value;
+            returnLocation.hardware = document.getElementById(`location_hardware-${i}`).checked;
+            returnLocation.fee = document.getElementById(`location_fee-${i}`).value;
+            modLocations.push(returnLocation);
+        };
+
+        axios.post('/api/v1/generate-pcf-contract', {
+            debitor: debitor,
+            dates: dates,
+            options: options,
+            locations: modLocations
+        }, {responseType: 'blob'})
+        .then((res) => {
+            var file = new Blob([res.data], {type: 'application/pdf'});
+            var fileURL = URL.createObjectURL(file);
+            console.log(res);
+            window.open(fileURL);
+        })
+        .catch((err) => {
+            console.log(err)
+        });
+
+        // Finaly redirect the page, depending on the custom field
+        console.log(debitor, dates, options, modLocations);
+
+    })
+
+}
+
+export {addLocationRow, submitForm}

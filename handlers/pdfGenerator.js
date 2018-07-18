@@ -60,6 +60,9 @@ exports.pcfContract = async (data) => {
   page5Modifier.endContext().writePage();
 
   await pdfWriter.end();
-  return filepath;
 };
+
+exports.streamContract = (req, res) => {
+  const pdfWriter = hummus.createWriterToModify(new hummus.PDFRStreamForFile(path.join(__dirname, 'public/templates/pcfcontract.pdf')), new hummus.PDFStreamForResponse(response))
+}
 
