@@ -30,8 +30,9 @@ const page1textPosition = {
 
 exports.pcfContract = async (data) => {
   const contractName = `${data.company.toLowerCase()}-${Date.now()}`;
+  const filepath = `./public/tmp/${contractName}.pdf` 
   const pdfWriter = hummus.createWriterToModify('./public/templates/pcfcontract.pdf', {
-    modifiedFilePath: `./public/tmp/${contractName}.pdf`
+    modifiedFilePath: filepath
   });
 
   const focoFont = pdfWriter.getFontForFile('./public/templates/fonts/foco_lt.ttf');
@@ -58,7 +59,7 @@ exports.pcfContract = async (data) => {
     .writeText(data.contract_duration, 459, 706, textOptions)
   page5Modifier.endContext().writePage();
 
-  pdfWriter.end();
-
+  await pdfWriter.end();
+  return filepath;
 };
 

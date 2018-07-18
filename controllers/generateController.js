@@ -1,8 +1,7 @@
-var fs = require('fs');
-var PDFDocument = require('pdfkit');
 const pdfGenerator = require('../handlers/pdfGenerator');
+const mail = require("../handlers/mailer");
 
-exports.testPdf = async (req, res) => {
+exports.generatePCFContract = async (req, res) => {
   const data = {
     company: 'BigBrother',
     street: 'Galvanistraat 14-2',
@@ -12,6 +11,21 @@ exports.testPdf = async (req, res) => {
     fee: '€ 180',
     contract_duration: '36'
   }
-  pdfGenerator.pcfContract(data);
+  const sendMail = true;
+  const file = await pdfGenerator.pcfContract(data);
+
+  // if(sendMail){
+  //   await mail.send({
+  //     fromEmail: req.user.email || 'dennis.klarenbeek@icloud.com',
+  //     fromName: req.user.name || 'Dennis Klarenbeek',
+  //     toEmail: 'dk@bigbrother.nl',
+  //     toName: 'John Doe',
+  //     subject: 'Contract PriceCast Fuel',
+  //     msg: 'Hierbij treft u het contract voor PriceCast Fuel'
+  //   });
+  // };
+  res.json({
+    filepath: file
+  });
 
 }

@@ -1,0 +1,64 @@
+#createpcf > i {
+  position: absolute;
+  font-size: 1.5rem;
+  top: 10px;
+  left: -35px;
+  color: #002f49;
+
+}
+
+#createpcf {
+
+  h2 {
+    margin-bottom: 20px;
+  }
+
+  table {
+    width: 100%;
+    position: relative;
+
+    th:last-child {
+
+      i {
+        font-size: 1.5em;
+        position: absolute;
+        top: 20px;
+        right: 15px;
+        cursor: pointer;
+      }
+    }
+
+    th:nth-child(1){
+      text-align: left;
+    }
+    td:nth-child(2) {
+      width: 50px;
+    }
+    th:nth-child(3) {
+      text-align: right;
+    }
+    td:nth-child(3) {
+      width: 50px;
+      text-align: right;
+
+      input {
+        text-align: right;
+      }
+    }
+    td:nth-child(4) {
+      width: 30px;
+      padding-bottom: 0;
+
+      i {
+        font-size: 1.2em;
+      }
+    }
+
+  }
+  label[for='send_by_email'],
+  label[for='preview_online'] {
+    left: 40px;
+    top: 22px;
+  }
+}
+

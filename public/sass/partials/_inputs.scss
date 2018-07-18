@@ -1,3 +1,17 @@
+.input-container {
+  margin-bottom: 1.8rem;
+  position: relative;
+  overflow: visible;
+
+  & i {
+    position: absolute;
+    font-size: 1.5rem;
+    top: 10px;
+    left: -35px;
+    color: #002f49;
+  }
+}
+
 input,
 textarea {
   width: 100%;
@@ -17,6 +31,7 @@ input[type="email"],
 input[type="text"],
 input[type="password"],
 input[type="number"],
+input[type="date"],
 textarea {
   outline: none;
   border: none;
@@ -29,6 +44,32 @@ textarea {
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
 }
+
+input[type="checkbox"]{
+	background-color: #f1f1f1;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+  margin-top: 20px;
+  margin-left: 6px;
+  border: 1px solid;
+}
+
+input[type=checkbox]:checked {
+	background: url(../img/check_icon.png) center #ffcc33 no-repeat;
+	background-size: 10px 10px;
+}
+
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
 
 input[type="file"] {
   display: none;
@@ -81,15 +122,6 @@ button[type="submit"] {
   }
 }
 
-// input[type="submit"]:hover {
-//   outline: 0;
-//   box-shadow: 0 0 1px rgba(0, 0, 0, 0.5);
-// }
-
-// input[type="submit"]:active {
-//   outline: 0;
-//   box-shadow: 0 1px $secondary-darker;
-// }
 
 textarea {
   border: 1px dashed $primary-color;
@@ -127,6 +159,12 @@ label {
   transition: top 0.5s;
   text-transform: uppercase;
   color: #8b9ba8;
+
+  &.fixed {
+    top: -15px;
+    color: $primary-color;
+    font-size: 0.8rem;
+  }
 }
 
 label[for="file"] {

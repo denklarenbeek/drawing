@@ -1,0 +1,55 @@
+extends layout
+
+block content
+    .container
+        .title-tile
+            h1 Create PriceCast Contract
+        .content-tile
+            .inner#createpcf
+                form(id='firstform')
+                    h2 Debiteur
+                    .input-container
+                        input(type='text' name='company' id='company' required)
+                        label(for='company') Bedrijfsnaam
+                        i(class='fal fa-building')
+                    .input-container
+                        input(type='text'  name='street'  id='street' required)
+                        label(for='street') Straatnaam
+                        i(class='fal fa-road')
+                    .input-container
+                        input(type='text'  name='zippcode'  id='zippcode' required)
+                        label(for='zippcode') Postcode
+                    .input-container
+                        input(type='text'  name='city'  id='city' required)
+                        label(for='city') Plaatsnaam
+                    .input-container
+                        input(type='text'  name='country'  id='country' required)
+                        label(for='country') Land
+                    h2 Dates
+                    .input-container
+                        input(type='text' name='contract_duration' id='contract_duration' required)    
+                        label(for='contract_duration') Duur contract
+                    .input-container
+                        input(type='date' name='starting_date' id='starting_date' required)    
+                        label(for='starting_date' class='fixed') Startdatum
+                    h2 Locaties
+                    table
+                        thead
+                            tr
+                                th Name
+                                th Hard.
+                                th Fee
+                                th
+                                    i(class='fal fa-plus-hexagon' id='createNewRow')
+
+                        tbody
+                            
+                    h2 Opties
+                    .input-container
+                        input(type='checkbox' name='send_by_email' id='send_by_email')
+                        label(for='send_by_email') Verstuur per email
+                    .input-container
+                        input(type='checkbox' name='preview_online' id='preview_online')
+                        label(for='preview_online') Bekijk online       
+
+                    button(type='submit') Genereer contract  

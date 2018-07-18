@@ -12,6 +12,17 @@ a {
   .icon-outline:hover {
     color: #002f49; }
 
+.input-container {
+  margin-bottom: 1.8rem;
+  position: relative;
+  overflow: visible; }
+  .input-container i {
+    position: absolute;
+    font-size: 1.5rem;
+    top: 10px;
+    left: -35px;
+    color: #002f49; }
+
 input,
 textarea {
   width: 100%;
@@ -29,6 +40,7 @@ input[type="email"],
 input[type="text"],
 input[type="password"],
 input[type="number"],
+input[type="date"],
 textarea {
   outline: none;
   border: none;
@@ -40,6 +52,28 @@ textarea {
   border-radius: 0;
   -webkit-border-radius: 0;
   -moz-border-radius: 0; }
+
+input[type="checkbox"] {
+  background-color: #f1f1f1;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+  margin-top: 20px;
+  margin-left: 6px;
+  border: 1px solid; }
+
+input[type=checkbox]:checked {
+  background: url(../img/check_icon.png) center #ffcc33 no-repeat;
+  background-size: 10px 10px; }
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  /* display: none; <- Crashes Chrome on hover */
+  -webkit-appearance: none;
+  margin: 0;
+  /* <-- Apparently some margin are still there even though it's hidden */ }
 
 input[type="file"] {
   display: none; }
@@ -115,6 +149,10 @@ label {
   transition: top 0.5s;
   text-transform: uppercase;
   color: #8b9ba8; }
+  label.fixed {
+    top: -15px;
+    color: #002f49;
+    font-size: 0.8rem; }
 
 label[for="file"] {
   transform: none;
@@ -252,6 +290,12 @@ td, th {
   @media only screen and (min-width: 768px) {
     td, th {
       font-size: 1.2em; } }
+
+td {
+  padding-top: 0px; }
+
+th {
+  padding-bottom: 0px; }
 
 td:nth-child(1) {
   font-weight: bold; }
@@ -471,5 +515,44 @@ section.active {
     @media only screen and (min-width: 768px) {
       .back-arrow i {
         font-size: 3em; } }
+
+#createpcf > i {
+  position: absolute;
+  font-size: 1.5rem;
+  top: 10px;
+  left: -35px;
+  color: #002f49; }
+
+#createpcf h2 {
+  margin-bottom: 20px; }
+#createpcf table {
+  width: 100%;
+  position: relative; }
+  #createpcf table th:last-child i {
+    font-size: 1.5em;
+    position: absolute;
+    top: 20px;
+    right: 15px;
+    cursor: pointer; }
+  #createpcf table th:nth-child(1) {
+    text-align: left; }
+  #createpcf table td:nth-child(2) {
+    width: 50px; }
+  #createpcf table th:nth-child(3) {
+    text-align: right; }
+  #createpcf table td:nth-child(3) {
+    width: 50px;
+    text-align: right; }
+    #createpcf table td:nth-child(3) input {
+      text-align: right; }
+  #createpcf table td:nth-child(4) {
+    width: 30px;
+    padding-bottom: 0; }
+    #createpcf table td:nth-child(4) i {
+      font-size: 1.2em; }
+#createpcf label[for='send_by_email'],
+#createpcf label[for='preview_online'] {
+  left: 40px;
+  top: 22px; }
 
 /*# sourceMappingURL=style.css.map */

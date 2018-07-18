@@ -44,6 +44,10 @@ router.get('/pcf', authController.isLoggedIn, (req, res) => {
     res.render('pcf')
 });
 
+router.get('/create-pcf', (req, res) => {
+    res.render('createPcf');
+});
+
 router.get('/products', (req, res) => {
     res.render('pcfEdit');
 });
@@ -52,6 +56,6 @@ router.get('/products', (req, res) => {
 router.get('/api/v1/calculate-roi', authController.isLoggedIn, priceCastController.calculateROI);
 router.post('/api/v1/products', productsController.createProduct);
 
-router.post('/api/v1/generate-pcf-contract', generateController.testPdf);
+router.post('/api/v1/generate-pcf-contract', authController.isLoggedIn, generateController.generatePCFContract);
 
 module.exports = router;

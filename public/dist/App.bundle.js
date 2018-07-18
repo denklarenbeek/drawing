@@ -63,11 +63,63 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+var debitor = {};
+
+function addLocationRow(el) {
+    if (!el) return;
+    var tbody = document.querySelector('table tbody');
+    var button = document.getElementById('createNewRow');
+    button.addEventListener('click', function () {
+        var row = document.createElement('tr');
+        var columnOne = document.createElement('td');
+        var inputName = document.createElement('input');
+        inputName.type = 'text';
+        columnOne.appendChild(inputName);
+        row.appendChild(columnOne);
+
+        var columnTwo = document.createElement('td');
+        var inputHardware = document.createElement('input');
+        inputHardware.type = 'checkbox';
+        columnTwo.appendChild(inputHardware);
+        row.appendChild(columnTwo);
+
+        var columnThree = document.createElement('td');
+        var inputFee = document.createElement('input');
+        inputFee.type = 'number';
+        columnThree.appendChild(inputFee);
+        row.appendChild(columnThree);
+
+        var columnFour = document.createElement('td');
+        var inputIcon = document.createElement('i');
+        inputIcon.className = 'fal fa-trash-alt btn-danger';
+        inputIcon.addEventListener('click', function () {
+            var tbody = document.querySelector('table tbody');
+            tbody.removeChild(row);
+        });
+        columnFour.appendChild(inputIcon);
+        row.appendChild(columnFour);
+
+        tbody.appendChild(row);
+    });
+};
+
+exports.addLocationRow = addLocationRow;
+
+/***/ }),
+/* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -86,7 +138,7 @@ function animateLogin(el) {
 exports.animateLogin = animateLogin;
 
 /***/ }),
-/* 1 */
+/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -236,7 +288,7 @@ exports.calcRoi = calcRoi;
 exports.roiAgain = roiAgain;
 
 /***/ }),
-/* 2 */
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -287,24 +339,27 @@ function setToolTips() {
 exports.default = setToolTips;
 
 /***/ }),
-/* 3 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _tooltip = __webpack_require__(2);
+var _tooltip = __webpack_require__(3);
 
 var _tooltip2 = _interopRequireDefault(_tooltip);
 
-var _pcf = __webpack_require__(1);
+var _pcf = __webpack_require__(2);
 
-var _loginAnimation = __webpack_require__(0);
+var _loginAnimation = __webpack_require__(1);
+
+var _createPcf = __webpack_require__(0);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var x = document.getElementById('pcf');
 var loginField = document.querySelector('.login-field');
+var pcf = document.getElementById('createpcf');
 
 (0, _tooltip2.default)();
 (0, _pcf.pcfButtonNavigate)(x);
@@ -312,6 +367,7 @@ var loginField = document.querySelector('.login-field');
 (0, _pcf.calcRoi)(x);
 (0, _pcf.roiAgain)(x);
 (0, _loginAnimation.animateLogin)(loginField);
+(0, _createPcf.addLocationRow)(pcf);
 
 /***/ })
 /******/ ]);
