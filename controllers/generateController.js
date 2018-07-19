@@ -5,7 +5,6 @@ const path = require('path');
 const moment = require('moment');
 moment.locale('nl');
 
-
 exports.generatePCFContract = async (req, res, next) => {
   const debitor = req.body.debitor;
   const dates = req.body.dates;
@@ -22,8 +21,7 @@ exports.generatePCFContract = async (req, res, next) => {
   }
 
   res.setHeader("Content-Type", "application/pdf"); 
-  const pdfWriter = hummus.createWriterToModify(new hummus.PDFRStreamForFile('./templates/pcfcontract.pdf'), new hummus.PDFStreamForResponse(res))
-  // const pdfWriter = hummus.createWriterToModify(new hummus.PDFRStreamForFile('./public/templates/pcfcontract.pdf'), new hummus.PDFWStreamForFile(internalStream));
+  const pdfWriter = hummus.createWriterToModify(new hummus.PDFRStreamForFile('../templates/pcfcontract.pdf'), new hummus.PDFStreamForResponse(res))
 
   const focoFont = pdfWriter.getFontForFile('./templates/fonts/foco_lt.ttf');
   const textOptions = {font:focoFont,size:9,colorspace:'gray',color:0x00}
