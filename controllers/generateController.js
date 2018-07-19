@@ -47,8 +47,8 @@ exports.generatePCFContract = async (req, res, next) => {
     .writeText(data.contract_duration, 459, 706, textOptions)
   page5Modifier.endContext().writePage();
   
-  const filepath = await pdfGenerator.pcfContract(data);
-  res.filepath = filepath;
+  // const filepath = await pdfGenerator.pcfContract(data);
+  // res.filepath = filepath;
   await pdfWriter.end();
   next();
 }
