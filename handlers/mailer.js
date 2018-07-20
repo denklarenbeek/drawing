@@ -37,9 +37,11 @@ exports.send = async options => {
   };
   return transport.sendMail(mailOptions, (err, info) => {
     if(err) {
+        req.flash('error', `There is an error with sending the image: ${err}`);
         console.log('There is an error with sending the image:', err)
     } else {
-        console.log('file has been sent to:', info.accepted);
+      req.flash('success', `Email has been sent to ${info.accepted}`)
+      console.log('file has been sent to:', info.accepted);
     };
   });
 };

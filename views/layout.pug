@@ -26,6 +26,18 @@ html
                 
     .wrapper(class=(currentPath.startsWith('/login') ? 'fixed' : ''))
       block content
+
+
+      block messages
+      if locals.flashes
+        .inner
+          .flash-messages
+            - const categories = Object.keys(locals.flashes)
+            each category in categories
+              each message in flashes[category]
+                .flash(class=`flash--${category}` )
+                  p.flash__text!= message
+
         
     block scripts
       script(src="https://unpkg.com/axios/dist/axios.min.js")

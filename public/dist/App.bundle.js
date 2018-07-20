@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 32);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -73,395 +73,9 @@
 "use strict";
 
 
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.showEmailField = exports.submitForm = exports.addLocationRow = undefined;
-
-var _axios = __webpack_require__(13);
-
-var _axios2 = _interopRequireDefault(_axios);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function addLocationRow(el) {
-    if (!el) return;
-    var tbody = document.querySelector('table tbody');
-    var button = document.getElementById('createNewRow');
-
-    button.addEventListener('click', function () {
-
-        var index = document.querySelectorAll('table tbody tr').length;
-        var row = document.createElement('tr');
-        var columnOne = document.createElement('td');
-        var inputName = document.createElement('input');
-        inputName.type = 'text';
-        inputName.name = 'location_name';
-        inputName.id = 'location_name-' + index;
-        columnOne.appendChild(inputName);
-        row.appendChild(columnOne);
-
-        var columnTwo = document.createElement('td');
-        var inputHardware = document.createElement('input');
-        inputHardware.type = 'checkbox';
-        inputHardware.id = 'location_hardware-' + index;
-        columnTwo.appendChild(inputHardware);
-        row.appendChild(columnTwo);
-
-        var columnThree = document.createElement('td');
-        var inputFee = document.createElement('input');
-        inputFee.type = 'number';
-        inputFee.id = 'location_fee-' + index;
-        columnThree.appendChild(inputFee);
-        row.appendChild(columnThree);
-
-        var columnFour = document.createElement('td');
-        var inputIcon = document.createElement('i');
-        inputIcon.className = 'fal fa-trash-alt btn-danger';
-        inputIcon.addEventListener('click', function () {
-            var tbody = document.querySelector('table tbody');
-            tbody.removeChild(row);
-        });
-        columnFour.appendChild(inputIcon);
-        row.appendChild(columnFour);
-
-        tbody.appendChild(row);
-    });
-};
-
-function submitForm(el) {
-    if (!el) return;
-    var form = document.getElementById('firstform');
-    form.addEventListener('submit', function (e) {
-        e.preventDefault();
-        var debitor = {
-            company: document.getElementById('company').value,
-            street: document.getElementById('street').value,
-            zippcode: document.getElementById('zippcode').value,
-            city: document.getElementById('city').value,
-            country: document.getElementById('country').value
-        };
-
-        var dates = {
-            starting_date: document.getElementById('starting_date').value,
-            contract_duration: document.getElementById('contract_duration').value
-        };
-
-        var send_to_email = document.getElementById('send_to_email').value || '';
-
-        var options = {
-            send_by_email: document.getElementById('send_by_email').checked,
-            send_to_email: send_to_email,
-            preview_online: document.getElementById('preview_online').checked
-        };
-
-        var locations = document.querySelectorAll('tbody tr');
-        var modLocations = [];
-
-        for (var i = 0; i < locations.length; i++) {
-            var returnLocation = {};
-            returnLocation.name = document.getElementById('location_name-' + i).value;
-            returnLocation.hardware = document.getElementById('location_hardware-' + i).checked;
-            returnLocation.fee = document.getElementById('location_fee-' + i).value;
-            modLocations.push(returnLocation);
-        };
-
-        _axios2.default.post('/api/v1/generate-pcf-contract', {
-            debitor: debitor,
-            dates: dates,
-            options: options,
-            locations: modLocations
-        }, { responseType: 'blob' }).then(function (res) {
-            var file = new Blob([res.data], { type: 'application/pdf' });
-            var fileURL = URL.createObjectURL(file);
-            window.open(fileURL);
-            location.href = '/create-pcf';
-        }).catch(function (err) {
-            console.log(err);
-        });
-    });
-}
-
-function showEmailField(el) {
-    if (!el) return;
-
-    var input = document.getElementById('send_by_email');
-    input.addEventListener('change', function () {
-        if (this.checked) {
-            document.getElementById('send_to_email_container').style.display = 'block';
-        } else {
-            document.getElementById('send_to_email_container').style.display = 'none';
-        }
-    });
-}
-
-exports.addLocationRow = addLocationRow;
-exports.submitForm = submitForm;
-exports.showEmailField = showEmailField;
-
-/***/ }),
-/* 1 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-function animateLogin(el) {
-  if (!el) return;
-
-  var button = document.querySelector('.login-field form button[type="submit"]');
-  var form = document.querySelector('.login-field form');
-};
-
-exports.animateLogin = animateLogin;
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-var tab = 1;
-var client = void 0;
-var improvement = void 0;
-
-function formatPrices(amount) {
-  return amount.toLocaleString("en-US", {
-    style: "currency",
-    currency: "EUR",
-    currencyDisplay: "symbol"
-  });
-}
-
-function showHideArrow(tabNr) {
-  var arrow = document.querySelector(".back-arrow i");
-  if (tabNr === 1 || tabNr === 4) {
-    arrow.style.display = "none";
-  } else {
-    arrow.style.display = "block";
-  }
-}
-
-function pcfButtonNavigate(el) {
-  if (!el) return;
-
-  var buttons = document.querySelectorAll("button");
-
-  var _loop = function _loop(i) {
-    buttons[i].addEventListener("click", function () {
-      // remove active class from current
-      var activeSection = document.querySelector("section.active");
-      activeSection.classList.remove("active");
-
-      // Set new tab number
-      tab++;
-
-      // save value in variable
-      if (buttons[i].dataset.client) {
-        client = buttons[i].dataset.client;
-      }
-      if (buttons[i].dataset.improvement) {
-        improvement = buttons[i].dataset.improvement;
-      }
-
-      // render right section
-      var search = void 0;
-      if (tab === 3) {
-        search = "pcf-" + improvement;
-      } else {
-        search = "pcf-" + tab;
-      }
-
-      var newSection = document.getElementById(search);
-      newSection.classList.add("active");
-
-      showHideArrow(tab);
-    });
-  };
-
-  for (var i = 0; i < buttons.length; i++) {
-    _loop(i);
-  }
-}
-
-function backArrowFunc(el) {
-  if (!el) return;
-
-  var backArrow = document.querySelector(".back-arrow i");
-
-  backArrow.addEventListener("click", function () {
-    var activeSection = document.querySelector("section.active");
-    activeSection.classList.remove("active");
-
-    tab--;
-
-    var search = "pcf-" + tab;
-    var newSection = document.getElementById(search);
-    newSection.classList.add("active");
-    showHideArrow(tab);
-  });
-}
-
-function calcRoi(el) {
-  if (!el) return;
-
-  var form = document.querySelectorAll(".pcf-calculate-form");
-  for (var i = 0; i < form.length; i++) {
-    form[i].addEventListener("submit", function (e) {
-      e.preventDefault();
-
-      var marginimpr = document.getElementById("marge-impr").value;
-      var volume = document.getElementById("volume").value;
-      var volumeimpr = document.getElementById("volume-impr").value;
-      var margin = document.getElementById("margin").value;
-
-      //axios request naar api!
-      axios.get("/api/v1/calculate-roi?client=" + client + "&improvement=" + improvement + "&marginimpr=" + marginimpr + "&volume=" + volume + "&volumeimpr=" + volumeimpr + "&margin=" + margin).then(function (res) {
-        var activeSection = document.querySelector("section.active");
-        activeSection.classList.remove("active");
-        tab++;
-        var newSection = document.getElementById("pcf-roi-table");
-        var roiTable = document.querySelector('#pcf-roi-table table tbody');
-        var childDivs = roiTable.children;
-        var data = res.data;
-        for (var _i = 0; _i < childDivs.length; _i++) {
-          var feeP = childDivs[_i].children[1];
-          var modFeeP = res.data[_i].fee;
-          feeP.innerHTML = "\u20AC " + modFeeP;
-          var roiP = childDivs[_i].children[2];
-          var modRoiP = Math.floor(res.data[_i].roi) + "%";
-          roiP.innerHTML = modRoiP;
-          var setupP = childDivs[_i].children[3];
-          var modSetupP = res.data[_i].setup;
-          setupP.innerHTML = "\u20AC " + modSetupP;
-        }
-
-        newSection.classList.add("active");
-        showHideArrow(tab);
-      }).catch(function (err) {
-        console.log(err);
-      });
-      //
-    });
-  }
-}
-
-function roiAgain(el) {
-  if (!el) return;
-
-  var button = document.getElementById('calc-roi-again');
-  button.addEventListener('click', function (e) {
-    e.preventDefault();
-    location.reload();
-  });
-}
-
-exports.pcfButtonNavigate = pcfButtonNavigate;
-exports.backArrowFunc = backArrowFunc;
-exports.calcRoi = calcRoi;
-exports.roiAgain = roiAgain;
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
-function setToolTips() {
-
-  var labels = [].concat(_toConsumableArray(document.querySelectorAll('.tooltip')));
-
-  var _loop = function _loop(i) {
-    var inputContainer = labels[i];
-    var tooltip = document.createElement('div');
-    tooltip.className = 'tooltip-container';
-    var icon = document.createElement('i');
-    icon.className = 'fal fa-info-circle tooltip';
-    var tipText = labels[i].dataset.tooltipinfo;
-    var span = document.createElement('span');
-    span.className = 'tooltip';
-    span.innerHTML = tipText;
-    var arrow = document.createElement('i');
-    arrow.className = 'tooltip-arrow';
-    icon.addEventListener('click', function () {
-      span.style.display = 'inline-block';
-      arrow.style.display = 'inline-block';
-      setTimeout(function () {
-        span.style.display = 'none';
-        arrow.style.display = 'none';
-      }, 5000);
-    });
-
-    tooltip.appendChild(icon);
-    tooltip.appendChild(span);
-    tooltip.appendChild(arrow);
-    inputContainer.appendChild(tooltip);
-  };
-
-  for (var i = 0; i < labels.length; i++) {
-    _loop(i);
-  };
-};
-
-exports.default = setToolTips;
-
-/***/ }),
-/* 4 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _tooltip = __webpack_require__(3);
-
-var _tooltip2 = _interopRequireDefault(_tooltip);
-
-var _pcf = __webpack_require__(2);
-
-var _loginAnimation = __webpack_require__(1);
-
-var _createPcf = __webpack_require__(0);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var x = document.getElementById('pcf');
-var loginField = document.querySelector('.login-field');
-var pcf = document.getElementById('createpcf');
-
-(0, _tooltip2.default)();
-(0, _pcf.pcfButtonNavigate)(x);
-(0, _pcf.backArrowFunc)(x);
-(0, _pcf.calcRoi)(x);
-(0, _pcf.roiAgain)(x);
-(0, _loginAnimation.animateLogin)(loginField);
-(0, _createPcf.addLocationRow)(pcf);
-(0, _createPcf.submitForm)(pcf);
-(0, _createPcf.showEmailField)(pcf);
-
-/***/ }),
-/* 5 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-var bind = __webpack_require__(11);
+var bind = __webpack_require__(6);
 var isBuffer = __webpack_require__(31);
 
 /*global toString:true*/
@@ -761,13 +375,13 @@ module.exports = {
 };
 
 /***/ }),
-/* 6 */
+/* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {
 
-var utils = __webpack_require__(5);
+var utils = __webpack_require__(0);
 var normalizeHeaderName = __webpack_require__(28);
 
 var DEFAULT_CONTENT_TYPE = {
@@ -784,10 +398,10 @@ function getDefaultAdapter() {
   var adapter;
   if (typeof XMLHttpRequest !== 'undefined') {
     // For browsers use XHR adapter
-    adapter = __webpack_require__(7);
+    adapter = __webpack_require__(2);
   } else if (typeof process !== 'undefined') {
     // For node use HTTP adapter
-    adapter = __webpack_require__(7);
+    adapter = __webpack_require__(2);
   }
   return adapter;
 }
@@ -855,21 +469,21 @@ utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
 });
 
 module.exports = defaults;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(12)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)))
 
 /***/ }),
-/* 7 */
+/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {
 
-var utils = __webpack_require__(5);
+var utils = __webpack_require__(0);
 var settle = __webpack_require__(20);
 var buildURL = __webpack_require__(23);
 var parseHeaders = __webpack_require__(29);
 var isURLSameOrigin = __webpack_require__(27);
-var createError = __webpack_require__(10);
+var createError = __webpack_require__(5);
 var btoa = typeof window !== 'undefined' && window.btoa && window.btoa.bind(window) || __webpack_require__(22);
 
 module.exports = function xhrAdapter(config) {
@@ -1036,10 +650,10 @@ module.exports = function xhrAdapter(config) {
     request.send(requestData);
   });
 };
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(12)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)))
 
 /***/ }),
-/* 8 */
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1065,7 +679,7 @@ Cancel.prototype.__CANCEL__ = true;
 module.exports = Cancel;
 
 /***/ }),
-/* 9 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1076,7 +690,7 @@ module.exports = function isCancel(value) {
 };
 
 /***/ }),
-/* 10 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1100,7 +714,7 @@ module.exports = function createError(message, config, code, request, response) 
 };
 
 /***/ }),
-/* 11 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1117,7 +731,7 @@ module.exports = function bind(fn, thisArg) {
 };
 
 /***/ }),
-/* 12 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1310,6 +924,380 @@ process.umask = function () {
 };
 
 /***/ }),
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.showEmailField = exports.submitForm = exports.addLocationRow = undefined;
+
+var _axios = __webpack_require__(13);
+
+var _axios2 = _interopRequireDefault(_axios);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function addLocationRow(el) {
+    if (!el) return;
+    var tbody = document.querySelector('table tbody');
+    var button = document.getElementById('createNewRow');
+
+    button.addEventListener('click', function () {
+
+        var index = document.querySelectorAll('table tbody tr').length;
+        var row = document.createElement('tr');
+        var columnOne = document.createElement('td');
+        var inputName = document.createElement('input');
+        inputName.type = 'text';
+        inputName.name = 'location_name';
+        inputName.id = 'location_name-' + index;
+        columnOne.appendChild(inputName);
+        row.appendChild(columnOne);
+
+        var columnTwo = document.createElement('td');
+        var inputHardware = document.createElement('input');
+        inputHardware.type = 'checkbox';
+        inputHardware.id = 'location_hardware-' + index;
+        columnTwo.appendChild(inputHardware);
+        row.appendChild(columnTwo);
+
+        var columnThree = document.createElement('td');
+        var inputFee = document.createElement('input');
+        inputFee.type = 'number';
+        inputFee.id = 'location_fee-' + index;
+        columnThree.appendChild(inputFee);
+        row.appendChild(columnThree);
+
+        var columnFour = document.createElement('td');
+        var inputIcon = document.createElement('i');
+        inputIcon.className = 'fal fa-trash-alt btn-danger';
+        inputIcon.addEventListener('click', function () {
+            var tbody = document.querySelector('table tbody');
+            tbody.removeChild(row);
+        });
+        columnFour.appendChild(inputIcon);
+        row.appendChild(columnFour);
+
+        tbody.appendChild(row);
+    });
+};
+
+function submitForm(el) {
+    if (!el) return;
+    var form = document.getElementById('firstform');
+    form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var debitor = {
+            company: document.getElementById('company').value,
+            street: document.getElementById('street').value,
+            zippcode: document.getElementById('zippcode').value,
+            city: document.getElementById('city').value,
+            country: document.getElementById('country').value
+        };
+
+        var dates = {
+            starting_date: document.getElementById('starting_date').value,
+            contract_duration: document.getElementById('contract_duration').value
+        };
+
+        var send_to_email = document.getElementById('send_to_email').value || '';
+
+        var options = {
+            send_by_email: document.getElementById('send_by_email').checked,
+            send_to_email: send_to_email,
+            preview_online: document.getElementById('preview_online').checked
+        };
+
+        var locations = document.querySelectorAll('tbody tr');
+        var modLocations = [];
+
+        for (var i = 0; i < locations.length; i++) {
+            var returnLocation = {};
+            returnLocation.name = document.getElementById('location_name-' + i).value;
+            returnLocation.hardware = document.getElementById('location_hardware-' + i).checked;
+            returnLocation.fee = document.getElementById('location_fee-' + i).value;
+            modLocations.push(returnLocation);
+        };
+
+        _axios2.default.post('/api/v1/generate-pcf-contract', {
+            debitor: debitor,
+            dates: dates,
+            options: options,
+            locations: modLocations
+        }, { responseType: 'blob' }).then(function (res) {
+            var file = new Blob([res.data], { type: 'application/pdf' });
+            var fileURL = URL.createObjectURL(file);
+            window.open(fileURL);
+            location.href = '/create-pcf';
+        }).catch(function (err) {
+            console.log(err);
+        });
+    });
+}
+
+function showEmailField(el) {
+    if (!el) return;
+
+    var input = document.getElementById('send_by_email');
+    input.addEventListener('change', function () {
+        if (this.checked) {
+            document.getElementById('send_to_email_container').style.display = 'block';
+        } else {
+            document.getElementById('send_to_email_container').style.display = 'none';
+        }
+    });
+}
+
+exports.addLocationRow = addLocationRow;
+exports.submitForm = submitForm;
+exports.showEmailField = showEmailField;
+
+/***/ }),
+/* 9 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+function deleteFlash(el) {
+    if (!el) return;
+    var flash = document.querySelector('.flash');
+    var flashContainer = document.querySelector('.flash-messages');
+    setTimeout(function () {
+        flashContainer.removeChild(flash);
+    }, 2000);
+}
+
+exports.deleteFlash = deleteFlash;
+
+/***/ }),
+/* 10 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+function animateLogin(el) {
+  if (!el) return;
+
+  var button = document.querySelector('.login-field form button[type="submit"]');
+  var form = document.querySelector('.login-field form');
+};
+
+exports.animateLogin = animateLogin;
+
+/***/ }),
+/* 11 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var tab = 1;
+var client = void 0;
+var improvement = void 0;
+
+function formatPrices(amount) {
+  return amount.toLocaleString("en-US", {
+    style: "currency",
+    currency: "EUR",
+    currencyDisplay: "symbol"
+  });
+}
+
+function showHideArrow(tabNr) {
+  var arrow = document.querySelector(".back-arrow i");
+  if (tabNr === 1 || tabNr === 4) {
+    arrow.style.display = "none";
+  } else {
+    arrow.style.display = "block";
+  }
+}
+
+function pcfButtonNavigate(el) {
+  if (!el) return;
+
+  var buttons = document.querySelectorAll("button");
+
+  var _loop = function _loop(i) {
+    buttons[i].addEventListener("click", function () {
+      // remove active class from current
+      var activeSection = document.querySelector("section.active");
+      activeSection.classList.remove("active");
+
+      // Set new tab number
+      tab++;
+
+      // save value in variable
+      if (buttons[i].dataset.client) {
+        client = buttons[i].dataset.client;
+      }
+      if (buttons[i].dataset.improvement) {
+        improvement = buttons[i].dataset.improvement;
+      }
+
+      // render right section
+      var search = void 0;
+      if (tab === 3) {
+        search = "pcf-" + improvement;
+      } else {
+        search = "pcf-" + tab;
+      }
+
+      var newSection = document.getElementById(search);
+      newSection.classList.add("active");
+
+      showHideArrow(tab);
+    });
+  };
+
+  for (var i = 0; i < buttons.length; i++) {
+    _loop(i);
+  }
+}
+
+function backArrowFunc(el) {
+  if (!el) return;
+
+  var backArrow = document.querySelector(".back-arrow i");
+
+  backArrow.addEventListener("click", function () {
+    var activeSection = document.querySelector("section.active");
+    activeSection.classList.remove("active");
+
+    tab--;
+
+    var search = "pcf-" + tab;
+    var newSection = document.getElementById(search);
+    newSection.classList.add("active");
+    showHideArrow(tab);
+  });
+}
+
+function calcRoi(el) {
+  if (!el) return;
+
+  var form = document.querySelectorAll(".pcf-calculate-form");
+  for (var i = 0; i < form.length; i++) {
+    form[i].addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      var marginimpr = document.getElementById("marge-impr").value;
+      var volume = document.getElementById("volume").value;
+      var volumeimpr = document.getElementById("volume-impr").value;
+      var margin = document.getElementById("margin").value;
+
+      //axios request naar api!
+      axios.get("/api/v1/calculate-roi?client=" + client + "&improvement=" + improvement + "&marginimpr=" + marginimpr + "&volume=" + volume + "&volumeimpr=" + volumeimpr + "&margin=" + margin).then(function (res) {
+        var activeSection = document.querySelector("section.active");
+        activeSection.classList.remove("active");
+        tab++;
+        var newSection = document.getElementById("pcf-roi-table");
+        var roiTable = document.querySelector('#pcf-roi-table table tbody');
+        var childDivs = roiTable.children;
+        var data = res.data;
+        for (var _i = 0; _i < childDivs.length; _i++) {
+          var feeP = childDivs[_i].children[1];
+          var modFeeP = res.data[_i].fee;
+          feeP.innerHTML = "\u20AC " + modFeeP;
+          var roiP = childDivs[_i].children[2];
+          var modRoiP = Math.floor(res.data[_i].roi) + "%";
+          roiP.innerHTML = modRoiP;
+          var setupP = childDivs[_i].children[3];
+          var modSetupP = res.data[_i].setup;
+          setupP.innerHTML = "\u20AC " + modSetupP;
+        }
+
+        newSection.classList.add("active");
+        showHideArrow(tab);
+      }).catch(function (err) {
+        console.log(err);
+      });
+      //
+    });
+  }
+}
+
+function roiAgain(el) {
+  if (!el) return;
+
+  var button = document.getElementById('calc-roi-again');
+  button.addEventListener('click', function (e) {
+    e.preventDefault();
+    location.reload();
+  });
+}
+
+exports.pcfButtonNavigate = pcfButtonNavigate;
+exports.backArrowFunc = backArrowFunc;
+exports.calcRoi = calcRoi;
+exports.roiAgain = roiAgain;
+
+/***/ }),
+/* 12 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+function setToolTips() {
+
+  var labels = [].concat(_toConsumableArray(document.querySelectorAll('.tooltip')));
+
+  var _loop = function _loop(i) {
+    var inputContainer = labels[i];
+    var tooltip = document.createElement('div');
+    tooltip.className = 'tooltip-container';
+    var icon = document.createElement('i');
+    icon.className = 'fal fa-info-circle tooltip';
+    var tipText = labels[i].dataset.tooltipinfo;
+    var span = document.createElement('span');
+    span.className = 'tooltip';
+    span.innerHTML = tipText;
+    var arrow = document.createElement('i');
+    arrow.className = 'tooltip-arrow';
+    icon.addEventListener('click', function () {
+      span.style.display = 'inline-block';
+      arrow.style.display = 'inline-block';
+      setTimeout(function () {
+        span.style.display = 'none';
+        arrow.style.display = 'none';
+      }, 5000);
+    });
+
+    tooltip.appendChild(icon);
+    tooltip.appendChild(span);
+    tooltip.appendChild(arrow);
+    inputContainer.appendChild(tooltip);
+  };
+
+  for (var i = 0; i < labels.length; i++) {
+    _loop(i);
+  };
+};
+
+exports.default = setToolTips;
+
+/***/ }),
 /* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1325,10 +1313,10 @@ module.exports = __webpack_require__(14);
 "use strict";
 
 
-var utils = __webpack_require__(5);
-var bind = __webpack_require__(11);
+var utils = __webpack_require__(0);
+var bind = __webpack_require__(6);
 var Axios = __webpack_require__(16);
-var defaults = __webpack_require__(6);
+var defaults = __webpack_require__(1);
 
 /**
  * Create an instance of Axios
@@ -1361,9 +1349,9 @@ axios.create = function create(instanceConfig) {
 };
 
 // Expose Cancel & CancelToken
-axios.Cancel = __webpack_require__(8);
+axios.Cancel = __webpack_require__(3);
 axios.CancelToken = __webpack_require__(15);
-axios.isCancel = __webpack_require__(9);
+axios.isCancel = __webpack_require__(4);
 
 // Expose all/spread
 axios.all = function all(promises) {
@@ -1383,7 +1371,7 @@ module.exports.default = axios;
 "use strict";
 
 
-var Cancel = __webpack_require__(8);
+var Cancel = __webpack_require__(3);
 
 /**
  * A `CancelToken` is an object that can be used to request cancellation of an operation.
@@ -1446,8 +1434,8 @@ module.exports = CancelToken;
 "use strict";
 
 
-var defaults = __webpack_require__(6);
-var utils = __webpack_require__(5);
+var defaults = __webpack_require__(1);
+var utils = __webpack_require__(0);
 var InterceptorManager = __webpack_require__(17);
 var dispatchRequest = __webpack_require__(18);
 
@@ -1531,7 +1519,7 @@ module.exports = Axios;
 "use strict";
 
 
-var utils = __webpack_require__(5);
+var utils = __webpack_require__(0);
 
 function InterceptorManager() {
   this.handlers = [];
@@ -1589,10 +1577,10 @@ module.exports = InterceptorManager;
 "use strict";
 
 
-var utils = __webpack_require__(5);
+var utils = __webpack_require__(0);
 var transformData = __webpack_require__(21);
-var isCancel = __webpack_require__(9);
-var defaults = __webpack_require__(6);
+var isCancel = __webpack_require__(4);
+var defaults = __webpack_require__(1);
 var isAbsoluteURL = __webpack_require__(26);
 var combineURLs = __webpack_require__(24);
 
@@ -1690,7 +1678,7 @@ module.exports = function enhanceError(error, config, code, request, response) {
 "use strict";
 
 
-var createError = __webpack_require__(10);
+var createError = __webpack_require__(5);
 
 /**
  * Resolve or reject a Promise based on response status.
@@ -1716,7 +1704,7 @@ module.exports = function settle(resolve, reject, response) {
 "use strict";
 
 
-var utils = __webpack_require__(5);
+var utils = __webpack_require__(0);
 
 /**
  * Transform the data for a request or a response
@@ -1783,7 +1771,7 @@ module.exports = btoa;
 "use strict";
 
 
-var utils = __webpack_require__(5);
+var utils = __webpack_require__(0);
 
 function encode(val) {
   return encodeURIComponent(val).replace(/%40/gi, '@').replace(/%3A/gi, ':').replace(/%24/g, '$').replace(/%2C/gi, ',').replace(/%20/g, '+').replace(/%5B/gi, '[').replace(/%5D/gi, ']');
@@ -1867,7 +1855,7 @@ module.exports = function combineURLs(baseURL, relativeURL) {
 "use strict";
 
 
-var utils = __webpack_require__(5);
+var utils = __webpack_require__(0);
 
 module.exports = utils.isStandardBrowserEnv() ?
 
@@ -1948,7 +1936,7 @@ module.exports = function isAbsoluteURL(url) {
 "use strict";
 
 
-var utils = __webpack_require__(5);
+var utils = __webpack_require__(0);
 
 module.exports = utils.isStandardBrowserEnv() ?
 
@@ -2017,7 +2005,7 @@ function nonStandardBrowserEnv() {
 "use strict";
 
 
-var utils = __webpack_require__(5);
+var utils = __webpack_require__(0);
 
 module.exports = function normalizeHeaderName(headers, normalizedName) {
   utils.forEach(headers, function processHeader(value, name) {
@@ -2035,7 +2023,7 @@ module.exports = function normalizeHeaderName(headers, normalizedName) {
 "use strict";
 
 
-var utils = __webpack_require__(5);
+var utils = __webpack_require__(0);
 
 // Headers whose duplicates are ignored by node
 // c.f. https://nodejs.org/api/http.html#http_message_headers
@@ -2146,6 +2134,43 @@ function isBuffer(obj) {
 function isSlowBuffer(obj) {
   return typeof obj.readFloatLE === 'function' && typeof obj.slice === 'function' && isBuffer(obj.slice(0, 0));
 }
+
+/***/ }),
+/* 32 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _tooltip = __webpack_require__(12);
+
+var _tooltip2 = _interopRequireDefault(_tooltip);
+
+var _pcf = __webpack_require__(11);
+
+var _loginAnimation = __webpack_require__(10);
+
+var _createPcf = __webpack_require__(8);
+
+var _flashes = __webpack_require__(9);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var x = document.getElementById('pcf');
+var loginField = document.querySelector('.login-field');
+var pcf = document.getElementById('createpcf');
+var flash = document.querySelector('.flash');
+
+(0, _tooltip2.default)();
+(0, _pcf.pcfButtonNavigate)(x);
+(0, _pcf.backArrowFunc)(x);
+(0, _pcf.calcRoi)(x);
+(0, _pcf.roiAgain)(x);
+(0, _loginAnimation.animateLogin)(loginField);
+(0, _createPcf.addLocationRow)(pcf);
+(0, _createPcf.submitForm)(pcf);
+(0, _createPcf.showEmailField)(pcf);
+(0, _flashes.deleteFlash)(flash);
 
 /***/ })
 /******/ ]);
