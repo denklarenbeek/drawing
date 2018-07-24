@@ -9,7 +9,7 @@ const opportunitySchema = new Schema({
     },
     account_id: {
         type: String,
-        required: 'Please fill in the id of the account corresonding with Syntess'
+        required: 'Please fill in the id of the account corresponding with Syntess'
     },
     name: {
         type: String,

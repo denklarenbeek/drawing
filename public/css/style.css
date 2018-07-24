@@ -136,7 +136,8 @@ input[type="number"]:focus ~ label,
 input[type="number"]:valid ~ label,
 textarea:focus ~ label,
 textarea:valid ~ label,
-.input-has-value ~ label {
+.input-has-value ~ label,
+label.moved {
   top: -10px;
   color: #002f49;
   font-size: 0.8rem; }
@@ -318,7 +319,7 @@ td:nth-child(1) {
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
   margin-bottom: 2rem;
   position: relative;
-  z-index: 1;
+  z-index: 50;
   border-radius: 3px;
   display: flex;
   animation: slideIn forwards .1s ease-in-out 2;
@@ -613,5 +614,8 @@ section.active {
   top: 22px; }
 #createpcf #send_to_email_container {
   display: none; }
+
+label.moved {
+  top: -15px; }
 
 /*# sourceMappingURL=style.css.map */

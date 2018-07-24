@@ -27,8 +27,11 @@ block content
                         label(for='country') Land
                     h2 Dates
                     .input-container
-                        input(type='text' name='contract_duration' id='contract_duration' required)    
-                        label(for='contract_duration') Duur contract
+                        select(name='contract_duration' id='contract_duration')    
+                            option(value="12") 12 maanden
+                            option(value="24") 24 maanden
+                            option(value="36") 36 maanden
+                        label(for='contract_duration' class='moved') Duur contract
                     .input-container
                         input(type='date' name='starting_date' id='starting_date' required)    
                         label(for='starting_date' class='fixed') Startdatum
@@ -50,9 +53,6 @@ block content
                         label(for='send_by_email') Verstuur per email
                     .input-container#send_to_email_container
                         input(type='email' name='send_to_email' id='send_to_email')
-                        label(for='send_to_email') E-mail adres
-                    .input-container
-                        input(type='checkbox' name='preview_online' id='preview_online')
-                        label(for='preview_online') Bekijk online       
+                        label(for='send_to_email') E-mail adres  
 
                     button(type='submit') Genereer contract  
