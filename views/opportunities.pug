@@ -8,6 +8,13 @@ block content
             h1 Your opportunities
         .content-tile
             .inner
-                each opportunity in opportunities
-                    +opportunityCard(opportunity)
+                each account in oppsByAccount
+                    .account-container
+                        p.account_name #{account._id}
+                        span.count #{account.count}
+                        - var defaultObj = {name: 'Naam', amount: 'Bedrag', scotsman: 'Kans', weighted_amount: 'Gewogen', timing: 'Q'}
+                        +opportunityCard(defaultObj)
+                        each opp in account.opp
+                            +opportunityCard(opp)
+                    
                     

@@ -1,0 +1,86 @@
+.account-container {
+    background: white;
+    border-radius: 4px;
+    margin-bottom: 24px;
+    padding: 10px;
+    border-bottom: 1px solid #d2d2d2;
+    box-shadow: 0 1px 1px #d2d2d2;
+    
+    .account_name {
+        font-size: 1.5em;
+        color: $primary-color;
+        display: inline-block;
+        margin: 0;
+        margin-right: 15px;
+        cursor: pointer;
+
+    }
+    .count {
+        width: 20px;
+        display: inline-block;
+        background: $secondary-color;
+        text-align: center;
+        border-radius: 50%;
+        padding: 2px;
+        border: 1px solid $secondary-darker;
+        font-weight: lighter;
+        font-size: 0.8em;
+        vertical-align: top;
+    }
+
+}
+
+.opp-container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    border-bottom: 1px dotted gray;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    cursor: pointer;
+
+    &:nth-of-type(1) {
+        cursor: initial;
+
+        p {
+            font-weight: normal;
+        }
+    }
+
+    p {
+        color: $primary-color;
+        margin: 0;
+        font-weight: lighter;
+        font-size: 0.8em;
+    }
+
+    .name {
+        width: 30%;
+    }
+
+    .amount {
+        width: 25%;
+        text-align: right;
+    }
+
+    .month {
+        width: 10%;
+        text-align: right;
+        padding-left: 5%;
+    }
+
+    .status {
+        width: 60%;
+    }
+
+    .weighted_amount {
+        width: 25%;
+        text-align: right;
+    }
+
+    .scotsman {
+        width: 10%;
+        text-align: right;
+        padding-left: 5%;
+    }
+}

@@ -1,13 +1,7 @@
-mixin opportunityCard(opportunity = {})
+mixin opportunityCard(opp = {})
     .opp-container
-        p.account_name #{opportunity.account_name}
-        p.name #{opportunity.name}
-        p.amount #{opportunity.amount}
-        p.month #{opportunity.timing}
-        p.scotsman #{opportunity.scotsman}
-        p.status #{opportunity.status}
-        p.order #{opportunity.order}
-        button(class='btn') 
-            i(class='fal fa-pencil')
-        button(class='btn')
-            i(class='fal fa-trash-alt')
+        p.name #{opp.name}
+        p.amount #{opp.amount}
+        p.scotsman #{opp.scotsman}
+        p.weighted_amount #{opp.weighted_amount}
+        p.month #{opp.timing}

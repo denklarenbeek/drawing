@@ -54,4 +54,19 @@ const opportunitySchema = new Schema({
     }
 });
 
+opportunitySchema.statics.getOpportunitiesByCustomer = function(){
+    return this.aggregate(
+        [{ 
+            $group : { 
+                _id : "$account_name",
+                count: { $sum: 1 }, 
+                opp: { 
+                    $push: "$$ROOT" 
+                } 
+            },   
+        }, 
+        { $sort : { account_name : 1 } }]
+     )
+};
+
 module.exports = mongoose.model('Opportunity', opportunitySchema);
