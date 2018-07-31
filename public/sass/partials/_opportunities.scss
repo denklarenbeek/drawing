@@ -52,21 +52,28 @@
         margin: 0;
         font-weight: lighter;
         font-size: 0.8em;
+        align-self: center;
+    }
+
+    .btn {
+        margin-top: 0;
+        padding: 1px 7px 2px;
+        font-size: 0.7em;
+        margin-left: 2%;
     }
 
     .name {
-        width: 30%;
+        width: 35%;
     }
 
     .amount {
-        width: 25%;
+        width: 17%;
         text-align: right;
     }
 
     .month {
         width: 10%;
         text-align: right;
-        padding-left: 5%;
     }
 
     .status {
@@ -74,13 +81,12 @@
     }
 
     .weighted_amount {
-        width: 25%;
+        width: 18%;
         text-align: right;
     }
 
     .scotsman {
         width: 10%;
         text-align: right;
-        padding-left: 5%;
     }
 }

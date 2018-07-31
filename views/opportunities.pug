@@ -12,8 +12,12 @@ block content
                     .account-container
                         p.account_name #{account._id}
                         span.count #{account.count}
-                        - var defaultObj = {name: 'Naam', amount: 'Bedrag', scotsman: 'Kans', weighted_amount: 'Gewogen', timing: 'Q'}
-                        +opportunityCard(defaultObj)
+                        .opp-container
+                            p.name Naam
+                            p.amount Bedrag
+                            p.scotsman Kans
+                            p.weighted_amount Gewogen
+                            p.month Q
                         each opp in account.opp
                             +opportunityCard(opp)
                     

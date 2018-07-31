@@ -29,7 +29,7 @@ const opportunitySchema = new Schema({
         required: 'Please add weighted amount'
     },
     timing: {
-        type: String,
+        type: Date,
         required: 'Please fill in when you expect to get the order'
     },
     status: {
