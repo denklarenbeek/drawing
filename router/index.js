@@ -6,6 +6,7 @@ const authController = require('../controllers/AuthController');
 const priceCastController = require('../controllers/priceCastController');
 const productsController = require('../controllers/productsController');
 const generateController = require('../controllers/generateController');
+const opportunityController = require('../controllers/OpportunitiesController');
 
 router.get("/", authController.isLoggedIn, (req, res) => {
   res.render("index");
@@ -48,9 +49,14 @@ router.get('/create-pcf', authController.isLoggedIn, (req, res) => {
     res.render('createPcf');
 });
 
+router.get('/opportunities', opportunityController.getAllOpportunities);
+
+router.post('/opportunities', opportunityController.createOpportunity);
+
 router.get('/products', (req, res) => {
     res.render('pcfEdit');
 });
+
 
 // api endpoints
 router.get('/api/v1/calculate-roi', authController.isLoggedIn, priceCastController.calculateROI);

@@ -1,0 +1,13 @@
+extends layout
+
+include mixins/_opportunityCard
+
+block content
+    .container
+        .title-tile
+            h1 Your opportunities
+        .content-tile
+            .inner
+                each opportunity in opportunities
+                    +opportunityCard(opportunity)
+                    

@@ -43,6 +43,10 @@ const opportunitySchema = new Schema({
     deleted_opportunity: {
         type: Boolean,
         required: 'Please fill in if the opportunity is cancelled'
+    },
+    sales_rep: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
     }
 });
 
