@@ -3,6 +3,7 @@ const Opportunity = require('../models/Opportunity');
 
 exports.createOpportunity = async (req, res) => {
     console.log(req.body);
+    const weighted_amount = (req.body.amount * (req.body.scotsman / 100));
     const opportunity = new Opportunity({
         account_name: req.body.account_name,
         account_id: req.body.account_id,
@@ -10,6 +11,7 @@ exports.createOpportunity = async (req, res) => {
         amount: req.body.amount,
         timing: req.body.timing,
         scotsman: req.body.scotsman,
+        weighted_amount,
         status: req.body.status,
         order_received: false,
         deleted_opportunity: false,
