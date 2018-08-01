@@ -13,3 +13,5 @@ exports.menu = [
 exports.formatCurrency = function(number){
     return number.replace(/\d(?=(\d{3})+\.)/g, '€&,');
 };
+
+exports.dump = (obj) => JSON.stringify(obj, null, 2);

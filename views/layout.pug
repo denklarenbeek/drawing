@@ -2,16 +2,16 @@ doctype html
 html
   head
     title= `Drawing`
-    link(rel='stylesheet', href='css/fontawesome-all.css')
-    link(rel='stylesheet', href='css/normalize.css')
-    link(rel='stylesheet', href='css/style.css')
+    link(rel='stylesheet', href='/css/fontawesome-all.css')
+    link(rel='stylesheet', href='/css/normalize.css')
+    link(rel='stylesheet', href='/css/style.css')
     meta(name="viewport" content="width=device-width, initial-scale=1")
   body
     if user
       header
         .left-navbar
           a(href='/')
-            img(src='img/logo.png')
+            img(src='/img/logo.png')
         .right-navbar
           a(href='' id='menu-collapse' onclick="controlCollapNavbar(event)")
             i(class="fa fa-list-ul icon-outline")
@@ -41,9 +41,9 @@ html
         
     block scripts
       script(src="https://unpkg.com/axios/dist/axios.min.js")
-      script(src="dist/App.bundle.js")
-      script(src="js/main.js")
-      script(src="js/modules/navbar.js")
+      script(src="/dist/App.bundle.js")
+      script(src="/js/main.js")
+      script(src="/js/modules/navbar.js")
 
                     
                     

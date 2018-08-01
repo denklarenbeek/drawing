@@ -49,7 +49,9 @@ router.get('/create-pcf', authController.isLoggedIn, (req, res) => {
     res.render('createPcf');
 });
 
-router.get('/opportunities', opportunityController.getAllOpportunities);
+router.get('/opportunities', authController.isLoggedIn, opportunityController.getAllOpportunities);
+router.get('/opportunities/:id', authController.isLoggedIn, opportunityController.getOpportunity);
+router.post('/opportunities/:id',  authController.isLoggedIn, opportunityController.updateOpportunity);
 
 router.post('/opportunities', opportunityController.createOpportunity);
 

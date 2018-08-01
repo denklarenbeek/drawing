@@ -7,10 +7,6 @@ const opportunitySchema = new Schema({
         type: String,
         required: 'Please fill in the name of the account'
     },
-    account_id: {
-        type: String,
-        required: 'Please fill in the id of the account corresponding with Syntess'
-    },
     name: {
         type: String,
         trim: true,
@@ -56,7 +52,9 @@ const opportunitySchema = new Schema({
 
 opportunitySchema.statics.getOpportunitiesByCustomer = function(){
     return this.aggregate(
-        [{ 
+        [
+        { $match : { deleted_opportunity: false } },
+        { 
             $group : { 
                 _id : "$account_name",
                 count: { $sum: 1 }, 
