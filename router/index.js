@@ -49,11 +49,14 @@ router.get('/create-pcf', authController.isLoggedIn, (req, res) => {
     res.render('createPcf');
 });
 
-router.get('/opportunities', authController.isLoggedIn, opportunityController.getAllOpportunities);
+router.get('/opportunities', opportunityController.getAllOpportunities);
 router.get('/opportunities/:id', authController.isLoggedIn, opportunityController.getOpportunity);
 router.post('/opportunities/:id',  authController.isLoggedIn, opportunityController.updateOpportunity);
 
-router.post('/opportunities', opportunityController.createOpportunity);
+router.get('/opportunity', (req, res) => {
+    res.render('createOpp');
+});
+router.post('/opportunity', opportunityController.createOpportunity);
 
 router.get('/products', (req, res) => {
     res.render('pcfEdit');
@@ -65,5 +68,7 @@ router.get('/api/v1/calculate-roi', authController.isLoggedIn, priceCastControll
 router.post('/api/v1/products', productsController.createProduct);
 
 router.post('/api/v1/generate-pcf-contract', authController.isLoggedIn, generateController.generatePCFContract, generateController.sendContract);
+
+router.get('/api/v1/getHistoricalOpp/:id', opportunityController.getHistoricalOpp)
 
 module.exports = router;

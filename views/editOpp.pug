@@ -5,6 +5,7 @@ block content
         .title-tile
             h1 Edit the opportunity
         .content-tile
+            pre= h.dump(opportunity)
             .inner
                 form(action=`/opportunities/${opportunity._id}` method="POST")
                     .input-group
@@ -28,7 +29,10 @@ block content
                         label(for='status') Status
                     .input-group
                         input(type='text' name='parent_id' id='parent_id' value=opportunity._id required)
-                        label(for='parent_id' class='fixed') Origineel
+                        label(for='parent_id' class='fixed') Vorige
+                    .input-group
+                        input(type='text' name='original_id' id='original_id' value=opportunity.original_id required)
+                        label(for='original_id' class='fixed') Origineel
                     .input-group
                         input(type='checkbox' name='order_received' id='order_received' checked=opportunity.order_received )
                         label(for='order_receiverd') Opdracht?

@@ -6,13 +6,13 @@ block content
     .container
         .title-tile
             h1 Your opportunities
-        .content-tile
+        .content-tile#opportunities
             .inner
                 each account in oppsByAccount
                     .account-container
                         p.account_name #{account._id}
                         span.count #{account.count}
-                        .opp-container
+                        .opp-container#title
                             p.name Naam
                             p.amount Bedrag
                             p.scotsman Kans
@@ -20,5 +20,6 @@ block content
                             p.month Q
                         each opp in account.opp
                             +opportunityCard(opp)
-                    
+        a.btn.float(href='/opportunity')
+            i(class="fas fa-plus")
                     

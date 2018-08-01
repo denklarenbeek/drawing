@@ -1,5 +1,9 @@
+'use strict';
+
 const mongoose = require("mongoose");
 const Opportunity = require("../models/Opportunity");
+const moment = require('moment');
+const promisify = require('es6-promisify');
 
 exports.createOpportunity = async (req, res) => {
   const weighted_amount = req.body.amount * (req.body.scotsman / 100);
@@ -17,12 +21,18 @@ exports.createOpportunity = async (req, res) => {
     sales_rep: req.body.sales_rep // When deployed change this to req.user._id
   });
 
-  await opportunity.save((err, file, rows) => {
-    if (err) console.log(err);
-    if (!err) console.log("Hi added to the db");
+  await opportunity.save(async (err, file, rows) => {
+    const backURL = req.header('Referer') || '/';
+    if (err) {
+      req.flash('error', err.message)
+      res.redirect(backURL);
+    };
+    if (!err) {
+      console.log("Hi added to the db")
+    };
   });
   req.flash("success", "Your opportunity has been saved!");
-  res.json({ msg: "added!" });
+  res.redirect('/opportunities');
 };
 
 exports.getAllOpportunities = async (req, res) => {
@@ -40,7 +50,9 @@ exports.getOpportunity = async (req, res) => {
 
 exports.updateOpportunity = async (req, res) => {
   // delete the previous
-  console.log(req.body);
+  if(req.body.order_received === 'on'){
+    req.body.order_received = true;
+  }
   const obj = {
     deleted_opportunity: true
   };
@@ -58,6 +70,7 @@ exports.updateOpportunity = async (req, res) => {
     weighted_amount,
     status: req.body.status,
     order_received: req.body.order_received,
+    original_id: req.body.original_id,
     deleted_opportunity: false,
     sales_rep: req.user._id // When deployed change this to req.user._id
   });
@@ -68,4 +81,12 @@ exports.updateOpportunity = async (req, res) => {
   });
   req.flash("success", "Your opportunity has been updated!");
   res.redirect('/opportunities')
+}
+
+exports.getHistoricalOpp = async (req, res) => {
+  let hisOpps;
+  await Opportunity.find({original_id: req.params.id, deleted_opportunity: true})
+  .sort({test: 1}).exec(function(err, docs) { 
+    res.json(docs);
+   });;
 }

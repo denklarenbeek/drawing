@@ -29,6 +29,35 @@ a {
     margin-top: 2rem;
     line-height: 1.5rem;
 
+    &.order {
+        background: $succces-color;
+        border: none;
+        cursor: auto;
+
+        &:hover {
+            box-shadow: none;
+
+        }
+        
+        i {
+            color: white;
+        }
+    }
+
+    &.float {
+        position: fixed;
+        bottom: 10px;
+        right: 10px;
+        z-index: 2;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #002f49;
+    }
+
     @media only screen and (min-width: $break-small){
         width: 60%;
       }

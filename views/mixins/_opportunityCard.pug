@@ -1,10 +1,15 @@
 mixin opportunityCard(opp = {})
-    .opp-container
-        p.name #{opp.name}
-        p.amount #{opp.amount}
-        p.scotsman #{opp.scotsman}
-        p.weighted_amount #{opp.weighted_amount}
-        - var date = h.moment(opp.timing).format("Q")
-        p.month #{date === 'Invalid date' ? "Q" : `Q${date}`}
-        a.btn(href=`/opportunities/${opp._id}`)
-            i(class="fal fa-edit")
+    .opp-container(data-customid=opp.original_id)
+        .opp-container-row
+            p.name #{opp.name}
+            p.amount #{opp.amount}
+            p.scotsman #{opp.scotsman}
+            p.weighted_amount #{opp.weighted_amount}
+            - var date = h.moment(opp.timing).format("Q")
+            p.month #{date === 'Invalid date' ? "Q" : `Q${date}`}
+            if opp.order_received
+                a.btn.order(disabled)
+                    i(class="fas fa-check")
+            else
+                a.btn(href=`/opportunities/${opp._id}`)
+                    i(class="fal fa-edit")  

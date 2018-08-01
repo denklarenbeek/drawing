@@ -47,6 +47,27 @@
         }
     }
 
+    &-row {
+        display: flex;
+        width: 100%;
+    }
+
+    &-historic {
+        display: none;
+        width: 100%;
+
+        .opp-container-row {
+
+            p {
+                color: rgba(0,0,0,0.5);
+            }
+        }
+    }
+
+    &.open > .opp-container-historic {
+        display: block;
+    }
+
     p {
         color: $primary-color;
         margin: 0;

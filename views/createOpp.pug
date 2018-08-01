@@ -1,0 +1,28 @@
+extends layout
+
+block content
+    .container
+        .title-tile
+            h1 Create Opportunity
+        .content-tile
+            .inner
+                form(action='/opportunity' method="POST")
+                    .input-group
+                        input(type='text' name='account_name' id='account_name' required)
+                        label(for='account_name' ) Account Naam
+                    .input-group
+                        input(type='text'  name='name'  id='name' required)
+                        label(for='name') Naam
+                    .input-group
+                        input(type='number' name='amount' id='amount' required)
+                        label(for='amount') Bedrag
+                    .input-group
+                        input(type='number' name='scotsman' id='scotsman' required)
+                        label(for='scotsman') Kans
+                    .input-group
+                        input(type='date' name='timing' id='timing' required)
+                        label(for='timing' class='fixed') Datum
+                    .input-group
+                        input(type='text' name='status' id='status' required)
+                        label(for='status') Status
+                    button(type='submit') Maak nieuwe

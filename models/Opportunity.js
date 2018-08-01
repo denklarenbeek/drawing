@@ -40,15 +40,30 @@ const opportunitySchema = new Schema({
         type: mongoose.Schema.Types.ObjectId, 
         ref: 'Opportunity'
     },
+    original_id: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Opportunity'
+    },
     deleted_opportunity: {
         type: Boolean,
         required: 'Please fill in if the opportunity is cancelled'
+    },
+    created_on: {
+        type: Date,
+        default: Date.now
     },
     sales_rep: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     }
 });
+
+opportunitySchema.pre('save', function(next){
+    if(!this.original_id){
+        this.original_id = this._id;
+    }
+    next();
+})
 
 opportunitySchema.statics.getOpportunitiesByCustomer = function(){
     return this.aggregate(
