@@ -7,4 +7,4 @@ mixin opportunityCard(opp = {})
         - var date = h.moment(opp.timing).format("Q")
         p.month #{date === 'Invalid date' ? "Q" : `Q${date}`}
         a.btn(href=`/opportunities/${opp._id}`)
-            i(class="fal fa-trash")
+            i(class="fal fa-edit")

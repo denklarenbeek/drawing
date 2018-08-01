@@ -24,27 +24,36 @@ header {
   }
 }
 
-.body-left {
+body {
+    right: 0;
     position: absolute;
+    transition: right 0.5s ease 0s;
+}
+
+.body-left {
     right: 40%;
-    transition: 0.5s;
+    transition: right 0.5s ease 0s;
 
     @media only screen and (min-width: $break-small) {
 		right: 20%;
 	}
 
     .collapse-navbar {
-        display: block;
+        width: 40%;
     }
 
   }
 
 .collapse-navbar {
-    display: none;
-    position: absolute;
-    width: 40%;
+    // display: none;
+    position: fixed;
+    width: 0%;
+    height: 100%;
     top: 0;
-    right: -40%;
+    right: 0;
+    z-index: 1;
+    overflow-x: hidden;
+    transition: 0.5s;
 
     @media only screen and (min-width: $break-small) {
         width: 20%;
