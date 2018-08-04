@@ -90,9 +90,11 @@ function submitForm(el){
         }, {responseType: 'blob'})
         .then((res) => {
             var file = new Blob([res.data], {type: 'application/pdf'});
+            console.log(file);
             var fileURL = URL.createObjectURL(file);
+            console.log(fileURL);
             window.open(fileURL);
-            location.href = '/create-pcf';
+            // location.href = '/create-pcf';
         })
         .catch((err) => {
             console.log(err)

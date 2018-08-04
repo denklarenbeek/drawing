@@ -21,7 +21,6 @@ exports.generatePCFContract = async (req, res, next) => {
   }
 
   res.setHeader("Content-Type", "application/pdf"); 
-  try {
   const pdfWriter = hummus.createWriterToModify(new hummus.PDFRStreamForFile('./templates/pcf.pdf'), new hummus.PDFStreamForResponse(res))
 
   const focoFont = pdfWriter.getFontForFile('./templates/fonts/foco_lt.ttf');
@@ -50,15 +49,13 @@ exports.generatePCFContract = async (req, res, next) => {
   
   // const filepath = await pdfGenerator.pcfContract(data);
   // res.filepath = filepath;
-  console.log('inside try');
-  await pdfWriter.end();
-  res.send();
+  try {
+    console.log('inside try');
+    await pdfWriter.end();
+    next();
   } catch(err){
-    console.log(err)
-    res.setHeader(400);
-    res.json({msg: err.msg});
+    res.json({msg: err})
   }
-  // next();
 }
 
 exports.sendContract = async (req, res, next) => {
