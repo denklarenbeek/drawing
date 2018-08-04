@@ -2,9 +2,9 @@ mixin opportunityCard(opp = {})
     .opp-container(data-customid=opp.original_id)
         .opp-container-row
             p.name #{opp.name}
-            p.amount #{opp.amount}
-            p.scotsman #{opp.scotsman}
-            p.weighted_amount #{opp.weighted_amount}
+            p.amount= h.formatCurrency(opp.amount)
+            p.scotsman #{opp.scotsman}%
+            p.weighted_amount= h.formatCurrency(opp.weighted_amount)
             - var date = h.moment(opp.timing).format("Q")
             p.month #{date === 'Invalid date' ? "Q" : `Q${date}`}
             if opp.order_received

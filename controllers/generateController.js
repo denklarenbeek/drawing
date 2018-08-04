@@ -4,6 +4,7 @@ const hummus = require('hummus');
 const path = require('path');
 const moment = require('moment');
 moment.locale('nl');
+const fs = require('fs');
 
 exports.generatePCFContract = async (req, res, next) => {
   const debitor = req.body.debitor;

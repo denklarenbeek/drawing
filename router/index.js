@@ -9,7 +9,7 @@ const generateController = require('../controllers/generateController');
 const opportunityController = require('../controllers/OpportunitiesController');
 
 router.get("/", authController.isLoggedIn, (req, res) => {
-  res.render("index");
+  res.render("index", {user: req.user});
 });
 
 router.get("/drawing", authController.isLoggedIn, (req, res) => {

@@ -1,3 +1,5 @@
+const accounting = require('accounting');
+
 // moment.js is a handy library for displaying dates. We need this in our templates to display things like "Posted 5 minutes ago"
 exports.moment = require('moment');
 
@@ -12,7 +14,7 @@ exports.menu = [
 ];
 
 exports.formatCurrency = function(number){
-    return number.replace(/\d(?=(\d{3})+\.)/g, '€&,');
+    return accounting.formatMoney(number, "€", 0, ".", ",")
 };
 
 exports.dump = (obj) => JSON.stringify(obj, null, 2);

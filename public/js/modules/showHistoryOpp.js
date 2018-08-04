@@ -1,6 +1,13 @@
 import { isMoment } from "../../../node_modules/moment";
+import accounting from 'accounting';
 
-function createPelement(nameOfClass, value){
+function createPelement(nameOfClass, value, isMoney, isPercentage){
+    if(isMoney){
+        value = accounting.formatMoney(value, "€", 0, ".", ",")
+    } 
+    if(isPercentage){
+        value = `${value}%`
+    }
     const p = document.createElement('p');
     p.className = nameOfClass;
     p.innerHTML = value;
@@ -39,9 +46,9 @@ function showHistoryOpp(el){
                         const modDate = `Q${newdate}`;
                         const newElement = createDivElement('opp-container-row');
                         const nameElement = createPelement('name', res.data[i].name);
-                        const amountElement = createPelement('amount', res.data[i].amount);
-                        const scotsmanElement = createPelement('scotsman', res.data[i].scotsman);
-                        const weightedElement = createPelement('weighted_amount', res.data[i].weighted_amount);
+                        const amountElement = createPelement('amount', res.data[i].amount, true);
+                        const scotsmanElement = createPelement('scotsman', res.data[i].scotsman, false, true);
+                        const weightedElement = createPelement('weighted_amount', res.data[i].weighted_amount, true);
                         const monthElement = createPelement('month', modDate);
                         newElement.appendChild(nameElement);
                         newElement.appendChild(amountElement);

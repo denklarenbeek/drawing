@@ -1,4 +1,5 @@
 import axios from 'axios';
+import {deleteFlash, createFlash} from './flashes';
 
 function addLocationRow(el){
     if(!el) return
@@ -91,10 +92,14 @@ function submitForm(el){
             locations: modLocations
         }, {responseType: 'blob'})
         .then((res) => {
-            var file = new Blob([res.data], {type: 'application/pdf'});
-            var fileURL = URL.createObjectURL(file);
+            const file = new Blob([res.data], {type: 'application/pdf'});
+            const fileURL = URL.createObjectURL(file);
             window.open(fileURL);
-            // location.href = '/create-pcf';
+            // front end flashes
+            const flash = createFlash('success', 'contract is created');
+            document.querySelector('.flash-messages').appendChild(flash);
+            deleteFlash(true, 10000);
+            form.reset();
         })
         .catch((err) => {
             console.log(err)
