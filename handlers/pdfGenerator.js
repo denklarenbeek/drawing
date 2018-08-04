@@ -4,11 +4,11 @@ const fs = require('fs');
 exports.pcfContract = async (data) => {
   const contractName = `${data.company.toLowerCase()}-${Date.now()}`;
   const filepath = `./tmp/${contractName}.pdf` 
-  const pdfWriter = hummus.createWriterToModify('./public/templates/pcfcontract.pdf', {
+  const pdfWriter = hummus.createWriterToModify('./templates/pcfcontract.pdf', {
     modifiedFilePath: filepath
   });
 
-  const focoFont = pdfWriter.getFontForFile('./public/templates/fonts/foco_lt.ttf');
+  const focoFont = pdfWriter.getFontForFile('./templates/fonts/foco_lt.ttf');
   const textOptions = {font:focoFont,size:9,colorspace:'gray',color:0x00}
 
   // Edit page 1 with the debitor info

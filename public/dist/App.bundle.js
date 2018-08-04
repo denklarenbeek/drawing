@@ -17663,9 +17663,7 @@ function submitForm(el) {
             locations: modLocations
         }, { responseType: 'blob' }).then(function (res) {
             var file = new Blob([res.data], { type: 'application/pdf' });
-            console.log(file);
             var fileURL = URL.createObjectURL(file);
-            console.log(fileURL);
             window.open(fileURL);
             // location.href = '/create-pcf';
         }).catch(function (err) {
