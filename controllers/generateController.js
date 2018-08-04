@@ -50,13 +50,14 @@ exports.generatePCFContract = async (req, res, next) => {
   
   // const filepath = await pdfGenerator.pcfContract(data);
   // res.filepath = filepath;
+  console.log('inside try');
   await pdfWriter.end();
   } catch(err){
     console.log(err)
     res.setHeader(400);
     res.json({msg: err.msg});
   }
-  next();
+  // next();
 }
 
 exports.sendContract = async (req, res, next) => {
