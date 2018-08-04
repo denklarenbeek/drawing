@@ -4,7 +4,7 @@ const fs = require('fs');
 exports.pcfContract = async (data) => {
   const contractName = `${data.company.toLowerCase()}-${Date.now()}`;
   const filepath = `./tmp/${contractName}.pdf` 
-  const pdfWriter = hummus.createWriterToModify('./templates/pcfcontract.pdf', {
+  const pdfWriter = hummus.createWriterToModify('./templates/pcf.pdf', {
     modifiedFilePath: filepath
   });
 
