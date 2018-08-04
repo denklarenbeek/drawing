@@ -23,8 +23,8 @@ exports.generatePCFContract = async (req, res, next) => {
   res.setHeader("Content-Type", "application/pdf"); 
   const pdfWriter = hummus.createWriterToModify(new hummus.PDFRStreamForFile('./templates/pcf.pdf'), new hummus.PDFStreamForResponse(res))
 
-  const focoFont = pdfWriter.getFontForFile('./templates/fonts/foco_lt.ttf');
-  const textOptions = {font:focoFont,size:9,colorspace:'gray',color:0x00}
+  // const focoFont = pdfWriter.getFontForFile('./templates/fonts/foco_lt.ttf');
+  const textOptions = {size:9,colorspace:'gray',color:0x00}
 
   // Edit page 1 with the debitor info
   const pageModifier = new hummus.PDFPageModifier(pdfWriter,0);
