@@ -52,6 +52,7 @@ exports.generatePCFContract = async (req, res, next) => {
   // res.filepath = filepath;
   console.log('inside try');
   await pdfWriter.end();
+  res.send();
   } catch(err){
     console.log(err)
     res.setHeader(400);
