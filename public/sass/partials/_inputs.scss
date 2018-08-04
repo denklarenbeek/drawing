@@ -72,7 +72,9 @@ input::-webkit-inner-spin-button {
 
 
 input[type="file"] {
-  display: none;
+  opacity: 0;
+  position: absolute;
+  top: 450px;
 }
 
 labe[for='file'] {
@@ -111,6 +113,10 @@ button[type='submit'] {
   &:active {
     outline: 0;
     box-shadow: 0 1px $secondary-darker;
+  }
+  &:disabled {
+    background-color: rgba(255,205,51,0.6);
+    cursor: not-allowed;
   }
 }
 
