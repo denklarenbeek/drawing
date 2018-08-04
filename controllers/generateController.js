@@ -59,8 +59,8 @@ exports.sendContract = async (req, res, next) => {
       fromEmail: req.user.email,
       fromName: req.user.name,
       toEmail: req.body.options.send_to_email,
-      toName: '',
-      subject: 'pcf contract',
+      toName: req.body.options.send_to_name,
+      subject: 'PriceCast Fuel contract',
       msg: 'Kijk eens! Uw PriceCast Fuel overeenkomst',
       template: "attachment",
       attachments: [

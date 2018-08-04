@@ -65,10 +65,12 @@ function submitForm(el){
         }
 
         let send_to_email = document.getElementById('send_to_email').value || '';
+        let send_to_name = document.getElementById('send_to_name').value || '';
 
         const options = {
             send_by_email: document.getElementById('send_by_email').checked,
-            send_to_email: send_to_email
+            send_to_email: send_to_email,
+            send_to_name: send_to_name
         }
         
         const locations = document.querySelectorAll('tbody tr');

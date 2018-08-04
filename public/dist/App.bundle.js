@@ -17639,10 +17639,12 @@ function submitForm(el) {
         };
 
         var send_to_email = document.getElementById('send_to_email').value || '';
+        var send_to_name = document.getElementById('send_to_name').value || '';
 
         var options = {
             send_by_email: document.getElementById('send_by_email').checked,
-            send_to_email: send_to_email
+            send_to_email: send_to_email,
+            send_to_name: send_to_name
         };
 
         var locations = document.querySelectorAll('tbody tr');
