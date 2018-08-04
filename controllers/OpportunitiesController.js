@@ -18,7 +18,7 @@ exports.createOpportunity = async (req, res) => {
     status: req.body.status,
     order_received: false,
     deleted_opportunity: false,
-    sales_rep: req.body.sales_rep // When deployed change this to req.user._id
+    sales_rep: req.user._id // When deployed change this to req.user._id
   });
 
   await opportunity.save(async (err, file, rows) => {
@@ -37,7 +37,7 @@ exports.createOpportunity = async (req, res) => {
 
 exports.getAllOpportunities = async (req, res) => {
 
-  const oppsByAccount = await Opportunity.getOpportunitiesByCustomer();
+  const oppsByAccount = await Opportunity.getOpportunitiesByCustomer(req.user._id);
   console.log("oppsByAccount", oppsByAccount);
   res.render("opportunities", { oppsByAccount });
 };
@@ -86,7 +86,7 @@ exports.updateOpportunity = async (req, res) => {
 exports.getHistoricalOpp = async (req, res) => {
   let hisOpps;
   await Opportunity.find({original_id: req.params.id, deleted_opportunity: true})
-  .sort({test: 1}).exec(function(err, docs) { 
+  .sort({created_on: -1}).exec(function(err, docs) { 
     res.json(docs);
    });;
 }

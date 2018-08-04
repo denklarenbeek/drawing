@@ -68,8 +68,7 @@ function submitForm(el){
 
         const options = {
             send_by_email: document.getElementById('send_by_email').checked,
-            send_to_email: send_to_email,
-            preview_online: document.getElementById('preview_online').checked
+            send_to_email: send_to_email
         }
         
         const locations = document.querySelectorAll('tbody tr');

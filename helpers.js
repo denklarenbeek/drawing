@@ -3,6 +3,7 @@ exports.moment = require('moment');
 
 exports.menu = [
     { slug: '/', title: 'home', icon: 'home', },
+    { slug: '/drawing', title: 'drawing', icon: 'paper-plane', },
     { slug: '/pcf', title: 'pricecast', icon: 'euro-sign', },
     { slug: '/create-pcf', title: 'create pcf', icon: 'file-contract', },
     { slug: '/opportunities', title: 'opportunities', icon: 'file-invoice-dollar', },

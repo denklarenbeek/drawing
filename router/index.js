@@ -12,6 +12,10 @@ router.get("/", authController.isLoggedIn, (req, res) => {
   res.render("index");
 });
 
+router.get("/drawing", authController.isLoggedIn, (req, res) => {
+    res.render("drawing");
+});
+
 router.post("/send", 
     authController.isLoggedIn,
     sendDrawingController.upload, 
@@ -49,14 +53,14 @@ router.get('/create-pcf', authController.isLoggedIn, (req, res) => {
     res.render('createPcf');
 });
 
-router.get('/opportunities', opportunityController.getAllOpportunities);
+router.get('/opportunities', authController.isLoggedIn, opportunityController.getAllOpportunities);
 router.get('/opportunities/:id', authController.isLoggedIn, opportunityController.getOpportunity);
 router.post('/opportunities/:id',  authController.isLoggedIn, opportunityController.updateOpportunity);
 
-router.get('/opportunity', (req, res) => {
+router.get('/opportunity', authController.isLoggedIn, (req, res) => {
     res.render('createOpp');
 });
-router.post('/opportunity', opportunityController.createOpportunity);
+router.post('/opportunity',  authController.isLoggedIn, opportunityController.createOpportunity);
 
 router.get('/products', (req, res) => {
     res.render('pcfEdit');

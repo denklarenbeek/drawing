@@ -1,0 +1,30 @@
+extends layout
+
+block content
+    .container
+        .title-tile
+            h1 Send the drawing
+        .content-tile
+            .inner
+                form(action='/send' method='POST' enctype='multipart/form-data')
+                    .input-email
+                        input(type='email'  name='email'  id='email' required onblur='movelabel(this)')
+                        label(for='email') Email ontvanger
+                        i(class='fal fa-envelope-square')
+                    .input-name
+                        input(type='text' name='name' id='name' required)
+                        label(for='name') Naam ontvanger
+                        i(class='fal fa-user')
+                    .input-subject
+                        input(type='text' name='subject' id='subject' required)
+                        label(for='subject') Onderwerp
+                        i(class='fal fa-space-shuttle')
+                    .input-msg
+                        textarea(name='msg' id='msg' required)
+                        label(for='msg') Omschrijving
+                        i(class='fal fa-comment')
+                    input(type='file' name='file' id='file' onchange='showFileInput(this, event)')
+                    label(for='file')
+                        i(class='fal fa-file-plus')
+                    #output-upload
+                    input(type='submit' value='Verstuur')

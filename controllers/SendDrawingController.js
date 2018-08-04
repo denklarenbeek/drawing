@@ -65,6 +65,7 @@ exports.sendMail = async (req, res) => {
         }
       ]
     });
+    req.flash('success', `Your file has been uploaded and send to ${req.body.email}`);
     res.redirect('/');
 };
 

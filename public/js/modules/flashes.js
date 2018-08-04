@@ -4,7 +4,7 @@ function deleteFlash(el) {
     const flashContainer = document.querySelector('.flash-messages');
     setTimeout(() => {
         flashContainer.removeChild(flash);
-    }, 2000);
+    }, 4000);
 }
 
 export {deleteFlash}

@@ -54,7 +54,8 @@ const opportunitySchema = new Schema({
     },
     sales_rep: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
+        ref: 'User',
+        required: 'Please login before saving new opportunities'
     }
 });
 
@@ -65,10 +66,10 @@ opportunitySchema.pre('save', function(next){
     next();
 })
 
-opportunitySchema.statics.getOpportunitiesByCustomer = function(){
+opportunitySchema.statics.getOpportunitiesByCustomer = function(user){
     return this.aggregate(
         [
-        { $match : { deleted_opportunity: false } },
+        { $match : { deleted_opportunity: false, sales_rep: user } },
         { 
             $group : { 
                 _id : "$account_name",
@@ -78,7 +79,7 @@ opportunitySchema.statics.getOpportunitiesByCustomer = function(){
                 } 
             },   
         }, 
-        { $sort : { account_name : 1 } }]
+        { $sort : { account_name: 1 }}]
      )
 };
 
