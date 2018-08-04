@@ -21,10 +21,11 @@ exports.generatePCFContract = async (req, res, next) => {
   }
 
   res.setHeader("Content-Type", "application/pdf"); 
+  try {
   const pdfWriter = hummus.createWriterToModify(new hummus.PDFRStreamForFile('./templates/pcf.pdf'), new hummus.PDFStreamForResponse(res))
 
-  // const focoFont = pdfWriter.getFontForFile('./templates/fonts/foco_lt.ttf');
-  const textOptions = {size:9,colorspace:'gray',color:0x00}
+  const focoFont = pdfWriter.getFontForFile('./templates/fonts/foco_lt.ttf');
+  const textOptions = {font: focoFont, size:9,colorspace:'gray',color:0x00}
 
   // Edit page 1 with the debitor info
   const pageModifier = new hummus.PDFPageModifier(pdfWriter,0);
@@ -47,9 +48,14 @@ exports.generatePCFContract = async (req, res, next) => {
     .writeText(data.contract_duration, 459, 706, textOptions)
   page5Modifier.endContext().writePage();
   
-  const filepath = await pdfGenerator.pcfContract(data);
-  res.filepath = filepath;
+  // const filepath = await pdfGenerator.pcfContract(data);
+  // res.filepath = filepath;
   await pdfWriter.end();
+  } catch(err){
+    console.log(err)
+    res.setHeader(400);
+    res.json({msg: err.msg});
+  }
   next();
 }
 
