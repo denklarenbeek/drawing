@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const Opportunity = require("../models/Opportunity");
 const moment = require('moment');
 const promisify = require('es6-promisify');
+const {createActivity} = require('../handlers/activityLogger');
 
 exports.createOpportunity = async (req, res) => {
   const weighted_amount = req.body.amount * (req.body.scotsman / 100);
@@ -28,6 +29,7 @@ exports.createOpportunity = async (req, res) => {
       res.redirect(backURL);
     };
     if (!err) {
+      createActivity(file.account_name, 'opportunity', 'create', req.user._id);
       console.log("Hi added to the db")
     };
   });

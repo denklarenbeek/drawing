@@ -5,6 +5,7 @@ const path = require('path');
 const moment = require('moment');
 moment.locale('nl');
 const fs = require('fs');
+const {createActivity} = require('../handlers/activityLogger');
 
 exports.generatePCFContract = async (req, res, next) => {
   const debitor = req.body.debitor;
@@ -51,6 +52,7 @@ exports.generatePCFContract = async (req, res, next) => {
   const filepath = await pdfGenerator.pcfContract(data);
   res.filepath = filepath;
   await pdfWriter.end();
+  createActivity(data.company, 'contract', 'create', req.user._id);
   next();
 }
 
@@ -66,11 +68,12 @@ exports.sendContract = async (req, res, next) => {
       template: "attachment",
       attachments: [
         {
-          filename: 'PriceCast Fuel Overeenkomst',
+          filename: 'PriceCast Fuel Overeenkomst.pdf',
           path: res.filepath,
         }
       ]
     });
+  createActivity(req.body.debitor.company, 'contract', 'send', req.user._id);
   }
   res.send();
 }

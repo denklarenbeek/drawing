@@ -15,6 +15,9 @@ const ActivitySchema = new Schema({
         type: String,
         required: 'Please provide a category of th activity'
     },
+    type: {
+        type: String
+    },
     sales_rep: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
