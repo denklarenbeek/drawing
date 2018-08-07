@@ -94,7 +94,7 @@ function submitForm(el){
         .then((res) => {
             const file = new Blob([res.data], {type: 'application/pdf'});
             const fileURL = URL.createObjectURL(file);
-            window.open(fileURL);
+            window.open(fileURL, '_blank');
             // front end flashes
             const flash = createFlash('success', 'contract is created');
             document.querySelector('.flash-messages').appendChild(flash);

@@ -27,9 +27,11 @@ exports.send = async options => {
   const text = htmlToText.fromString(html);
 
   const customFrom = `${options.fromName} <${options.fromEmail}>`;
+  const cc = options.cc || "";
   const mailOptions = {
     from: customFrom,
     to: options.toEmail,
+    cc: cc,
     subject: options.subject,
     html: html,
     text: text,

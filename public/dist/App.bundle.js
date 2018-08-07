@@ -17702,7 +17702,7 @@ function submitForm(el) {
         }, { responseType: 'blob' }).then(function (res) {
             var file = new Blob([res.data], { type: 'application/pdf' });
             var fileURL = URL.createObjectURL(file);
-            window.open(fileURL);
+            window.open(fileURL, '_blank');
             // front end flashes
             var flash = (0, _flashes.createFlash)('success', 'contract is created');
             document.querySelector('.flash-messages').appendChild(flash);

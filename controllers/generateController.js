@@ -1,10 +1,8 @@
 const pdfGenerator = require('../handlers/pdfGenerator');
 const mail = require("../handlers/mailer");
 const hummus = require('hummus');
-const path = require('path');
 const moment = require('moment');
 moment.locale('nl');
-const fs = require('fs');
 const {createActivity} = require('../handlers/activityLogger');
 
 exports.generatePCFContract = async (req, res, next) => {
@@ -63,6 +61,7 @@ exports.sendContract = async (req, res, next) => {
       fromName: req.user.name,
       toEmail: req.body.options.send_to_email,
       toName: req.body.options.send_to_name,
+      cc: req.user.email,
       subject: 'PriceCast Fuel contract',
       msg: 'Kijk eens! Uw PriceCast Fuel overeenkomst',
       template: "attachment",

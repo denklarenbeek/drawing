@@ -2,8 +2,6 @@
 
 const mongoose = require("mongoose");
 const Opportunity = require("../models/Opportunity");
-const moment = require('moment');
-const promisify = require('es6-promisify');
 const {createActivity} = require('../handlers/activityLogger');
 
 exports.createOpportunity = async (req, res) => {

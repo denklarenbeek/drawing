@@ -1,13 +1,9 @@
 const express = require("express");
-const mongoose = require("mongoose");
-const router = express.Router();
 const multer = require("multer");
-const path = require("path");
 const File = require("../models/Files");
 const User = require('../models/User');
 const mail = require("../handlers/mailer");
 const cloudinary = require('cloudinary');
-const fs = require('fs');
 const keys = require('../config/keys');
 
 //Set Cloudinary config
@@ -54,6 +50,7 @@ exports.sendMail = async (req, res) => {
       fromName: req.user.name,
       toEmail: req.body.email,
       toName: req.body.name,
+      cc: req.user.email,
       subject: req.body.subject,
       msg: req.body.msg,
       template: "attachment",
