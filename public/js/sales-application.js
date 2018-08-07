@@ -4,12 +4,14 @@ import {animateLogin} from './modules/loginAnimation';
 import {addLocationRow, submitForm, showEmailField} from './modules/createPcf';
 import {deleteFlash} from './modules/flashes';
 import {showHistoryOpp} from './modules/showHistoryOpp';
+import {searchOpportunities} from './modules/searchOpp';
 
 const x = document.getElementById('pcf');
 const loginField = document.querySelector('.login-field');
 const pcf = document.getElementById('createpcf')
 const flash = document.querySelector('.flash');
 const opp = document.getElementById('opportunities');
+const searchInput = document.getElementById('searchInput');
 
 setToolTips();
 pcfButtonNavigate(x);
@@ -22,3 +24,4 @@ submitForm(pcf);
 showEmailField(pcf);
 deleteFlash(flash);
 showHistoryOpp(opp)
+searchOpportunities(searchInput);

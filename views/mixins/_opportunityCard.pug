@@ -1,6 +1,7 @@
 mixin opportunityCard(opp = {})
-    .opp-container(data-customid=opp.original_id)
+    .opp-container(data-customid=opp.original_id data-row='true')
         .opp-container-row
+            p.hidden-name #{opp.account_name}
             p.name #{opp.name}
             p.amount= h.formatCurrency(opp.amount)
             p.scotsman #{opp.scotsman}%

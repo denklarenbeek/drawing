@@ -14,7 +14,6 @@
 
 input,
 textarea {
-  width: 100%;
   color: $primary-color;
 }
 
@@ -33,6 +32,7 @@ input[type="password"],
 input[type="number"],
 input[type="date"],
 textarea {
+  width: 100%;
   outline: none;
   border: none;
   background: inherit;
@@ -101,9 +101,7 @@ button.step {
 
 input[type='submit'],
 button[type='submit'] {
-  @media only screen and (min-width: $break-small){
-    width: 60%;
-  }
+  display: inline-block;
 
   &:hover {
     outline: 0;
@@ -117,14 +115,6 @@ button[type='submit'] {
   &:disabled {
     background-color: rgba(255,205,51,0.6);
     cursor: not-allowed;
-  }
-}
-
-button[type="submit"] {
-  width: 100%;
-
-  i {
-    animation: name duration timing-function delay iteration-count direction fill-mode;
   }
 }
 
@@ -191,6 +181,13 @@ label[for="file"] {
 
 label[for="file"] i {
   font-size: 1.5rem;
+}
+
+.input-group.checkbox {
+  label {
+    left: 40px;
+    top: 22px;
+  }
 }
 
 #output-upload img {

@@ -28,7 +28,13 @@ a {
     padding: 8px 15px;
     margin-top: 2rem;
     line-height: 1.5rem;
-    display: block;
+    display: inline-block;
+    
+    &.small {
+        @media only screen and (min-width: $break-small){
+            width: 20%;
+        }
+    }
 
     &.order {
         background: $succces-color;
@@ -58,10 +64,6 @@ a {
         justify-content: center;
         color: #002f49;
     }
-
-    @media only screen and (min-width: $break-small){
-        width: 60%;
-      }
     
     &:hover {
         outline: 0;

@@ -7,9 +7,11 @@ block content
         .title-tile
             h1 Your opportunities
         .content-tile#opportunities
+            .input-group
+                input(type='text' id='searchInput' placeholder='Zoek je opportunity')
             .inner
                 each account in oppsByAccount
-                    .account-container
+                    .account-container(data-count=account.count)
                         p.account_name #{account._id}
                         span.count #{account.count}
                         .opp-container#title

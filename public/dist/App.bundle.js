@@ -19617,6 +19617,8 @@ var _flashes = __webpack_require__(3);
 
 var _showHistoryOpp = __webpack_require__(136);
 
+var _searchOpp = __webpack_require__(161);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var x = document.getElementById('pcf');
@@ -19624,6 +19626,7 @@ var loginField = document.querySelector('.login-field');
 var pcf = document.getElementById('createpcf');
 var flash = document.querySelector('.flash');
 var opp = document.getElementById('opportunities');
+var searchInput = document.getElementById('searchInput');
 
 (0, _tooltip2.default)();
 (0, _pcf.pcfButtonNavigate)(x);
@@ -19636,6 +19639,66 @@ var opp = document.getElementById('opportunities');
 (0, _createPcf.showEmailField)(pcf);
 (0, _flashes.deleteFlash)(flash);
 (0, _showHistoryOpp.showHistoryOpp)(opp);
+(0, _searchOpp.searchOpportunities)(searchInput);
+
+/***/ }),
+/* 161 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+function _toArray(arr) { return Array.isArray(arr) ? arr : Array.from(arr); }
+
+function searchOpportunities(el) {
+    if (!el) return;
+
+    var inputField = document.getElementById('searchInput');
+    inputField.addEventListener('keyup', function () {
+
+        var inputValue = document.getElementById('searchInput').value.toLowerCase();
+        var rows = document.querySelectorAll('.opp-container-row');
+        for (var i = 0; i < rows.length; i++) {
+            var account = rows[i].querySelector('.hidden-name');
+            var name = rows[i].querySelector('.name');
+
+            // Check if the search value is inside the account_name of name of the opp
+            if (account.innerHTML.toLowerCase().indexOf(inputValue) > -1 || name.innerHTML.toLowerCase().indexOf(inputValue) > -1) {
+                rows[i].parentElement.style.display = '';
+            } else {
+                rows[i].parentElement.style.display = 'none';
+            }
+        }
+        var containers = document.querySelectorAll('.account-container');
+        for (var _i = 0; _i < containers.length; _i++) {
+            var _containers$_i$childr = _toArray(containers[_i].children),
+                a = _containers$_i$childr.slice(0);
+            // Return an array with active rows
+
+
+            var x = a.filter(function (el) {
+                return el.dataset.row === 'true' && el.style.display !== 'none';
+            });
+
+            // Change te count based on active rows
+            var span = containers[_i].querySelector('.count');
+            span.innerHTML = x.length;
+
+            // If there are no rows left don't display the parent
+            if (x.length === 0) {
+                containers[_i].style.display = 'none';
+            } else {
+                containers[_i].style.display = '';
+            }
+        }
+    });
+}
+
+exports.searchOpportunities = searchOpportunities;
 
 /***/ })
 /******/ ]);
