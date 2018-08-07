@@ -13,6 +13,7 @@ const passport = require('passport');
 const helpers = require('./helpers');
 require('./handlers/passport');
 require('./models/User');
+const checkOpportunityJob = require('./controllers/CronJobController')
 
 const app = express();
 
@@ -22,7 +23,6 @@ const mongoURI = `mongodb://${keys.DBUSER}:${keys.DBPASS}@ds113799.mlab.com:1379
 mongoose.connect(mongoURI, { useNewUrlParser: true })
     .then(() => console.log('Mongoose is connected.....'))
     .catch((err) => console.log(err));
-
 
 // Set EJS as the View Engine
 app.set('views', path.join(__dirname, 'views'));

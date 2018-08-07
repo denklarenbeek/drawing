@@ -1,0 +1,13 @@
+extends email-layout
+
+block content
+    h2 Hi #{toName},
+    p De volgende opportunities verlopen met #{expiringTime} dagen:
+    each opp in opportunities
+        .opp-container
+            p(class="opp-block")= opp.name
+            p(class="opp-block")= opp.account_name
+            p(class='opp-block')= opp.date
+    
+    p Je kan deze aanpassen in de webapplicatie.
+    p Wil je ze minder vaak ontvangen, pas dan de expiring time aan je settings.

@@ -27,6 +27,10 @@ const userSchema = new Schema({
     cron_jobs: {
         type: Boolean,
         default: false
+    },
+    cron_jobs_timer: {
+        type: Number,
+        default: 12096e5
     }
 });
 
