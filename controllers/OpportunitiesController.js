@@ -3,6 +3,23 @@
 const mongoose = require("mongoose");
 const Opportunity = require("../models/Opportunity");
 const {createActivity} = require('../handlers/activityLogger');
+const multer = require('multer');
+const xlstojson = require("xls-to-json-lc");
+const xlsxtojson = require("xlsx-to-json-lc");
+
+const storage = multer.diskStorage({ //multers disk storage settings
+  destination: function (req, file, cb) {
+      cb(null, './tmp/')
+  },
+  filename: function (req, file, cb) {
+      const datetimestamp = Date.now();
+      cb(null, file.fieldname + '-' + datetimestamp + '.' + file.originalname.split('.')[file.originalname.split('.').length -1])
+  }
+});
+
+const upload = multer({ //multer settings
+  storage: storage
+}).single('file');
 
 exports.createOpportunity = async (req, res) => {
   const weighted_amount = req.body.amount * (req.body.scotsman / 100);
@@ -89,4 +106,64 @@ exports.getHistoricalOpp = async (req, res) => {
   .sort({created_on: -1}).exec(function(err, docs) { 
     res.json(docs);
    });;
+}
+
+exports.importOpps = async (req, res) => {
+  upload(req, res, function(err){
+    let exceltojson;
+    //Check if the upload works
+    if(err){
+      console.log({err: err})
+      req.flash('error', err);
+      res.redirect('/admin');
+    }
+    //Check if there is a file on the request object
+    if(!req.file){
+      console.log('error no req.file', err);
+      req.flash('error', 'Please provide a file');
+      res.redirect('/admin');
+    }
+
+    if (['xls', 'xlsx'].indexOf(req.file.originalname.split('.')[req.file.originalname.split('.').length-1]) === -1) {
+      console.log('Not the right format');
+      req.flash('error', 'Please provide a right format for the upload');
+      res.redirect('/admin');
+    }
+
+    // Check if the file is a xlsx or xls file
+    if(req.file.originalname.split('.')[req.file.originalname.split('.').length-1] === 'xlsx'){
+        exceltojson = xlsxtojson;
+    } else {
+        exceltojson = xlstojson;
+    }
+
+    try {
+      exceltojson({
+        input: req.file.path,
+        output: null,
+        lowerCaseHeaders: true
+      }, async function(err, result){
+        if(err) {
+          console.log('error on parsing', err)
+        }
+        // upload every row in result
+        try {
+          for(let i =0; i <result.length; i++){
+            const opp = new Opportunity(result[i]);
+            await opp.save((err, file ,rows) => {
+              if(err) {
+                req.flash('error', err)
+              }
+            })
+          }
+          req.flash('success', 'Your opportunities are imported');
+          res.redirect('/opportunities')
+        } catch(e){
+          console.log(e)
+        }
+      })
+    } catch (e){
+      console.log(e)
+    }
+  });
 }

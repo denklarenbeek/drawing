@@ -70,6 +70,8 @@ router.get('/admin', (req, res) => {
     res.render('admin', {title: 'Admin section'})
 })
 
+router.post('/import-opportunities', opportunityController.importOpps);
+
 
 // api endpoints
 router.get('/api/v1/calculate-roi', authController.isLoggedIn, priceCastController.calculateROI);

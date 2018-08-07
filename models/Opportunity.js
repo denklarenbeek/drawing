@@ -42,7 +42,8 @@ const opportunitySchema = new Schema({
     },
     original_id: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Opportunity'
+        ref: 'Opportunity',
+        default: this._id
     },
     deleted_opportunity: {
         type: Boolean,

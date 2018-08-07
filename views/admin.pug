@@ -1,0 +1,21 @@
+extends layout
+
+block content
+    .container
+        .title-tile
+            h1 Admin section
+        .content-tile
+            .inner
+                h2 Import opportunities
+                form(action='/import-opportunities' method='POST' enctype='multipart/form-data')
+                    input(type='file' required name='file' id='file' onchange='showFileInput(this, event)')
+                    label(for='file')
+                        i(class='fal fa-file-plus')
+                    #output-upload
+                    button(type='submit') Upload file 
+                h2 Maintain products and prices
+                h2 Delete users
+                h2 Delete DB of users (opportunities, images)
+                h2 Set Cron Job active
+
+                
