@@ -17875,7 +17875,7 @@ function calcRoi(el) {
           var modSetupP = res.data[_i].setup;
           setupP.innerHTML = "\u20AC " + modSetupP;
         }
-        console.log(res.data[0]);
+
         var newP = document.createElement('p');
         newP.innerHTML = "U laat \u20AC " + res.data[0].revenue + " rendement per jaar liggen";
         roiNumber.appendChild(newP);

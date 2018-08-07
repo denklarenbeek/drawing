@@ -113,7 +113,7 @@ function calcRoi(el) {
             const modSetupP = res.data[i].setup;
             setupP.innerHTML = `€ ${modSetupP}`;
           }
-          console.log(res.data[0]);
+          
           const newP = document.createElement('p');
           newP.innerHTML = `U laat € ${res.data[0].revenue} rendement per jaar liggen`;
           roiNumber.appendChild(newP);
