@@ -55,7 +55,7 @@ exports.createOpportunity = async (req, res) => {
 exports.getAllOpportunities = async (req, res) => {
 
   const oppsByAccount = await Opportunity.getOpportunitiesByCustomer(req.user._id);
-  console.log("oppsByAccount", oppsByAccount);
+  console.log(req.user._id);
   res.render("opportunities", { title: 'Your Opportunities', oppsByAccount });
 };
 
@@ -94,7 +94,10 @@ exports.updateOpportunity = async (req, res) => {
 
   await opportunity.save((err, file, rows) => {
     if (err) console.log(err);
-    if (!err) console.log("Hi added to the db");
+    if (!err) {
+      createActivity('updated', 'opportunity', 'update', req.user._id);
+      console.log("Hi added to the db")
+    };
   });
   req.flash("success", "Your opportunity has been updated!");
   res.redirect('/opportunities')

@@ -66,11 +66,11 @@ router.get('/products', (req, res) => {
     res.render('pcfEdit', {title: 'Edit pcf'});
 });
 
-router.get('/admin', (req, res) => {
+router.get('/admin',  authController.isLoggedIn, authController.isAdmin, (req, res) => {
     res.render('admin', {title: 'Admin section'})
 })
 
-router.post('/import-opportunities', opportunityController.importOpps);
+router.post('/import-opportunities', authController.isLoggedIn, authController.isAdmin, opportunityController.importOpps);
 
 
 // api endpoints

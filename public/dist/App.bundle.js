@@ -17861,6 +17861,7 @@ function calcRoi(el) {
         tab++;
         var newSection = document.getElementById("pcf-roi-table");
         var roiTable = document.querySelector('#pcf-roi-table table tbody');
+        var roiNumber = document.querySelector('.roi-numbers');
         var childDivs = roiTable.children;
         var data = res.data;
         for (var _i = 0; _i < childDivs.length; _i++) {
@@ -17874,6 +17875,10 @@ function calcRoi(el) {
           var modSetupP = res.data[_i].setup;
           setupP.innerHTML = "\u20AC " + modSetupP;
         }
+        console.log(res.data[0]);
+        var newP = document.createElement('p');
+        newP.innerHTML = "U laat \u20AC " + res.data[0].revenue + " rendement per jaar liggen";
+        roiNumber.appendChild(newP);
 
         newSection.classList.add("active");
         showHideArrow(tab);

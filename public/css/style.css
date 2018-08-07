@@ -613,6 +613,9 @@ section.active {
   width: 60%;
   margin: 0 auto; }
 
+.roi-numbers {
+  color: #002f49; }
+
 .back-arrow {
   position: absolute;
   top: 20px; }

@@ -23,7 +23,11 @@ const userSchema = new Schema({
         type: Boolean
     },
     resetPasswordToken: String,
-    resetPasswordExpires: Date
+    resetPasswordExpires: Date,
+    cron_jobs: {
+        type: Boolean,
+        default: false
+    }
 });
 
 userSchema.plugin(passportLocalMongoose, {usernameField: 'email'}); //make sure the passportjs takes care of storing a hash of the password

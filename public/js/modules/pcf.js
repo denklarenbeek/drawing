@@ -99,6 +99,7 @@ function calcRoi(el) {
           tab++;
           const newSection = document.getElementById("pcf-roi-table");
           const roiTable = document.querySelector('#pcf-roi-table table tbody');
+          const roiNumber = document.querySelector('.roi-numbers');
           const childDivs = roiTable.children;
           const data = res.data;
           for (let i = 0; i < childDivs.length; i++) {
@@ -112,6 +113,10 @@ function calcRoi(el) {
             const modSetupP = res.data[i].setup;
             setupP.innerHTML = `€ ${modSetupP}`;
           }
+          console.log(res.data[0]);
+          const newP = document.createElement('p');
+          newP.innerHTML = `U laat € ${res.data[0].revenue} rendement per jaar liggen`;
+          roiNumber.appendChild(newP);
 
           newSection.classList.add("active");
           showHideArrow(tab);

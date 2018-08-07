@@ -30,7 +30,9 @@ function calclulateTableROI(data, productRelated){
     };
 
     const roi = (rendement / investment) * 100;
+    const revenue = rendement - investment;
     returnProduct.roi = roi;
+    returnProduct.revenue = revenue;
     return returnProduct;
 }
 
@@ -45,6 +47,7 @@ exports.calculateROI = async (req, res, next) => {
     for(let i=0; i < productRelated.length; i++){
         const returnProduct = calclulateTableROI(req.query, productRelated[i]);
         rois.push(returnProduct);
+        console.log(returnProduct);
     }
     res.json(rois);
 }
