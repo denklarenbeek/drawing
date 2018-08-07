@@ -49,13 +49,3 @@ const checkOpportunityJob = new CronJob({
     start: true,
     timeZone: 'Europe/Amsterdam'
 });
-
-// checkOpportunityJob.start();
-
-exports.outDatedOpps = async (req, res) => {
-    const opps = await Opportunity.find({deleted_opportunity: false, order_received: false});
-    console.log(opps);
-    for(let i =0; i < opps.length; i++){
-        console.log(opps[i].timing < new Date(Date.now() + 12096e5));
-    }
-}
