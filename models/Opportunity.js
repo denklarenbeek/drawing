@@ -87,9 +87,9 @@ opportunitySchema.statics.getOpportunitiesByCustomer = function(user){
                 opp: { 
                     $push: "$$ROOT" 
                 } 
-            },   
-        }]
-     )
+            }    
+        }, {$sort: { _id: 1}}
+    ])
 };
 
 module.exports = mongoose.model('Opportunity', opportunitySchema);
