@@ -39,13 +39,13 @@ exports.getAllOpportunities = async (req, res) => {
 
   const oppsByAccount = await Opportunity.getOpportunitiesByCustomer(req.user._id);
   console.log("oppsByAccount", oppsByAccount);
-  res.render("opportunities", { oppsByAccount });
+  res.render("opportunities", { title: 'Your Opportunities', oppsByAccount });
 };
 
 exports.getOpportunity = async (req, res) => {
   const opp = await Opportunity.findOne({_id: req.params.id});
   console.log(opp);
-  res.render('editOpp', {opportunity: opp});
+  res.render('editOpp', {title: 'Edit your opportunity',  opportunity: opp});
 }
 
 exports.updateOpportunity = async (req, res) => {

@@ -9,11 +9,11 @@ const generateController = require('../controllers/generateController');
 const opportunityController = require('../controllers/OpportunitiesController');
 
 router.get("/", authController.isLoggedIn, (req, res) => {
-  res.render("index", {user: req.user});
+  res.render("index", {title: 'Homepage',user: req.user});
 });
 
 router.get("/drawing", authController.isLoggedIn, (req, res) => {
-    res.render("drawing");
+    res.render("drawing", {title: 'Send new drawing'});
 });
 
 router.post("/send", 
@@ -28,7 +28,7 @@ router.get('/register',
     authController.isLoggedIn, 
     authController.isAdmin, 
     (req, res, next) => {
-    res.render('register')
+    res.render('register', {title: 'Register new user'});
 });
 
 router.post('/register', 
@@ -38,7 +38,7 @@ router.post('/register',
 );
 
 router.get('/login', (req, res) => {
-    res.render('login');
+    res.render('login', {title: 'Login'});
 });
 
 router.post('/login', authController.login);
@@ -46,11 +46,11 @@ router.post('/login', authController.login);
 router.get('/logout', authController.logout);
 
 router.get('/pcf', authController.isLoggedIn, (req, res) => {
-    res.render('pcf')
+    res.render('pcf', {title: 'Calculate PCF ROI'})
 });
 
 router.get('/create-pcf', authController.isLoggedIn, (req, res) => {
-    res.render('createPcf');
+    res.render('createPcf', {title: 'Create PCF contract'});
 });
 
 router.get('/opportunities', authController.isLoggedIn, opportunityController.getAllOpportunities);
@@ -58,13 +58,17 @@ router.get('/opportunities/:id', authController.isLoggedIn, opportunityControlle
 router.post('/opportunities/:id',  authController.isLoggedIn, opportunityController.updateOpportunity);
 
 router.get('/opportunity', authController.isLoggedIn, (req, res) => {
-    res.render('createOpp');
+    res.render('createOpp', {title: 'Create opportunity'});
 });
 router.post('/opportunity',  authController.isLoggedIn, opportunityController.createOpportunity);
 
 router.get('/products', (req, res) => {
-    res.render('pcfEdit');
+    res.render('pcfEdit', {title: 'Edit pcf'});
 });
+
+router.get('/admin', (req, res) => {
+    res.render('admin', {title: 'Admin section'})
+})
 
 
 // api endpoints
