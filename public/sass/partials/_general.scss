@@ -4,7 +4,7 @@
   }
 
   .wrapper {
-    min-height: 100vh;
+    min-height: calc(100vh - 65px);
     width: 100vw;
   }
 
@@ -14,9 +14,10 @@
   
   .container {
     display: flex;
-    justify-content: center;
+    // justify-content: center;
     flex-direction: column;
     width: 100%;
+    min-height: calc(100vh - 65px);
   }
   
   .title-tile {
@@ -39,7 +40,7 @@
     background: $background-color;
     padding: 20px;
     position: relative;
-    height: 80%;
+    min-height: calc(100vh - 167px);
     color: white;
   }
   

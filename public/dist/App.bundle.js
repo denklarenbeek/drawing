@@ -17967,7 +17967,7 @@ function showHistoryOpp(el) {
             axios.get("/api/v1/getHistoricalOpp/" + id).then(function (res) {
                 var parentDiv = createDivElement('opp-container-historic');
                 for (var _i = 0; _i < res.data.length; _i++) {
-                    var newdate = moment(res.data[_i].timing).format("Q");
+                    var newdate = moment(res.data[_i].timing).format("Q YY");
                     var modDate = "Q" + newdate;
                     var newElement = createDivElement('opp-container-row');
                     var nameElement = createPelement('name', res.data[_i].name);

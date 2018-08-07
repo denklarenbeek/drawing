@@ -42,7 +42,7 @@ function showHistoryOpp(el){
                 .then(res => {
                     const parentDiv = createDivElement('opp-container-historic');
                     for(let i=0; i < res.data.length; i++) {
-                        const newdate = moment(res.data[i].timing).format("Q")
+                        const newdate = moment(res.data[i].timing).format("Q YY")
                         const modDate = `Q${newdate}`;
                         const newElement = createDivElement('opp-container-row');
                         const nameElement = createPelement('name', res.data[i].name);

@@ -412,7 +412,7 @@ td:nth-child(1) {
   box-sizing: border-box; }
 
 .wrapper {
-  min-height: 100vh;
+  min-height: calc(100vh - 65px);
   width: 100vw; }
 
 .wrapper.fixed {
@@ -420,9 +420,9 @@ td:nth-child(1) {
 
 .container {
   display: flex;
-  justify-content: center;
   flex-direction: column;
-  width: 100%; }
+  width: 100%;
+  min-height: calc(100vh - 65px); }
 
 .title-tile {
   display: flex;
@@ -443,7 +443,7 @@ td:nth-child(1) {
   background: #edeff1;
   padding: 20px;
   position: relative;
-  height: 80%;
+  min-height: calc(100vh - 167px);
   color: white; }
 
 @media only screen and (min-width: 768px) {
@@ -666,15 +666,15 @@ section.active {
   border-bottom: 1px dotted gray;
   padding-bottom: 10px;
   padding-top: 10px;
-  cursor: pointer;
-  height: 49px; }
+  cursor: pointer; }
   .opp-container:nth-of-type(1) {
     cursor: initial; }
     .opp-container:nth-of-type(1) p {
       font-weight: normal; }
   .opp-container-row {
     display: flex;
-    width: 100%; }
+    width: 100%;
+    min-height: 28px; }
   .opp-container-historic {
     display: none;
     width: 100%; }
@@ -706,12 +706,12 @@ section.active {
     opacity: 0;
     width: 0; }
   .opp-container .name {
-    width: 33%; }
+    width: 28%; }
   .opp-container .amount {
     width: 17%;
     text-align: right; }
   .opp-container .month {
-    width: 10%;
+    width: 13%;
     text-align: right; }
   .opp-container .status {
     width: 60%; }
