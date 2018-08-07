@@ -22,7 +22,8 @@ a {
   border: 1px solid #dfb432;
   padding: 8px 15px;
   margin-top: 2rem;
-  line-height: 1.5rem; }
+  line-height: 1.5rem;
+  display: block; }
   .btn.order {
     background: rgba(81, 163, 81, 0.95);
     border: none;

@@ -17877,7 +17877,7 @@ function calcRoi(el) {
         }
 
         var newP = document.createElement('p');
-        newP.innerHTML = "U laat \u20AC " + res.data[0].revenue + " rendement per jaar liggen";
+        newP.innerHTML = "U kunt \u20AC " + res.data[0].revenue + " meer rendement per jaar halen";
         roiNumber.appendChild(newP);
 
         newSection.classList.add("active");

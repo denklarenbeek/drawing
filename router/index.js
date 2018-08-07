@@ -66,9 +66,13 @@ router.get('/products', (req, res) => {
     res.render('pcfEdit', {title: 'Edit pcf'});
 });
 
+router.get('/settings', authController.isLoggedIn, (req, res) => {
+    res.render('settings', {title: 'Your settings'})
+});
+
 router.get('/admin',  authController.isLoggedIn, authController.isAdmin, (req, res) => {
     res.render('admin', {title: 'Admin section'})
-})
+});
 
 router.post('/import-opportunities', authController.isLoggedIn, authController.isAdmin, opportunityController.importOpps);
 
@@ -79,6 +83,6 @@ router.post('/api/v1/products', productsController.createProduct);
 
 router.post('/api/v1/generate-pcf-contract', authController.isLoggedIn, generateController.generatePCFContract, generateController.sendContract);
 
-router.get('/api/v1/getHistoricalOpp/:id', opportunityController.getHistoricalOpp)
+router.get('/api/v1/getHistoricalOpp/:id', opportunityController.getHistoricalOpp);
 
 module.exports = router;

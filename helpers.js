@@ -10,6 +10,7 @@ exports.menu = [
     { slug: '/create-pcf', title: 'create pcf', icon: 'file-contract', },
     { slug: '/opportunities', title: 'opportunities', icon: 'file-invoice-dollar', },
     { slug: '/register', title: 'register', icon: 'user-plus', },
+    { slug: '/settings', title: 'settings', icon: 'cog', },
     { slug: '/admin', title: 'admin', icon: 'cogs', },
     { slug: '/logout', title: 'logout', icon: 'lock', }
 ];

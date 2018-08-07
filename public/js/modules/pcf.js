@@ -113,9 +113,9 @@ function calcRoi(el) {
             const modSetupP = res.data[i].setup;
             setupP.innerHTML = `€ ${modSetupP}`;
           }
-          
+
           const newP = document.createElement('p');
-          newP.innerHTML = `U laat € ${res.data[0].revenue} rendement per jaar liggen`;
+          newP.innerHTML = `U kunt € ${res.data[0].revenue} meer rendement per jaar halen`;
           roiNumber.appendChild(newP);
 
           newSection.classList.add("active");

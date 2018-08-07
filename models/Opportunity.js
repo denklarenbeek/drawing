@@ -1,3 +1,5 @@
+'use strict';
+
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 mongoose.Promise = global.Promise;
@@ -5,7 +7,9 @@ mongoose.Promise = global.Promise;
 const opportunitySchema = new Schema({
     account_name: {
         type: String,
-        required: 'Please fill in the name of the account'
+        trim: true,
+        required: 'Please fill in the name of the account',
+        index: true
     },
     name: {
         type: String,
@@ -58,6 +62,11 @@ const opportunitySchema = new Schema({
         ref: 'User',
         required: 'Please login before saving new opportunities'
     }
+}, { autoIndex: false });
+
+opportunitySchema.index({
+    account_name: 'text',
+    name: 'text'
 });
 
 opportunitySchema.pre('save', function(next){
@@ -79,8 +88,7 @@ opportunitySchema.statics.getOpportunitiesByCustomer = function(user){
                     $push: "$$ROOT" 
                 } 
             },   
-        }, 
-        { $sort : { account_name: 1 }}]
+        }]
      )
 };
 
