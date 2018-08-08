@@ -5,6 +5,37 @@ const validator = require('validator');
 const mongodbErrorHandler = require('mongoose-mongodb-errors');
 const passportLocalMongoose = require('passport-local-mongoose');
 
+const cronJobDaySchema = new Schema({
+    monday: {
+        type: Boolean,
+        default: true,
+    },
+    tuesday: {
+        type: Boolean,
+        default: true,
+    },
+    wednesday: {
+        type: Boolean,
+        default: true,
+    },
+    thursday: {
+        type: Boolean,
+        default: true,
+    },
+    friday: {
+        type: Boolean,
+        default: true,
+    },
+    saturday: {
+        type: Boolean,
+        default: true,
+    },
+    sunday: {
+        type: Boolean,
+        default: true,
+    }
+})
+
 const userSchema = new Schema({
     email: {
         type: String,
@@ -31,6 +62,9 @@ const userSchema = new Schema({
     cron_jobs_timer: {
         type: Number,
         default: 12096e5
+    },
+    cron_jobs_day: {
+        type: {cronJobDaySchema}
     }
 });
 

@@ -96,9 +96,7 @@ function submitForm(el){
             const fileURL = URL.createObjectURL(file);
             window.open(fileURL, '_blank');
             // front end flashes
-            const flash = createFlash('success', 'contract is created');
-            document.querySelector('.flash-messages').appendChild(flash);
-            deleteFlash(true, 10000);
+            createFlash('success', 'contract is created', 10000);
             form.reset();
         })
         .catch((err) => {

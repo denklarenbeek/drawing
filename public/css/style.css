@@ -214,9 +214,18 @@ label[for="file"] {
 label[for="file"] i {
   font-size: 1.5rem; }
 
-.input-group.checkbox label {
+.input-group.checkbox label,
+.input-container.checkbox label {
   left: 40px;
   top: 22px; }
+
+.input-container-checkboxes-group {
+  display: flex;
+  justify-content: space-between; }
+  .input-container-checkboxes-group label {
+    font-size: 0.7em;
+    top: 0px;
+    left: 8px; }
 
 #output-upload img {
   width: 80%; }
@@ -770,5 +779,15 @@ section.active {
 
 label.moved {
   top: -15px; }
+
+.job-days,
+.job-day {
+  display: none; }
+
+.job-days.open {
+  display: block; }
+
+.job-day.open {
+  display: flex; }
 
 /*# sourceMappingURL=style.css.map */

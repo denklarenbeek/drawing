@@ -7,6 +7,7 @@ const priceCastController = require('../controllers/priceCastController');
 const productsController = require('../controllers/productsController');
 const generateController = require('../controllers/generateController');
 const opportunityController = require('../controllers/OpportunitiesController');
+const userController = require('../controllers/UserController');
 
 router.get("/", authController.isLoggedIn, (req, res) => {
   res.render("index", {title: 'Homepage',user: req.user});
@@ -67,7 +68,8 @@ router.get('/products', (req, res) => {
 });
 
 router.get('/settings', authController.isLoggedIn, (req, res) => {
-    res.render('settings', {title: 'Your settings'})
+    console.log(req.user);
+    res.render('settings', {title: 'Your settings', user: req.user})
 });
 
 router.get('/admin',  authController.isLoggedIn, authController.isAdmin, (req, res) => {
@@ -84,5 +86,9 @@ router.post('/api/v1/products', productsController.createProduct);
 router.post('/api/v1/generate-pcf-contract', authController.isLoggedIn, generateController.generatePCFContract, generateController.sendContract);
 
 router.get('/api/v1/getHistoricalOpp/:id', opportunityController.getHistoricalOpp);
+
+router.post('/api/v1/user/timer', userController.updateJobTimer);
+router.post('/api/v1/user/days', userController.updateJobDays);
+router.post('/api/v1/user/cronjob', userController.updateJobActive);
 
 module.exports = router;

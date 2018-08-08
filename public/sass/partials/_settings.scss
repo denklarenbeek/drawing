@@ -1,0 +1,12 @@
+.job-days,
+.job-day {
+    display: none;
+}
+
+.job-days.open {
+    display: block;
+}
+
+.job-day.open {
+    display: flex;
+}

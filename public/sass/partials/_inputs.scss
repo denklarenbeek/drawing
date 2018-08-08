@@ -183,10 +183,22 @@ label[for="file"] i {
   font-size: 1.5rem;
 }
 
-.input-group.checkbox {
+.input-group.checkbox,
+.input-container.checkbox {
   label {
     left: 40px;
     top: 22px;
+  }
+}
+
+.input-container-checkboxes-group {
+  display: flex;
+  justify-content: space-between;
+
+  label {
+    font-size: 0.7em;
+    top: 0px;
+    left: 8px;
   }
 }
 

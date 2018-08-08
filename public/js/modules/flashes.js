@@ -1,22 +1,29 @@
 function deleteFlash(el, time) {
     let seconds = time || 4000
     if(!el) return
-    const flash = document.querySelector('.flash');
-    const flashContainer = document.querySelector('.flash-messages');
     setTimeout(() => {
-        flashContainer.removeChild(flash);
+        el.parentElement.removeChild(el);
     }, seconds);
 }
 
-function createFlash(type, flash_text){
+function createFlash(type, flash_text, duration){
+    let flashType;
+    if(type === 0){
+        flashType = 'success';
+    }
+    if(type === 1){
+        flashType = 'error'
+    }
+    const flashContainer = document.querySelector('.flash-messages');
     const flash = document.createElement('div');
     flash.classList.add('flash');
-    flash.classList.add(`flash--${type}`);
+    flash.classList.add(`flash--${flashType}`);
     const text = document.createElement('p');
     text.classList.add('flash__text');
     text.innerHTML = flash_text;
     flash.appendChild(text);
-    return flash;
+    flashContainer.appendChild(flash);
+    deleteFlash(flash, duration)
 }
 
 export {deleteFlash, createFlash}

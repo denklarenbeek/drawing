@@ -3,8 +3,36 @@ extends layout
 block content
     .container
         .title-tile
-            h1 Settnings section
+            h1 Settings section
         .content-tile
             .inner
-                h2 CRM sync
-                
+                h2 Opportunity check
+                .input-container.checkbox
+                    input(type='checkbox' name='cron_jobs', id='cron_jobs' value=true checked=user.cron_jobs)
+                    label(for='cron_jobs') Herinnering ontvangen?
+                .input-container.tooltip.job-days(class=(user.cron_jobs ? 'open' : '') data-tooltip='true' data-tooltipinfo='Binnen hoeveel dagen wil je een melding ontvangen')
+                    input(type='number' name='cron_jobs_timer' id='cron_jobs_timer' value=user.cron_jobs_timer)
+                    label(for='cron_jobs_timer' class='fixed') Aantal dagen
+                .input-container-checkboxes-group.job-day(class=(user.cron_jobs ? 'open' : ''))
+                    .input-container
+                        input(type='checkbox' data-day='monday'  class="cron-job-day" name='cron_job_monday' id='cron_job_monday' value=true checked=user.cron_jobs_day.monday)
+                        label(for='cron_job_monday') MA
+                    .input-container
+                        input(type='checkbox' data-day='tuesday' class="cron-job-day" name='cron_job_tuesday' id='cron_job_tuesday' value=true checked=user.cron_jobs_day.tuesday)
+                        label(for='cron_job_tuesday') DI
+                    .input-container
+                        input(type='checkbox' data-day='wednesday' class="cron-job-day" name='cron_job_wednesday' id='cron_job_wednesday' value=true checked=user.cron_jobs_day.wednesday)
+                        label(for='cron_job_wednesday') WO
+                    .input-container
+                        input(type='checkbox' data-day='thursday' class="cron-job-day" name='cron_job_thursday' id='cron_job_thursday' value=true checked=user.cron_jobs_day.thursday)
+                        label(for='cron_job_thursday') DO
+                    .input-container
+                        input(type='checkbox' data-day='friday' class="cron-job-day" name='cron_job_friday' id='cron_job_friday' value=true checked=user.cron_jobs_day.friday)
+                        label(for='cron_job_friday') VR
+                    .input-container
+                        input(type='checkbox' data-day='saturday' class="cron-job-day" name='cron_job_saturday' id='cron_job_saturday' value=true checked=user.cron_jobs_day.saturday)
+                        label(for='cron_job_saturday') ZA
+                    .input-container
+                        input(type='checkbox' data-day='sunday' class="cron-job-day" name='cron_job_sunday' id='cron_job_sunday' value=true checked=user.cron_jobs_day.sunday)
+                        label(for='cron_job_sunday') ZO
+
