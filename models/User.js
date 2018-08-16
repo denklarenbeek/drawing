@@ -28,11 +28,11 @@ const cronJobDaySchema = new Schema({
     },
     saturday: {
         type: Boolean,
-        default: true,
+        default: false,
     },
     sunday: {
         type: Boolean,
-        default: true,
+        default: false,
     }
 })
 
@@ -57,7 +57,7 @@ const userSchema = new Schema({
     resetPasswordExpires: Date,
     cron_jobs: {
         type: Boolean,
-        default: false
+        default: true
     },
     cron_jobs_timer: {
         type: Number,

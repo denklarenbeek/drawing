@@ -21,30 +21,37 @@ async function checkOnDate(date, user){
     return outdatedOpps;
 }
 
+async function sendExpiredNotification(){
+
+}
+
 const checkOpportunityJob = new CronJob({
-    cronTime: '00 00 08 * * 1-5',
+    cronTime: '* */5 * * * *',
     onTick: async function(){
         const users = await User.find();
-        let outdated = [];
-        for(let i = 0; i < users.length; i++){
-            console.log(users[i].cron_jobs_timer);
-            const x = await checkOnDate(users[i].cron_jobs_timer, users[i]._id);
-            if(x.length !== 0) {
-                users[i].outdated = x;
-                const options = {
-                    fromName: 'Administrator',
-                    froEmail: 'sales@applicatie.nl',
-                    toEmail: users[i].email,
-                    toName: users[i].name,
-                    subject: 'Bijna verlopen opportunities',
-                    template: 'opportunities',
-                    opportunities: x,
-                    expiringTime: users[i].cron_jobs_timer
-                }
-                // Send mail to users
-                await mail.send(options)
-            }
-        }
+        const jobUsers = users.filter(el => {
+            return el.cron_jobs === true;
+        });
+        console.log(jobUsers);
+        // for(let i = 0; i < users.length; i++){
+        //     console.log(users[i].cron_jobs_timer);
+        //     const x = await checkOnDate(users[i].cron_jobs_timer, users[i]._id);
+        //     if(x.length !== 0) {
+        //         users[i].outdated = x;
+        //         const options = {
+        //             fromName: 'Administrator',
+        //             froEmail: 'sales@applicatie.nl',
+        //             toEmail: users[i].email,
+        //             toName: users[i].name,
+        //             subject: 'Bijna verlopen opportunities',
+        //             template: 'opportunities',
+        //             opportunities: x,
+        //             expiringTime: users[i].cron_jobs_timer
+        //         }
+        //         // Send mail to users
+        //         await mail.send(options)
+        //     }
+        // }
     },
     start: true,
     timeZone: 'Europe/Amsterdam'

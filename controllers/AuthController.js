@@ -11,7 +11,7 @@ exports.register = async (req, res, next) => {
     } else {
         req.body.admin = false;
     };
-    const user = new User({ email: req.body.email, name: req.body.name, admin: req.body.admin});
+    const user = new User({ email: req.body.email, name: req.body.name, admin: req.body.admin, cron_jobs: true, cron_jobs_day: {monday: true, tuesday: true, wednesday: true, thursday: true, friday: true, saturday: false, sunday: false}});
     const register = promisify(User.register, User);
     await register(user, req.body.password);
     res.redirect('/');
