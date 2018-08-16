@@ -18,10 +18,13 @@
     position: relative;
 
     th:last-child {
+      a {
+        margin-top: 0;
+        padding: 4px 8px;
+        border-radius: 50%;
+      }
 
       i {
-        font-size: 1.5em;
-        position: absolute;
         top: 20px;
         right: 15px;
         cursor: pointer;
@@ -48,6 +51,7 @@
     td:nth-child(4) {
       width: 30px;
       padding-bottom: 0;
+      text-align: center;
 
       i {
         font-size: 1.2em;

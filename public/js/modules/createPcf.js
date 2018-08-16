@@ -6,7 +6,8 @@ function addLocationRow(el){
     const tbody = document.querySelector('table tbody');
     const button = document.getElementById('createNewRow');
      
-    button.addEventListener('click', () => {
+    button.addEventListener('click', (e) => {
+        e.preventDefault();
 
         const index = document.querySelectorAll('table tbody tr').length;
         const row = document.createElement('tr');
