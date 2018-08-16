@@ -1,5 +1,6 @@
 const express = require('express');
 const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
 const keys = require('./config/keys');
 const mongoose = require('mongoose');
 const logger = require('morgan');
@@ -43,7 +44,8 @@ app.use(session({
     secret: keys.SECRET,
     key: keys.KEY,
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
+    store: new MongoStore({ mongooseConnection: mongoose.connection })
 }));
 
 // // Passport JS is what we use to handle our logins
