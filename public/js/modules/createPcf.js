@@ -98,7 +98,7 @@ function submitForm(el){
             window.open(fileURL, '_blank');
             // front end flashes
             createFlash('success', 'contract is created', 10000);
-            form.reset();
+            location.reload();
         })
         .catch((err) => {
             console.log(err)
