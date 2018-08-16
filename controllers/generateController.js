@@ -17,9 +17,51 @@ exports.generatePCFContract = async (req, res, next) => {
     country: debitor.country,
     starting_date: await moment(dates.starting_date).format('D MMMM YYYY'),
     fee: `€ ${locations[0].fee}`,
-    contract_duration: dates.contract_duration
+    contract_duration: dates.contract_duration,
+    locations
   }
 
+  // Text variable holders for locations
+  let hardwareFee;
+  let nonHardwareFee;
+  let priceWithHardware;
+  let priceWithoutHardware;
+  let oneLocationText;
+  let differentFees;
+  const yearInvoicing = 'De bedragen worden jaarlijks gefactureerd';
+
+  const multipleLocations = locations.length > 1;
+  const objHardwareFee = locations.filter((el) => {
+    return el.hardware === true;
+  })
+  const objNonHardwareFee = locations.filter((el) => {
+    return el.hardware === false;
+  })
+  if(objHardwareFee.length > 0 && objNonHardwareFee.length > 0){
+    console.log('inside differentFees')
+    differentFees = true;
+  }
+  if(multipleLocations && differentFees){
+    if(objHardwareFee.length > 0){
+      hardwareFee = objHardwareFee[0].fee || null;
+      priceWithoutHardware = `Het bedrag bedraagt € ${hardwareFee} per maand voor locaties met een nieuwe HUB.`;
+    }
+    if(objNonHardwareFee.length > 0){
+      nonHardwareFee = objNonHardwareFee[0].fee || null;
+      priceWithHardware = `Het bedrag bedraagt € ${nonHardwareFee} per maand voor locaties met bestaande HUB.`;
+    }
+
+  } else {
+    const location = locations[0];
+    console.log(location);
+    if(location.hardware){
+      oneLocationText = `Het bedrag bedraagt € ${location.fee} per maand voor locaties met een nieuwe HUB.`;
+    } else {
+      oneLocationText = `Het bedrag bedraagt € ${location.fee} per maand voor locaties met bestaande HUB.`;
+    }
+  }
+  
+  
   res.setHeader("Content-Type", "application/pdf"); 
   const pdfWriter = hummus.createWriterToModify(new hummus.PDFRStreamForFile('./templates/pcf.pdf'), new hummus.PDFStreamForResponse(res))
 
@@ -35,17 +77,42 @@ exports.generatePCFContract = async (req, res, next) => {
     .writeText(data.country, 235, 604, textOptions);
   pageModifier.endContext().writePage();
 
-  const page3Modifier = new hummus.PDFPageModifier(pdfWriter,2);
-  page3Modifier.startContext().getContext()
-    .writeText(data.contract_duration, 225, 626, textOptions)
-    .writeText(data.fee, 191, 228, textOptions);
-  page3Modifier.endContext().writePage();
+  if(multipleLocations && differentFees){
+    const page3Modifier = new hummus.PDFPageModifier(pdfWriter,2);
+    console.log(priceWithHardware, priceWithoutHardware);
+    page3Modifier.startContext().getContext()
+      .writeText(data.contract_duration, 225, 626, textOptions)
+      .writeText(priceWithHardware, 113, 228, textOptions)
+      .writeText(priceWithoutHardware, 113, 215, textOptions)
+      .writeText(yearInvoicing, 113, 202, textOptions);
+    page3Modifier.endContext().writePage();
+  } else {
+    const page3Modifier = new hummus.PDFPageModifier(pdfWriter,2);
+    page3Modifier.startContext().getContext()
+      .writeText(data.contract_duration, 225, 626, textOptions)
+      .writeText(oneLocationText, 113, 228, textOptions)
+      .writeText(yearInvoicing, 113, 215, textOptions);
+    page3Modifier.endContext().writePage();
+  }
   
   const page5Modifier = new hummus.PDFPageModifier(pdfWriter, 4);
   page5Modifier.startContext().getContext()
-    .writeText(data.starting_date, 310, 720, textOptions)
-    .writeText(data.contract_duration, 459, 706, textOptions)
+    .writeText(data.starting_date, 255, 691, textOptions)
+    .writeText(data.contract_duration, 247, 705, textOptions)
   page5Modifier.endContext().writePage();
+
+  const page9Modifier = new hummus.PDFPageModifier(pdfWriter, 8);
+  for(let i =0;i < locations.length; i++){
+    let position = 705 - (i * 13);
+    let modFee = `€ ${locations[i].fee}`;
+    let modHardware;
+    if(locations[i].hardware) {modHardware = 'Ja'} else {modHardware = 'Nee'};
+    page9Modifier.startContext().getContext()
+      .writeText(locations[i].name, 76, position, textOptions)
+      .writeText(modHardware, 270, position, textOptions)
+      .writeText(modFee, 326, position, textOptions)
+    page9Modifier.endContext().writePage();
+  }
   
   const filepath = await pdfGenerator.pcfContract(data);
   res.filepath = filepath;
