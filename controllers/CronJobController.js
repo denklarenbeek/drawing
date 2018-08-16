@@ -26,32 +26,47 @@ async function sendExpiredNotification(){
 }
 
 const checkOpportunityJob = new CronJob({
-    cronTime: '* */5 * * * *',
+    cronTime: '00 07 01 * * *',
     onTick: async function(){
         const users = await User.find();
-        const jobUsers = users.filter(el => {
+
+        //Filter if the User who want a notification
+        const jobUsers = await users.filter(el => {
             return el.cron_jobs === true;
         });
-        console.log(jobUsers);
-        // for(let i = 0; i < users.length; i++){
-        //     console.log(users[i].cron_jobs_timer);
-        //     const x = await checkOnDate(users[i].cron_jobs_timer, users[i]._id);
-        //     if(x.length !== 0) {
-        //         users[i].outdated = x;
-        //         const options = {
-        //             fromName: 'Administrator',
-        //             froEmail: 'sales@applicatie.nl',
-        //             toEmail: users[i].email,
-        //             toName: users[i].name,
-        //             subject: 'Bijna verlopen opportunities',
-        //             template: 'opportunities',
-        //             opportunities: x,
-        //             expiringTime: users[i].cron_jobs_timer
-        //         }
-        //         // Send mail to users
-        //         await mail.send(options)
-        //     }
-        // }
+
+        const days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
+        let today = new Date().getDay();
+        let todayName = days[today];
+
+        //Filter if the Users who want a notification today
+        const todayUsers = await jobUsers.filter(el => {
+            return el.cron_jobs_day[todayName] === true;
+        });
+
+        console.log(todayUsers.length);
+
+        for(let i = 0; i < todayUsers.length; i++){
+            console.log(todayUsers[i].cron_jobs_timer);
+            const x = await checkOnDate(todayUsers[i].cron_jobs_timer, todayUsers[i]._id);
+            console.log(x);
+            console.log(i);
+            if(x.length !== 0) {
+                todayUsers[i].outdated = x;
+                const options = {
+                    fromName: 'Administrator',
+                    froEmail: 'sales@applicatie.nl',
+                    toEmail: todayUsers[i].email,
+                    toName: todayUsers[i].name,
+                    subject: 'Bijna verlopen opportunities',
+                    template: 'opportunities',
+                    opportunities: x,
+                    expiringTime: todayUsers[i].cron_jobs_timer
+                }
+                // Send mail to users
+                await mail.send(options)
+            }
+        };
     },
     start: true,
     timeZone: 'Europe/Amsterdam'

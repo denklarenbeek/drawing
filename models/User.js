@@ -61,7 +61,7 @@ const userSchema = new Schema({
     },
     cron_jobs_timer: {
         type: Number,
-        default: 12096e5
+        default: 21
     },
     cron_jobs_day: {
         type: {cronJobDaySchema}

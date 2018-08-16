@@ -133,11 +133,6 @@ a {
   text-decoration: underline;
 }
 
-.opp-block {
-  display: inline-block;
-  margin-right: 10px;
-}
-
 /* -------------------------------------
       BUTTONS
   ------------------------------------- */
@@ -315,4 +310,34 @@ hr {
     background-color: #00ffde !important;
     border-color: #00ffde !important;
   }
+}
+
+/* -------------------------------------
+      STYLING EMAIL OPPORTUNITIES
+  ------------------------------------- */
+
+.opp-block {
+  display: inline-block;
+  margin-right: 10px;
+  margin-bottom: 0px;
+}
+
+.opp-block.header {
+  font-weight: bold;
+}
+
+.opp-block:nth-child(1){
+  width: 120px;
+}
+
+.opp-block:nth-child(2){
+  width: 100px;
+}
+
+.opp-block:nth-child(3){
+  width: 80px;
+}
+
+.bottom-text {
+  margin-top: 20px;
 }
