@@ -279,13 +279,16 @@ body {
   transition: right 0.5s ease 0s; }
 
 .body-left {
-  right: 40%;
+  right: 50%;
   transition: right 0.5s ease 0s; }
   @media only screen and (min-width: 768px) {
     .body-left {
       right: 20%; } }
   .body-left .collapse-navbar {
-    width: 40%; }
+    width: 50%; }
+    @media only screen and (min-width: 768px) {
+      .body-left .collapse-navbar {
+        width: 20%; } }
 
 .collapse-navbar {
   position: fixed;
@@ -296,10 +299,6 @@ body {
   z-index: 1;
   overflow-x: hidden;
   transition: 0.5s; }
-  @media only screen and (min-width: 768px) {
-    .collapse-navbar {
-      width: 20%;
-      right: -20%; } }
   .collapse-navbar .menu-item {
     padding-left: 0px;
     padding-bottom: 15px;
