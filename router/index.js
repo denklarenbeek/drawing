@@ -72,9 +72,7 @@ router.get('/settings', authController.isLoggedIn, (req, res) => {
     res.render('settings', {title: 'Your settings', user: req.user})
 });
 
-router.get('/admin',  authController.isLoggedIn, authController.isAdmin, (req, res) => {
-    res.render('admin', {title: 'Admin section'})
-});
+router.get('/admin',  authController.isLoggedIn, authController.isAdmin, userController.getAllUsers);
 
 router.post('/import-opportunities', authController.isLoggedIn, authController.isAdmin, opportunityController.importOpps);
 

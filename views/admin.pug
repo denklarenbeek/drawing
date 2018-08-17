@@ -13,5 +13,18 @@ block content
                         i(class='fal fa-file-plus')
                     #output-upload
                     button(type='submit') Upload file 
+                h2.margin All Active Users
+                each user in users
+                    .user-container
+                        .input-container
+                            input(type='text' name='id' value=user._id disabled)
+                            label(for='id' class='fixed') id
+                        .input-container
+                            input(type='text' name='name' value=user.name disabled)
+                            label(for='name' class='fixed') Naam
+                        .input-container
+                            input(type='email' name='email' value=user.email disabled)
+                            label(for='email' class='fixed') E-mail
+                        
 
                 

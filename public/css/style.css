@@ -811,4 +811,15 @@ label.moved {
   .import-opportunities input[type=file] {
     top: 50px; }
 
+h2.margin {
+  margin-top: 20px;
+  margin-bottom: 20px; }
+
+.user-container {
+  padding-right: 10px;
+  border: 1px dotted #002f49;
+  margin-bottom: 40px;
+  padding-top: 30px;
+  padding-left: 10px; }
+
 /*# sourceMappingURL=style.css.map */

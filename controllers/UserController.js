@@ -51,6 +51,11 @@ exports.updateJobDays = async (req, res) => {
 
 }
 
+exports.getAllUsers = async (req, res) => {
+    const users = await User.find();
+    res.render('admin', {title: 'Admin section', users});
+}
+
 
 
 // const user = req.user;
