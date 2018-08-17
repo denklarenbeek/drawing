@@ -227,11 +227,23 @@ label[for="file"] i {
     top: 0px;
     left: 8px; }
 
+#output-upload .upload-file {
+  position: relative; }
+#output-upload p {
+  color: #002f49;
+  display: inline-block;
+  margin-right: 10px; }
+#output-upload .remove-file {
+  font-size: 1rem;
+  cursor: pointer;
+  font-weight: bold;
+  position: initial; }
+
 #output-upload img {
   width: 80%; }
 
 #output-upload .remove-picture {
-  display: absolute;
+  position: absolute;
   top: 40%;
   left: 35%;
   font-size: 3rem;
@@ -475,6 +487,8 @@ form {
     form {
       width: 75%;
       margin-right: auto; } }
+  form.admin {
+    width: 100%; }
 
 form > div {
   margin-bottom: 1.8rem;
@@ -791,5 +805,10 @@ label.moved {
 
 .job-day.open {
   display: flex; }
+
+.import-opportunities {
+  position: relative; }
+  .import-opportunities input[type=file] {
+    top: 50px; }
 
 /*# sourceMappingURL=style.css.map */

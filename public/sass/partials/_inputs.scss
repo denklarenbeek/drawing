@@ -202,12 +202,32 @@ label[for="file"] i {
   }
 }
 
+#output-upload {
+
+  .upload-file {
+    position: relative;
+  }
+
+  p {
+    color: $primary-color;
+    display: inline-block;
+    margin-right: 10px;
+  }
+
+  .remove-file {
+    font-size: 1rem;
+    cursor: pointer;
+    font-weight: bold;
+    position: initial;
+  }
+}
+
 #output-upload img {
   width: 80%;
 }
 
 #output-upload .remove-picture {
-  display: absolute;
+  position: absolute;
   top: 40%;
   left: 35%;
   font-size: 3rem;

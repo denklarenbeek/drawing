@@ -15,17 +15,23 @@ function movelabel(e){
 /* 
     Create the arrow element for the input preview
 */
-function createArrowElement(){
+function createArrowElement(type){
     // Create a delele button
     const arrow = document.createElement('i');
     arrow.classList.add('fal');
     arrow.classList.add('fa-times');
-    arrow.classList.add('remove-picture');
+    if(type === 'picture'){
+        arrow.classList.add('remove-picture');
+    } else {
+        arrow.classList.add('remove-file');
+    }
 
     // Add on click event to clear the input cache.
     arrow.addEventListener('click', () => {
         const output = document.getElementById('output-upload');
+        const input = document.getElementById('file');
         if(window.confirm('Do you really want to delete this upload?')){
+            input.value = '';
             output.value = "";
             output.removeChild(document.getElementById('upload-file'))
         }
@@ -50,6 +56,7 @@ function createUploadElement(upload){
 
         //Append the img and the arrow to the div
         containerDiv.appendChild(img);
+        containerDiv.appendChild(createArrowElement('picture'));
     }
 
     if(upload.type.startsWith('application/')){
@@ -58,10 +65,10 @@ function createUploadElement(upload){
         p.innerHTML = upload.name;
 
         containerDiv.appendChild(p);
+        containerDiv.appendChild(createArrowElement('file'));
     }
 
     // Append arrow to the file or image
-    containerDiv.appendChild(createArrowElement());
     return containerDiv;
 };
 
