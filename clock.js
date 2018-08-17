@@ -1,7 +1,7 @@
 const CronJob = require('cron').CronJob;
-const Opportunity = require('../models/Opportunity');
-const User = require('../models/User');
-const mail = require('../handlers/mailer');
+const Opportunity = require('./models/Opportunity');
+const User = require('./models/User');
+const mail = require('./handlers/mailer');
 const moment = require('moment');
 
 function convertDaysIntoMS(days){
@@ -26,7 +26,7 @@ async function sendExpiredNotification(){
 }
 
 const checkOpportunityJob = new CronJob({
-    cronTime: '00 26 13 * * *',
+    cronTime: '00 30 13 * * *',
     onTick: async function(){
         const users = await User.find();
 
