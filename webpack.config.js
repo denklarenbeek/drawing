@@ -47,7 +47,7 @@ const config = {
     rules: [javascript]
   },
   // finally we pass it an array of our plugins - uncomment if you want to uglify
-  plugins: [uglify]
+  // plugins: [uglify]
 };
 // webpack is cranky about some packages using a soon to be deprecated API. shhhhhhh
 process.noDeprecation = true;

@@ -79,6 +79,7 @@ router.post('/import-opportunities', authController.isLoggedIn, authController.i
 
 // api endpoints
 router.get('/api/v1/calculate-roi', authController.isLoggedIn, priceCastController.calculateROI);
+router.get('/api/v1/products/:id', productsController.getOneProduct);
 router.post('/api/v1/products', productsController.createProduct);
 
 router.post('/api/v1/generate-pcf-contract', authController.isLoggedIn, generateController.generatePCFContract, generateController.sendContract);

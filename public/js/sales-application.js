@@ -1,7 +1,7 @@
 import setToolTips from './modules/tooltip';
 import {pcfButtonNavigate, backArrowFunc, calcRoi, roiAgain} from './modules/pcf';
 import {animateLogin} from './modules/loginAnimation';
-import {addLocationRow, submitForm, showEmailField} from './modules/createPcf';
+import {addLocationRow, submitForm, changeDurationHandler, showEmailField} from './modules/createPcf';
 import {deleteFlash} from './modules/flashes';
 import {showHistoryOpp} from './modules/showHistoryOpp';
 import {searchOpportunities} from './modules/searchOpp';
@@ -23,6 +23,7 @@ roiAgain(x);
 animateLogin(loginField);
 addLocationRow(pcf);
 submitForm(pcf);
+changeDurationHandler(pcf);
 showEmailField(pcf);
 deleteFlash(flash);
 showHistoryOpp(opp)

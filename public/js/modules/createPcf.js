@@ -6,13 +6,14 @@ function addLocationRow(el){
     const tbody = document.querySelector('table tbody');
     const button = document.getElementById('createNewRow');
      
-    button.addEventListener('click', (e) => {
+    button.addEventListener('click', async function (e) {
         e.preventDefault();
 
         const index = document.querySelectorAll('table tbody tr').length;
         const row = document.createElement('tr');
         const columnOne = document.createElement('td');
         const inputName = document.createElement('input');
+        let fees;
         inputName.type = 'text';
         inputName.name = 'location_name';
         inputName.id = `location_name-${index}`
@@ -21,8 +22,36 @@ function addLocationRow(el){
         
         const columnTwo = document.createElement('td');
         const inputHardware = document.createElement('input');
+        const init_contract_duration = document.getElementById('contract_duration').value;
+        let initFee;
         inputHardware.type = 'checkbox';
-        inputHardware.id = `location_hardware-${index}`
+        inputHardware.id = `location_hardware-${index}`;
+        inputHardware.dataset.customID = index;
+        await axios.get('/api/v1/products/5b4a8871937047b6d7ff47ec')
+            .then(res => {
+                fees = res.data.prices;
+                const fee = res.data.prices.filter(el => {
+                    return el.client === 'customer' && `${el.duration}` === init_contract_duration;
+                });
+                initFee = fee[0].fee;
+            });
+
+        inputHardware.addEventListener('change', function() {
+            let inputValue;
+            if(!this.checked){
+                inputValue = 'customer';
+            } else {
+                inputValue = 'lead';
+            };
+            const id = this.dataset.customID;
+            const contract_duration = document.getElementById('contract_duration').value;
+            const feeInput = document.getElementById(`location_fee-${id}`)
+            const fee = fees.filter(el => {
+                return el.client === inputValue && `${el.duration}` === contract_duration;
+            });
+            feeInput.value = fee[0].fee;
+        });
+
         columnTwo.appendChild(inputHardware);
         row.appendChild(columnTwo);
 
@@ -30,6 +59,7 @@ function addLocationRow(el){
         const inputFee = document.createElement('input');
         inputFee.type = 'number';
         inputFee.id = `location_fee-${index}`;
+        inputFee.value = initFee;
         columnThree.appendChild(inputFee);
         row.appendChild(columnThree);
 
@@ -107,6 +137,28 @@ function submitForm(el){
 
 }
 
+async function changeDurationHandler(el){
+    if(!el) return
+    const selectInput = document.getElementById('contract_duration');
+    let fees;
+    await axios.get('/api/v1/products/5b4a8871937047b6d7ff47ec')
+    .then(res => {
+        fees = res.data.prices;
+    });
+    selectInput.addEventListener('change', function(){
+        const listOfLocations = document.querySelectorAll('table tbody tr');
+        const select_value = this.value;
+        listOfLocations.forEach((el, index) => {
+            const client = (document.getElementById(`location_hardware-${index}`).checked ? 'lead' : 'customer');
+            const fee = fees.filter(el => {
+                return el.client === client && `${el.duration}` === select_value;
+            });
+            const feeInput = document.getElementById(`location_fee-${index}`);
+            feeInput.value = fee[0].fee;
+        });
+    })
+}
+
 function showEmailField(el){
     if(!el) return;
 
@@ -120,4 +172,4 @@ function showEmailField(el){
     })
 }
 
-export {addLocationRow, submitForm, showEmailField}
+export {addLocationRow, submitForm, changeDurationHandler, showEmailField}
