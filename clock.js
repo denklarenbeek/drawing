@@ -26,7 +26,7 @@ async function sendExpiredNotification(){
 }
 
 const checkOpportunityJob = new CronJob({
-    cronTime: '00 20 13 * * *',
+    cronTime: '00 26 13 * * *',
     onTick: async function(){
         const users = await User.find();
 
