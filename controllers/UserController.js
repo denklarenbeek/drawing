@@ -2,9 +2,9 @@ const User = require('../models/User');
 
 exports.updateJobTimer = async (req, res) => {
     const user = req.user;
-    console.log(req.user.cron_jobs_day)
     user.cron_jobs_timer = req.body.cron_jobs_timer;
-    await User.findOneAndUpdate(req.user._id, user, {new:true}, (err, doc) => {
+    console.log('user', user)
+    await User.findByIdAndUpdate(req.user._id, user, {new:true}, (err, doc) => {
         if(err){
             res.json({code: 1, err});
         }
