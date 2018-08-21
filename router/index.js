@@ -9,9 +9,7 @@ const generateController = require('../controllers/generateController');
 const opportunityController = require('../controllers/OpportunitiesController');
 const userController = require('../controllers/UserController');
 
-router.get("/", authController.isLoggedIn, (req, res) => {
-  res.render("index", {title: 'Homepage',user: req.user});
-});
+router.get("/", authController.isLoggedIn, opportunityController.getAllOpportunitiesByUser);
 
 router.get("/drawing", authController.isLoggedIn, (req, res) => {
     res.render("drawing", {title: 'Send new drawing'});
@@ -54,7 +52,7 @@ router.get('/create-pcf', authController.isLoggedIn, (req, res) => {
     res.render('createPcf', {title: 'Create PCF contract'});
 });
 
-router.get('/opportunities', authController.isLoggedIn, opportunityController.getAllOpportunities);
+router.get('/opportunities', authController.isLoggedIn, opportunityController.getAllOpportunitiesByCustomer);
 router.get('/opportunities/:id', authController.isLoggedIn, opportunityController.getOpportunity);
 router.post('/opportunities/:id',  authController.isLoggedIn, opportunityController.updateOpportunity);
 

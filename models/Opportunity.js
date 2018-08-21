@@ -40,6 +40,10 @@ const opportunitySchema = new Schema({
         type: Boolean,
         required: 'Please fill in if you already got the order'
     },
+    category: {
+        type: String,
+        required: 'Please provide a category'
+    },
     parent_id: {
         type: mongoose.Schema.Types.ObjectId, 
         ref: 'Opportunity'

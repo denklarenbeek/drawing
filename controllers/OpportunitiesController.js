@@ -31,6 +31,7 @@ exports.createOpportunity = async (req, res) => {
     timing: req.body.timing,
     scotsman: req.body.scotsman,
     weighted_amount,
+    category: req.body.category,
     status: req.body.status,
     order_received: false,
     deleted_opportunity: false,
@@ -52,11 +53,17 @@ exports.createOpportunity = async (req, res) => {
   res.redirect('/opportunities');
 };
 
-exports.getAllOpportunities = async (req, res) => {
+exports.getAllOpportunitiesByCustomer = async (req, res) => {
 
   const oppsByAccount = await Opportunity.getOpportunitiesByCustomer(req.user._id);
   console.log(oppsByAccount);
   res.render("opportunities", { title: 'Your Opportunities', oppsByAccount });
+};
+
+exports.getAllOpportunitiesByUser = async (req, res) => {
+  const oppsByUser = await Opportunity.find({sales_rep: req.user._id, deleted_opportunity: false, order_received: false});
+  console.log(oppsByUser.length);
+  res.render('index', {title: 'Hi Welcome!', user: req.user});
 };
 
 exports.getOpportunity = async (req, res) => {
