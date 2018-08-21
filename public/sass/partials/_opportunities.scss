@@ -102,6 +102,10 @@
 
     .name {
         width: 28%;
+
+        @media only screen and (min-width: $break-small){
+            width: 15%;
+        }
     }
 
     .amount {
@@ -121,11 +125,35 @@
     .weighted_amount {
         width: 18%;
         text-align: right;
+
+        @media only screen and (min-width: $break-small){
+            width: 10%;
+        }
+    }
+
+    .category {
+        display: none;
+
+        @media only screen and (min-width: $break-small){
+            display: initial;
+            width: 10%;
+            text-align: right;
+        }
     }
 
     .scotsman {
         width: 10%;
         text-align: right;
+    }
+
+    .last-change {
+        display: none;
+
+        @media only screen and (min-width: $break-small){
+            display: initial;
+            width: 15%;
+            text-align: right;
+        }
     }
 }
 

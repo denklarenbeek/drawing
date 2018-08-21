@@ -729,6 +729,9 @@ section.active {
     width: 0; }
   .opp-container .name {
     width: 28%; }
+    @media only screen and (min-width: 768px) {
+      .opp-container .name {
+        width: 15%; } }
   .opp-container .amount {
     width: 17%;
     text-align: right; }
@@ -740,9 +743,26 @@ section.active {
   .opp-container .weighted_amount {
     width: 18%;
     text-align: right; }
+    @media only screen and (min-width: 768px) {
+      .opp-container .weighted_amount {
+        width: 10%; } }
+  .opp-container .category {
+    display: none; }
+    @media only screen and (min-width: 768px) {
+      .opp-container .category {
+        display: initial;
+        width: 10%;
+        text-align: right; } }
   .opp-container .scotsman {
     width: 10%;
     text-align: right; }
+  .opp-container .last-change {
+    display: none; }
+    @media only screen and (min-width: 768px) {
+      .opp-container .last-change {
+        display: initial;
+        width: 15%;
+        text-align: right; } }
 
 #searchInput {
   padding-left: 10px;

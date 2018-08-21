@@ -6,8 +6,11 @@ mixin opportunityCard(opp = {})
             p.amount= h.formatCurrency(opp.amount)
             p.scotsman #{opp.scotsman}%
             p.weighted_amount= h.formatCurrency(opp.weighted_amount)
+            p.category #{opp.category}
             - var date = h.moment(opp.timing).format("Q YY")
             p.month #{date === 'Invalid date' ? "Q" : `Q${date}`}
+            - var changed = h.moment(opp.created_on).format("DD-MM-YY")
+            p.last-change #{changed}
             if opp.order_received
                 a.btn.order(disabled)
                     i(class="fas fa-check")

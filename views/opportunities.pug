@@ -19,7 +19,9 @@ block content
                             p.amount Bedrag
                             p.scotsman Kans
                             p.weighted_amount Gewogen
+                            p.category Categorie
                             p.month Q
+                            p.last-change Laatst gewijzigd
                         each opp in account.opp
                             +opportunityCard(opp)
         a.btn.float(href='/opportunity')
