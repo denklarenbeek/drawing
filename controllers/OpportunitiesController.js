@@ -61,9 +61,9 @@ exports.getAllOpportunitiesByCustomer = async (req, res) => {
 };
 
 exports.getAllOpportunitiesByUser = async (req, res) => {
-  const oppsByUser = await Opportunity.find({sales_rep: req.user._id, deleted_opportunity: false, order_received: false});
-  console.log(oppsByUser.length);
-  res.render('index', {title: 'Hi Welcome!', user: req.user});
+  const oppsByUser = await Opportunity.find({sales_rep: req.user._id, deleted_opportunity: false, order_received: false})
+  .sort({created_on: -1});
+  res.render('index', {title: 'Hi Welcome!', user: req.user, opps: oppsByUser});
 };
 
 exports.getOpportunity = async (req, res) => {

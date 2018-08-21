@@ -18187,18 +18187,23 @@ function showHistoryOpp(el) {
                 var parentDiv = createDivElement('opp-container-historic');
                 for (var _i = 0; _i < res.data.length; _i++) {
                     var newdate = moment(res.data[_i].timing).format("Q YY");
+                    var lastChangeData = moment(res.data[_i].created_on).format("DD-MM-YY");
                     var modDate = "Q" + newdate;
                     var newElement = createDivElement('opp-container-row');
                     var nameElement = createPelement('name', res.data[_i].name);
                     var amountElement = createPelement('amount', res.data[_i].amount, true);
                     var scotsmanElement = createPelement('scotsman', res.data[_i].scotsman, false, true);
                     var weightedElement = createPelement('weighted_amount', res.data[_i].weighted_amount, true);
+                    var categoryElement = createPelement('category', res.data[_i].category);
                     var monthElement = createPelement('month', modDate);
+                    var lastChanged = createPelement('last-change', lastChangeData);
                     newElement.appendChild(nameElement);
                     newElement.appendChild(amountElement);
                     newElement.appendChild(scotsmanElement);
                     newElement.appendChild(weightedElement);
+                    newElement.appendChild(categoryElement);
                     newElement.appendChild(monthElement);
+                    newElement.appendChild(lastChanged);
                     parentDiv.appendChild(newElement);
                 }
                 _this.appendChild(parentDiv);

@@ -42,19 +42,24 @@ function showHistoryOpp(el){
                 .then(res => {
                     const parentDiv = createDivElement('opp-container-historic');
                     for(let i=0; i < res.data.length; i++) {
-                        const newdate = moment(res.data[i].timing).format("Q YY")
+                        const newdate = moment(res.data[i].timing).format("Q YY");
+                        const lastChangeData = moment(res.data[i].created_on).format("DD-MM-YY");
                         const modDate = `Q${newdate}`;
                         const newElement = createDivElement('opp-container-row');
                         const nameElement = createPelement('name', res.data[i].name);
                         const amountElement = createPelement('amount', res.data[i].amount, true);
                         const scotsmanElement = createPelement('scotsman', res.data[i].scotsman, false, true);
                         const weightedElement = createPelement('weighted_amount', res.data[i].weighted_amount, true);
+                        const categoryElement = createPelement('category', res.data[i].category);
                         const monthElement = createPelement('month', modDate);
+                        const lastChanged = createPelement('last-change', lastChangeData);
                         newElement.appendChild(nameElement);
                         newElement.appendChild(amountElement);
                         newElement.appendChild(scotsmanElement);
                         newElement.appendChild(weightedElement);
+                        newElement.appendChild(categoryElement);
                         newElement.appendChild(monthElement);
+                        newElement.appendChild(lastChanged);
                         parentDiv.appendChild(newElement);
                     }
                     this.appendChild(parentDiv);
