@@ -6,6 +6,7 @@ import {deleteFlash} from './modules/flashes';
 import {showHistoryOpp} from './modules/showHistoryOpp';
 import {searchOpportunities} from './modules/searchOpp';
 import {updateCronJobTimer, updateCronJobDays, updateCronJobActive} from './modules/changeSettings';
+import {deleteAllOppsByUser} from './modules/adminSettings';
 
 
 const x = document.getElementById('pcf');
@@ -15,6 +16,7 @@ const flash = document.querySelector('.flash');
 const opp = document.getElementById('opportunities');
 const searchInput = document.getElementById('searchInput');
 const cronInput = document.getElementById('cron_jobs_timer');
+const delBtn = document.querySelector('.deleteOpps');
 
 
 setToolTips();
@@ -33,3 +35,4 @@ searchOpportunities(searchInput);
 updateCronJobTimer(cronInput);
 updateCronJobDays(cronInput);
 updateCronJobActive(cronInput);
+deleteAllOppsByUser(delBtn)

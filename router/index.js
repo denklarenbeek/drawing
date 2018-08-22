@@ -83,6 +83,7 @@ router.post('/api/v1/products', productsController.createProduct);
 router.post('/api/v1/generate-pcf-contract', authController.isLoggedIn, generateController.generatePCFContract, generateController.sendContract);
 
 router.get('/api/v1/getHistoricalOpp/:id', opportunityController.getHistoricalOpp);
+router.post('/api/v1/deleteAllOppsByUser/:id', authController.isLoggedIn, opportunityController.deleteAllOppsByUser);
 
 router.post('/api/v1/user/timer', userController.updateJobTimer);
 router.post('/api/v1/user/days', userController.updateJobDays);

@@ -19836,6 +19836,8 @@ var _searchOpp = __webpack_require__(138);
 
 var _changeSettings = __webpack_require__(134);
 
+var _adminSettings = __webpack_require__(163);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var x = document.getElementById('pcf');
@@ -19845,6 +19847,7 @@ var flash = document.querySelector('.flash');
 var opp = document.getElementById('opportunities');
 var searchInput = document.getElementById('searchInput');
 var cronInput = document.getElementById('cron_jobs_timer');
+var delBtn = document.querySelector('.deleteOpps');
 
 (0, _tooltip2.default)();
 (0, _pcf.pcfButtonNavigate)(x);
@@ -19862,6 +19865,36 @@ var cronInput = document.getElementById('cron_jobs_timer');
 (0, _changeSettings.updateCronJobTimer)(cronInput);
 (0, _changeSettings.updateCronJobDays)(cronInput);
 (0, _changeSettings.updateCronJobActive)(cronInput);
+(0, _adminSettings.deleteAllOppsByUser)(delBtn);
+
+/***/ }),
+/* 163 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+function deleteAllOppsByUser(el) {
+    if (!el) return;
+
+    var btns = document.querySelectorAll('.deleteOpps');
+    btns.forEach(function (el) {
+        el.addEventListener('click', function (e) {
+            e.preventDefault();
+            var userid = el.dataset.userid;
+            axios.post('/api/v1/deleteAllOppsByUser/' + userid).then(function (res) {
+                console.log('res');
+            }).catch(function (err) {
+                if (err) console.log(err);
+            });
+        });
+    });
+};
+
+exports.deleteAllOppsByUser = deleteAllOppsByUser;
 
 /***/ })
 /******/ ]);

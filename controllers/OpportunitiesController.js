@@ -177,3 +177,15 @@ exports.importOpps = async (req, res) => {
     }
   });
 };
+
+exports.deleteAllOppsByUser = async (req, res) => {
+  const userID = req.params.id;
+  try {
+    await Opportunity.remove({sales_rep: userID});
+    req.flash('succes', `succesfuly delete all opps of ${userID}`);
+    res.redirect('/admin');
+  } catch(err) {
+    req.flash('error', err);
+    res.redirect('/admin');
+  }
+}
