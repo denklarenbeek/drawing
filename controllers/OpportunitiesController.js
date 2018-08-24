@@ -92,6 +92,7 @@ exports.updateOpportunity = async (req, res) => {
     timing: req.body.timing,
     scotsman: req.body.scotsman,
     weighted_amount,
+    category: req.body.category,
     status: req.body.status,
     order_received: req.body.order_received,
     original_id: req.body.original_id,
