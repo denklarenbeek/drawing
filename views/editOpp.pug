@@ -15,7 +15,7 @@ block content
                         label(for='name') Naam
                     .input-group
                         label(for="category" class='fixed') Categorie
-                        select(type='text'  name='category'  id='category' value=opportunity.category required)
+                        select(type='text'  name='category'  id='category' required)
                             option(value="Beveiliging E") Beveiliging E
                             option(value="Diensten") Diensten
                             option(value="PCF E") PriceCast E
@@ -23,6 +23,7 @@ block content
                             option(value="JST") Just Start Technology
                             option(value="PCF N") PriceCast N
                             option(value="Beveiliging N") Beveiliging N
+        
                     .input-group
                         input(type='number' name='amount' id='amount' value=opportunity.amount required)
                         label(for='amount') Bedrag

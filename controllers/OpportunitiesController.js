@@ -56,7 +56,6 @@ exports.createOpportunity = async (req, res) => {
 exports.getAllOpportunitiesByCustomer = async (req, res) => {
 
   const oppsByAccount = await Opportunity.getOpportunitiesByCustomer(req.user._id);
-  console.log(oppsByAccount);
   res.render("opportunities", { title: 'Your Opportunities', oppsByAccount });
 };
 

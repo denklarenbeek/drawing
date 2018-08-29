@@ -7,6 +7,7 @@ import {showHistoryOpp} from './modules/showHistoryOpp';
 import {searchOpportunities} from './modules/searchOpp';
 import {updateCronJobTimer, updateCronJobDays, updateCronJobActive} from './modules/changeSettings';
 import {deleteAllOppsByUser} from './modules/adminSettings';
+import {getDefaultValue} from './modules/updateOpp';
 
 
 const x = document.getElementById('pcf');
@@ -17,6 +18,7 @@ const opp = document.getElementById('opportunities');
 const searchInput = document.getElementById('searchInput');
 const cronInput = document.getElementById('cron_jobs_timer');
 const delBtn = document.querySelector('.deleteOpps');
+const category = document.getElementById('category');
 
 
 setToolTips();
@@ -36,3 +38,4 @@ updateCronJobTimer(cronInput);
 updateCronJobDays(cronInput);
 updateCronJobActive(cronInput);
 deleteAllOppsByUser(delBtn)
+getDefaultValue(category);
