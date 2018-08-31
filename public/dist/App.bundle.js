@@ -17750,6 +17750,8 @@ var _flashes = __webpack_require__(2);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _toArray(arr) { return Array.isArray(arr) ? arr : Array.from(arr); }
+
 function addLocationRow(el) {
     if (!el) return;
     var tbody = document.querySelector('table tbody');
@@ -17757,6 +17759,14 @@ function addLocationRow(el) {
 
     button.addEventListener('click', async function (e) {
         e.preventDefault();
+
+        var _document$querySelect = document.querySelectorAll('.duration_month'),
+            _document$querySelect2 = _toArray(_document$querySelect),
+            durObj = _document$querySelect2.slice(0);
+
+        var duration_checked = durObj.filter(function (el) {
+            return el.checked === true;
+        });
 
         var index = document.querySelectorAll('table tbody tr').length;
         var row = document.createElement('tr');
@@ -17771,7 +17781,7 @@ function addLocationRow(el) {
 
         var columnTwo = document.createElement('td');
         var inputHardware = document.createElement('input');
-        var init_contract_duration = document.getElementById('contract_duration').value;
+        var init_contract_duration = duration_checked[0].value;
         var initFee = void 0;
         inputHardware.type = 'checkbox';
         inputHardware.id = 'location_hardware-' + index;
@@ -17792,7 +17802,7 @@ function addLocationRow(el) {
                 inputValue = 'lead';
             };
             var id = this.dataset.customID;
-            var contract_duration = document.getElementById('contract_duration').value;
+            var contract_duration = duration_checked[0].value;
             var feeInput = document.getElementById('location_fee-' + id);
             var fee = fees.filter(function (el) {
                 return el.client === inputValue && '' + el.duration === contract_duration;
@@ -17836,11 +17846,20 @@ function submitForm(el) {
             zippcode: document.getElementById('zippcode').value,
             city: document.getElementById('city').value,
             country: document.getElementById('country').value
+            // Get the radio button that is selected
+
         };
+        var _document$querySelect3 = document.querySelectorAll('.duration_month'),
+            _document$querySelect4 = _toArray(_document$querySelect3),
+            durObj = _document$querySelect4.slice(0);
+
+        var checked = durObj.filter(function (el) {
+            return el.checked === true;
+        });
 
         var dates = {
             starting_date: document.getElementById('starting_date').value,
-            contract_duration: document.getElementById('contract_duration').value
+            contract_duration: checked[0].value
         };
 
         var send_to_email = document.getElementById('send_to_email').value || '';
@@ -17888,16 +17907,23 @@ async function changeDurationHandler(el) {
     await _axios2.default.get('/api/v1/products/5b4a8871937047b6d7ff47ec').then(function (res) {
         fees = res.data.prices;
     });
-    selectInput.addEventListener('change', function () {
-        var listOfLocations = document.querySelectorAll('table tbody tr');
-        var select_value = this.value;
-        listOfLocations.forEach(function (el, index) {
-            var client = document.getElementById('location_hardware-' + index).checked ? 'lead' : 'customer';
-            var fee = fees.filter(function (el) {
-                return el.client === client && '' + el.duration === select_value;
+
+    var _document$querySelect5 = document.querySelectorAll('.duration_month'),
+        _document$querySelect6 = _toArray(_document$querySelect5),
+        optionBtns = _document$querySelect6.slice(0);
+
+    optionBtns.forEach(function (el, index) {
+        el.addEventListener('change', function () {
+            var listOfLocations = document.querySelectorAll('table tbody tr');
+            var select_value = this.value;
+            listOfLocations.forEach(function (el, index) {
+                var client = document.getElementById('location_hardware-' + index).checked ? 'lead' : 'customer';
+                var fee = fees.filter(function (el) {
+                    return el.client === client && '' + el.duration === select_value;
+                });
+                var feeInput = document.getElementById('location_fee-' + index);
+                feeInput.value = fee[0].fee;
             });
-            var feeInput = document.getElementById('location_fee-' + index);
-            feeInput.value = fee[0].fee;
         });
     });
 }

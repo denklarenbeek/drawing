@@ -9,6 +9,11 @@ function addLocationRow(el){
     button.addEventListener('click', async function (e) {
         e.preventDefault();
 
+        const [...durObj] = document.querySelectorAll('.duration_month');
+        const duration_checked = durObj.filter(el => {
+            return el.checked === true;
+        });
+
         const index = document.querySelectorAll('table tbody tr').length;
         const row = document.createElement('tr');
         const columnOne = document.createElement('td');
@@ -22,7 +27,7 @@ function addLocationRow(el){
         
         const columnTwo = document.createElement('td');
         const inputHardware = document.createElement('input');
-        const init_contract_duration = document.getElementById('contract_duration').value;
+        const init_contract_duration = duration_checked[0].value;
         let initFee;
         inputHardware.type = 'checkbox';
         inputHardware.id = `location_hardware-${index}`;
@@ -44,7 +49,7 @@ function addLocationRow(el){
                 inputValue = 'lead';
             };
             const id = this.dataset.customID;
-            const contract_duration = document.getElementById('contract_duration').value;
+            const contract_duration = duration_checked[0].value;
             const feeInput = document.getElementById(`location_fee-${id}`)
             const fee = fees.filter(el => {
                 return el.client === inputValue && `${el.duration}` === contract_duration;
@@ -90,10 +95,16 @@ function submitForm(el){
             city: document.getElementById('city').value,
             country: document.getElementById('country').value
         }
+        // Get the radio button that is selected
+        
+        const [...durObj] = document.querySelectorAll('.duration_month');
+        const checked = durObj.filter(el => {
+            return el.checked === true;
+        });    
 
         const dates = {
             starting_date: document.getElementById('starting_date').value,
-            contract_duration: document.getElementById('contract_duration').value
+            contract_duration: checked[0].value
         }
 
         let send_to_email = document.getElementById('send_to_email').value || '';
@@ -145,17 +156,20 @@ async function changeDurationHandler(el){
     .then(res => {
         fees = res.data.prices;
     });
-    selectInput.addEventListener('change', function(){
-        const listOfLocations = document.querySelectorAll('table tbody tr');
-        const select_value = this.value;
-        listOfLocations.forEach((el, index) => {
-            const client = (document.getElementById(`location_hardware-${index}`).checked ? 'lead' : 'customer');
-            const fee = fees.filter(el => {
-                return el.client === client && `${el.duration}` === select_value;
+    const [...optionBtns] = document.querySelectorAll('.duration_month');
+    optionBtns.forEach((el, index) => {
+        el.addEventListener('change', function(){
+            const listOfLocations = document.querySelectorAll('table tbody tr');
+            const select_value = this.value;
+            listOfLocations.forEach((el, index) => {
+                const client = (document.getElementById(`location_hardware-${index}`).checked ? 'lead' : 'customer');
+                const fee = fees.filter(el => {
+                    return el.client === client && `${el.duration}` === select_value;
+                });
+                const feeInput = document.getElementById(`location_fee-${index}`);
+                feeInput.value = fee[0].fee;
             });
-            const feeInput = document.getElementById(`location_fee-${index}`);
-            feeInput.value = fee[0].fee;
-        });
+        })
     })
 }
 

@@ -106,6 +106,16 @@ input[type="checkbox"] {
   margin-left: 6px;
   border: 1px solid; }
 
+input[type="radio"] {
+  -webkit-appearance: none;
+  width: 100px;
+  height: 40px;
+  border: 1px solid #002f49;
+  margin-right: 5px; }
+  input[type="radio"]:checked {
+    background: #002f49;
+    color: white; }
+
 input[type=checkbox]:checked {
   background: url(../img/check_icon.png) center #ffcc33 no-repeat;
   background-size: 10px 10px; }
@@ -815,6 +825,21 @@ section.active {
 
 label.moved {
   top: -15px; }
+
+.contract_duration {
+  display: flex; }
+  .contract_duration .input-container {
+    display: flex;
+    justify-content: center;
+    cursor: pointer; }
+  .contract_duration input {
+    cursor: pointer; }
+  .contract_duration input[type='radio']:checked ~ label {
+    color: white; }
+  .contract_duration label {
+    font-size: 0.6em;
+    text-align: center;
+    cursor: pointer; }
 
 .job-days,
 .job-day {

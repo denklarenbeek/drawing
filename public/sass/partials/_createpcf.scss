@@ -74,3 +74,30 @@ label.moved {
   top: -15px
 }
 
+.contract_duration {
+  display: flex;
+
+  .input-container {
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+  }
+
+  input {
+    cursor: pointer;
+  }
+
+  input[type='radio']:checked ~ label {
+    color: white;
+  }
+  
+  label {
+    font-size: 0.6em;
+    text-align: center;
+    cursor: pointer;
+  
+  }
+
+}
+
+

@@ -57,6 +57,20 @@ input[type="checkbox"]{
   border: 1px solid;
 }
 
+input[type="radio"]{
+  -webkit-appearance: none;
+  width: 100px;
+  height: 40px;
+  border: 1px solid #002f49;
+  margin-right: 5px;
+
+  &:checked {
+    background: $primary-color;
+    color: white;
+  }
+
+}
+
 input[type=checkbox]:checked {
 	background: url(../img/check_icon.png) center #ffcc33 no-repeat;
 	background-size: 10px 10px;

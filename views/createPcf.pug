@@ -25,13 +25,18 @@ block content
                     .input-container
                         input(type='text'  name='country'  id='country' required)
                         label(for='country') Land
-                    h2 Dates
-                    .input-container
-                        select(name='contract_duration' id='contract_duration')    
-                            option(value="12") 12 maanden
-                            option(value="24") 24 maanden
-                            option(value="36") 36 maanden
-                        label(for='contract_duration' class='moved') Duur contract
+                    h2 Duur contract
+                    label(for='contract_duration' class='moved') Duur contract
+                    .input-group.contract_duration
+                        .input-container
+                            input(type='radio' id='12months' class='duration_month' name='contract_duration' value='12' checked)
+                            label(for='12months') 12 maanden  
+                        .input-container
+                            input(type='radio' id='24months' class='duration_month' name='contract_duration' value='24' ) 
+                            label(for='24months') 24 maanden
+                        .input-container
+                            input(type='radio' id='36months' class='duration_month' name='contract_duration' value='36' )
+                            label(for='36months') 36 maanden 
                     .input-container
                         input(type='date' name='starting_date' id='starting_date' required value='2019-01-01')    
                         label(for='starting_date' class='fixed') Startdatum
