@@ -32,24 +32,29 @@ block content
                             label(for='scotsman_50') 50%    
                         .input-container
                             input(type='radio' id='scotsman_62' class='scotsman' name='scotsman' value='62.5')
-                            label(for='scotsman_62') 62.5%    
+                            label(for='scotsman_62') 62,5%    
                         .input-container
                             input(type='radio' id='scotsman_75' class='scotsman' name='scotsman' value='75')
                             label(for='scotsman_75') 75%
                         .input-container
                             input(type='radio' id='scotsman_87' class='scotsman' name='scotsman' value='87.5')
-                            label(for='scotsman_87') 87.5%    
+                            label(for='scotsman_87') 87,5%    
                         .input-container
                             input(type='radio' id='scotsman_100' class='scotsman' name='scotsman' value='100')
                             label(for='scotsman_100') 100% 
                     label Bekabeling?
                     .input-group
                         .input-container
-                            input(type='radio' id='cabling_yes' class='cabling' name='cabling' value='yes' checked)
+                            input(type='radio' id='cabling_yes' class='cabling' name='cabling' value='Ja' checked)
                             label(for='cabling_yes') Ja
                         .input-container
-                            input(type='radio' id='cabling_no' class='cabling' name='cabling' value='no')
+                            input(type='radio' id='cabling_no' class='cabling' name='cabling' value='Nee')
                             label(for='cabling_no') Nee
+                    - var today = new Date(Date.now() + (30 * 24 * 60 * 60 * 1000))
+                    - var date = h.moment(today).format("YYYY-MM-DD");
+                    .input-container
+                        label(for='decision_date') Beslissingdatum
+                        input(type='date' name='decision_date' id='decision_date' value=date)
                     .input-msg
                         label(for='msg') Omschrijving
                         textarea(name='msg' id='msg' required)

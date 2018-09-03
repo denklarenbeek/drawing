@@ -22,6 +22,7 @@ const multerOptions = {
 exports.upload =  multer(multerOptions).single("file");
 
 exports.saveActionToDB = async (req, res, next) => {
+    console.log(req.body);
     // Create a model to save in the database
     const fileUpload = new File({
         fromEmail: req.user.email,
@@ -44,6 +45,7 @@ exports.saveActionToDB = async (req, res, next) => {
 };
 
 exports.sendMail = async (req, res) => {
+    console.log('scotsman',req.body.scotsman);
     // Mail the uploaded attachment
     await mail.send({
       fromEmail: req.user.email,
@@ -52,6 +54,9 @@ exports.sendMail = async (req, res) => {
       toName: req.body.name,
       cc: req.user.email,
       subject: req.body.subject,
+      scotsman: req.body.scotsman,
+      decision_date: req.body.decision_date,
+      cabling: req.body.cabling,
       msg: req.body.msg,
       template: "attachment",
       attachments: [
