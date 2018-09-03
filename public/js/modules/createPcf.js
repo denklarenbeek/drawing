@@ -186,4 +186,51 @@ function showEmailField(el){
     })
 }
 
-export {addLocationRow, submitForm, changeDurationHandler, showEmailField}
+function changeAddressInfo(address){
+    console.log(address);
+    const cityInput = document.getElementById('city');
+    const streetInput = document.getElementById('street');
+    cityInput.value = address.city;
+    streetInput.value = address.streetname;
+};
+
+function autocompleteAddress(el){
+    if(!el) return
+
+    const streetnumberInput = document.getElementById('housenumber');
+    const postal_code = document.getElementById('zippcode');
+    console.log(postal_code);
+
+    postal_code.addEventListener('change', async function(e) {
+        if(streetnumberInput.value.length > 0){
+            axios.post('/api/v1/maps/streetname', {
+                postal_code: postal_code.value
+            })
+            .then((res) => {
+                console.log('postalChange', res.data)
+                changeAddressInfo(res.data);
+            })
+            .catch(err => {
+                console.log(err);
+            })
+
+        };
+    });
+
+    streetnumberInput.addEventListener('change', async (e) => {
+        if(postal_code.value.length > 0){
+            axios.post('/api/v1/maps/streetname', {
+                postal_code: postal_code.value
+            })
+            .then((res) => {
+                console.log('postalChange', res.data)
+                changeAddressInfo(res.data);
+            })
+            .catch(err => {
+                console.log(err);
+            })
+        };
+    });
+}
+
+export {addLocationRow, submitForm, changeDurationHandler, autocompleteAddress, showEmailField}

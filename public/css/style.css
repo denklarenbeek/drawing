@@ -87,13 +87,13 @@ textarea {
   outline: none;
   border: none;
   background: inherit;
-  border-bottom: 1px solid #002f49;
+  border: 1px solid #002f49;
   line-height: 1.5rem;
-  padding: 10px 0 10px 0px;
+  padding: 10px 0px 10px 10px;
   font-size: 0.9rem;
-  border-radius: 0;
-  -webkit-border-radius: 0;
-  -moz-border-radius: 0; }
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px; }
 
 input[type="checkbox"] {
   background-color: #f1f1f1;
@@ -129,8 +129,7 @@ input::-webkit-inner-spin-button {
 
 input[type="file"] {
   opacity: 0;
-  position: absolute;
-  top: 450px; }
+  position: absolute; }
 
 labe[for='file'] {
   margin-left: auto;
@@ -196,12 +195,11 @@ label.moved {
 
 label {
   display: block;
-  position: absolute;
-  top: 15px;
   cursor: text;
   transition: top 0.5s;
-  text-transform: uppercase;
-  color: #8b9ba8; }
+  color: #002f49;
+  font-weight: 100;
+  margin-bottom: 10px; }
   label.fixed {
     top: -15px;
     color: #002f49;
@@ -359,7 +357,8 @@ table {
   border-bottom-right-radius: 4px;
   color: #002f49;
   margin-bottom: 50px;
-  padding: 10px; }
+  padding: 10px;
+  box-shadow: 0 2px 1px #D2D2D2; }
   @media only screen and (min-width: 768px) {
     table {
       width: 100%;
@@ -376,7 +375,8 @@ td, th {
       font-size: 1.2em; } }
 
 td {
-  padding-top: 0px; }
+  padding-top: 0px;
+  padding-bottom: 0px; }
 
 th {
   padding-bottom: 0px; }
@@ -788,6 +788,8 @@ section.active {
 
 #createpcf h2 {
   margin-bottom: 20px; }
+#createpcf input[type="checkbox"] {
+  margin-top: 0px; }
 #createpcf table {
   width: 100%;
   position: relative; }
@@ -804,12 +806,12 @@ section.active {
   #createpcf table td:nth-child(2) {
     width: 50px; }
   #createpcf table th:nth-child(3) {
-    text-align: right; }
+    text-align: center; }
   #createpcf table td:nth-child(3) {
-    width: 50px;
-    text-align: right; }
+    width: 60px;
+    text-align: center; }
     #createpcf table td:nth-child(3) input {
-      text-align: right; }
+      text-align: center; }
   #createpcf table td:nth-child(4) {
     width: 30px;
     padding-bottom: 0;
@@ -818,28 +820,34 @@ section.active {
       font-size: 1.2em; }
 #createpcf label[for='send_by_email'],
 #createpcf label[for='preview_online'] {
-  left: 40px;
-  top: 22px; }
+  display: inline-block;
+  margin-left: 20px;
+  vertical-align: middle; }
 #createpcf #send_to_email_container {
   display: none; }
 
 label.moved {
   top: -15px; }
 
-.contract_duration {
-  display: flex; }
-  .contract_duration .input-container {
+.input-group {
+  display: flex;
+  flex-wrap: wrap; }
+  .input-group .input-container {
     display: flex;
     justify-content: center;
+    cursor: pointer;
+    margin-bottom: 1rem; }
+  .input-group input {
     cursor: pointer; }
-  .contract_duration input {
-    cursor: pointer; }
-  .contract_duration input[type='radio']:checked ~ label {
+  .input-group input[type='radio']:checked ~ label {
     color: white; }
-  .contract_duration label {
-    font-size: 0.6em;
+  .input-group label {
+    font-size: 0.8em;
     text-align: center;
-    cursor: pointer; }
+    cursor: pointer;
+    position: absolute;
+    top: 15px;
+    padding: 0; }
 
 .job-days,
 .job-day {

@@ -9,24 +9,21 @@ block content
                 form(id='firstform' method="POST")
                     h2 Debiteur
                     .input-container
-                        input(type='text' name='company' id='company' required)
                         label(for='company') Bedrijfsnaam
-                        i(class='fal fa-building')
+                        input(type='text' name='company' id='company' required)
                     .input-container
-                        input(type='text'  name='street'  id='street' required)
-                        label(for='street') Straatnaam
-                        i(class='fal fa-road')
-                    .input-container
-                        input(type='text'  name='zippcode'  id='zippcode' required)
                         label(for='zippcode') Postcode
+                        input(type='text'  name='zippcode'  id='zippcode' required)
                     .input-container
-                        input(type='text'  name='city'  id='city' required)
+                        label(for='housenumber') Huisnummer
+                        input(type='text'  name='housenumber'  id='housenumber' required)
+                    .input-container
                         label(for='city') Plaatsnaam
+                        input(type='text'  name='city'  id='city' required)
                     .input-container
-                        input(type='text'  name='country'  id='country' required)
-                        label(for='country') Land
+                        label(for='street') Straatnaam
+                        input(type='text'  name='street'  id='street' required)
                     h2 Duur contract
-                    label(for='contract_duration' class='moved') Duur contract
                     .input-group.contract_duration
                         .input-container
                             input(type='radio' id='12months' class='duration_month' name='contract_duration' value='12' checked)
@@ -38,8 +35,8 @@ block content
                             input(type='radio' id='36months' class='duration_month' name='contract_duration' value='36' )
                             label(for='36months') 36 maanden 
                     .input-container
+                        label(for='starting_date') Startdatum
                         input(type='date' name='starting_date' id='starting_date' required value='2019-01-01')    
-                        label(for='starting_date' class='fixed') Startdatum
                     h2 Locaties
                     table
                         thead
@@ -59,10 +56,10 @@ block content
                         label(for='send_by_email') Verstuur per email
                     #send_to_email_container
                         .input-container
-                            input(type='email' name='send_to_email' id='send_to_email')
                             label(for='send_to_email') E-mail adres 
+                            input(type='email' name='send_to_email' id='send_to_email')
                         .input-container
-                            input(type='text' name='send_to_name' id='send_to_name')
                             label(for='send_to_name' class='fixed') T.a.v. 
+                            input(type='text' name='send_to_name' id='send_to_name')
 
                     button(type='submit') Genereer contract  

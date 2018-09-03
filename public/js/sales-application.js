@@ -8,6 +8,7 @@ import {searchOpportunities} from './modules/searchOpp';
 import {updateCronJobTimer, updateCronJobDays, updateCronJobActive} from './modules/changeSettings';
 import {deleteAllOppsByUser} from './modules/adminSettings';
 import {getDefaultValue} from './modules/updateOpp';
+import {autocompleteAddress} from './modules/createPcf';
 
 
 const x = document.getElementById('pcf');
@@ -31,6 +32,7 @@ addLocationRow(pcf);
 submitForm(pcf);
 changeDurationHandler(pcf);
 showEmailField(pcf);
+autocompleteAddress(pcf);
 deleteFlash(flash);
 showHistoryOpp(opp)
 searchOpportunities(searchInput);

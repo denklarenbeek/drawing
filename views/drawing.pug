@@ -8,21 +8,51 @@ block content
             .inner
                 form(action='/send' method='POST' enctype='multipart/form-data')
                     .input-email
-                        input(type='email'  name='email'  id='email' required onblur='movelabel(this)')
                         label(for='email') Email ontvanger
-                        i(class='fal fa-envelope-square')
+                        input(type='email'  name='email'  id='email' required value='jz@bigbrother.nl'  )
                     .input-name
-                        input(type='text' name='name' id='name' required)
                         label(for='name') Naam ontvanger
-                        i(class='fal fa-user')
+                        input(type='text' name='name' id='name' required value='Jelle')
                     .input-subject
-                        input(type='text' name='subject' id='subject' required)
                         label(for='subject') Onderwerp
-                        i(class='fal fa-space-shuttle')
+                        input(type='text' name='subject' id='subject' required value='Offerte uitwerken')
+                    label Scotsman
+                    .input-group
+                        .input-container
+                            input(type='radio' id='scotsman_12' class='scotsman' name='scotsman' value='12.5' checked)
+                            label(for='scotsman_12') 12,5%
+                        .input-container
+                            input(type='radio' id='scotsman_25' class='scotsman' name='scotsman' value='25')
+                            label(for='scotsman_25') 25%
+                        .input-container
+                            input(type='radio' id='scotsman_37' class='scotsman' name='scotsman' value='37.5')
+                            label(for='scotsman_37') 37,5%  
+                        .input-container
+                            input(type='radio' id='scotsman_50' class='scotsman' name='scotsman' value='50')
+                            label(for='scotsman_50') 50%    
+                        .input-container
+                            input(type='radio' id='scotsman_62' class='scotsman' name='scotsman' value='62.5')
+                            label(for='scotsman_62') 62.5%    
+                        .input-container
+                            input(type='radio' id='scotsman_75' class='scotsman' name='scotsman' value='75')
+                            label(for='scotsman_75') 75%
+                        .input-container
+                            input(type='radio' id='scotsman_87' class='scotsman' name='scotsman' value='87.5')
+                            label(for='scotsman_87') 87.5%    
+                        .input-container
+                            input(type='radio' id='scotsman_100' class='scotsman' name='scotsman' value='100')
+                            label(for='scotsman_100') 100% 
+                    label Bekabeling?
+                    .input-group
+                        .input-container
+                            input(type='radio' id='cabling_yes' class='cabling' name='cabling' value='yes' checked)
+                            label(for='cabling_yes') Ja
+                        .input-container
+                            input(type='radio' id='cabling_no' class='cabling' name='cabling' value='no')
+                            label(for='cabling_no') Nee
                     .input-msg
-                        textarea(name='msg' id='msg' required)
                         label(for='msg') Omschrijving
-                        i(class='fal fa-comment')
+                        textarea(name='msg' id='msg' required)
                     input(type='file' required name='file' id='file' onchange='showFileInput(this, event)')
                     label(for='file')
                         i(class='fal fa-file-plus')

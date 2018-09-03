@@ -8,6 +8,7 @@ const productsController = require('../controllers/productsController');
 const generateController = require('../controllers/generateController');
 const opportunityController = require('../controllers/OpportunitiesController');
 const userController = require('../controllers/UserController');
+const mapsController = require('../controllers/MapsController');
 
 router.get("/", authController.isLoggedIn, opportunityController.getAllOpportunitiesByUser);
 
@@ -88,5 +89,7 @@ router.post('/api/v1/deleteAllOppsByUser/:id', authController.isLoggedIn, opport
 router.post('/api/v1/user/timer', userController.updateJobTimer);
 router.post('/api/v1/user/days', userController.updateJobDays);
 router.post('/api/v1/user/cronjob', userController.updateJobActive);
+
+router.post('/api/v1/maps/streetname', mapsController.getStreetName)
 
 module.exports = router;

@@ -5,6 +5,7 @@ table {
 	color: $primary-color;
   margin-bottom: 50px;
   padding: 10px;
+  box-shadow: 0 2px 1px #D2D2D2;
 
   @media only screen and (min-width: $break-small){
     width: 100%;
@@ -27,6 +28,8 @@ td, th {
 
 td {
   padding-top: 0px;
+  padding-bottom: 0px;
+
 }
 
 th {

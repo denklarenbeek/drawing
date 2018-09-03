@@ -17740,7 +17740,7 @@ exports.updateCronJobActive = updateCronJobActive;
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.showEmailField = exports.changeDurationHandler = exports.submitForm = exports.addLocationRow = undefined;
+exports.showEmailField = exports.autocompleteAddress = exports.changeDurationHandler = exports.submitForm = exports.addLocationRow = undefined;
 
 var _axios = __webpack_require__(4);
 
@@ -17941,9 +17941,52 @@ function showEmailField(el) {
     });
 }
 
+function changeAddressInfo(address) {
+    console.log(address);
+    var cityInput = document.getElementById('city');
+    var streetInput = document.getElementById('street');
+    cityInput.value = address.city;
+    streetInput.value = address.streetname;
+};
+
+function autocompleteAddress(el) {
+    if (!el) return;
+
+    var streetnumberInput = document.getElementById('housenumber');
+    var postal_code = document.getElementById('zippcode');
+    console.log(postal_code);
+
+    postal_code.addEventListener('change', async function (e) {
+        if (streetnumberInput.value.length > 0) {
+            _axios2.default.post('/api/v1/maps/streetname', {
+                postal_code: postal_code.value
+            }).then(function (res) {
+                console.log('postalChange', res.data);
+                changeAddressInfo(res.data);
+            }).catch(function (err) {
+                console.log(err);
+            });
+        };
+    });
+
+    streetnumberInput.addEventListener('change', async function (e) {
+        if (postal_code.value.length > 0) {
+            _axios2.default.post('/api/v1/maps/streetname', {
+                postal_code: postal_code.value
+            }).then(function (res) {
+                console.log('postalChange', res.data);
+                changeAddressInfo(res.data);
+            }).catch(function (err) {
+                console.log(err);
+            });
+        };
+    });
+}
+
 exports.addLocationRow = addLocationRow;
 exports.submitForm = submitForm;
 exports.changeDurationHandler = changeDurationHandler;
+exports.autocompleteAddress = autocompleteAddress;
 exports.showEmailField = showEmailField;
 
 /***/ }),
@@ -19936,6 +19979,7 @@ var category = document.getElementById('category');
 (0, _createPcf.submitForm)(pcf);
 (0, _createPcf.changeDurationHandler)(pcf);
 (0, _createPcf.showEmailField)(pcf);
+(0, _createPcf.autocompleteAddress)(pcf);
 (0, _flashes.deleteFlash)(flash);
 (0, _showHistoryOpp.showHistoryOpp)(opp);
 (0, _searchOpp.searchOpportunities)(searchInput);
