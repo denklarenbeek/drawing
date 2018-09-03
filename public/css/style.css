@@ -61,7 +61,7 @@ a {
   .input-container i {
     position: absolute;
     font-size: 1.5rem;
-    top: 10px;
+    top: 40px;
     left: -35px;
     color: #002f49; }
 
@@ -119,6 +119,8 @@ input[type="radio"] {
 input[type=checkbox]:checked {
   background: url(../img/check_icon.png) center #ffcc33 no-repeat;
   background-size: 10px 10px; }
+  input[type=checkbox]:checked ~ label {
+    font-weight: bold; }
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -222,10 +224,14 @@ label[for="file"] {
 label[for="file"] i {
   font-size: 1.5rem; }
 
+.input-group.checkbox:checked label,
+.input-container.checkbox:checked label {
+  font-weight: bold; }
 .input-group.checkbox label,
 .input-container.checkbox label {
-  left: 40px;
-  top: 22px; }
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 20px; }
 
 .input-container-checkboxes-group {
   display: flex;

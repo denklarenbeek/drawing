@@ -18383,8 +18383,12 @@ Object.defineProperty(exports, "__esModule", {
 function getDefaultValue(el) {
     if (!el) return;
 
-    var options = document.getElementById('category').options;
-    console.log(options);
+    var category = document.getElementById('category').dataset.category;
+    var modCategory = category.toLowerCase().replace(" ", "_");
+    var id = "#category_" + modCategory;
+    console.log(id);
+    var checkedInput = document.querySelector(id);
+    checkedInput.checked = true;
 }
 
 exports.getDefaultValue = getDefaultValue;

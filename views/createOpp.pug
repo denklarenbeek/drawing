@@ -7,32 +7,45 @@ block content
         .content-tile
             .inner
                 form(action='/opportunity' method="POST")
-                    .input-group
-                        input(type='text' name='account_name' id='account_name' required)
+                    .input-container
                         label(for='account_name' ) Account Naam
-                    .input-group
+                        input(type='text' name='account_name' id='account_name' required)
+                    .input-container
+                        label(for='name') Kans beschrijving (naam)
                         input(type='text'  name='name'  id='name' required)
-                        label(for='name') Naam
+                    label(for="category") Categorie
                     .input-group
-                        label(for="category" class='fixed') Categorie
-                        select(type='text'  name='category'  id='category' required)
-                            option(value="Beveiliging E") Beveiliging E
-                            option(value="Diensten") Diensten
-                            option(value="PCF E") PriceCast E
-                            option(value="Carwash") Carwash
-                            option(value="JST") Just Start Technology
-                            option(value="PCF N") PriceCast N
-                            option(value="Beveiliging N") Beveiliging N
-                    .input-group
-                        input(type='number' name='amount' id='amount' required)
+                        .input-container
+                            input(type='radio' id='category_beveiliging_e' class='category' name='category' value='Beveiliging E' checked)
+                            label(for='category_beveiliging_e') Beveiliging E 
+                        .input-container
+                            input(type='radio' id='category_beveiliging_n' class='category' name='category' value='Beveiliging N')
+                            label(for='category_beveiliging_n') Beveiliging N
+                        .input-container
+                            input(type='radio' id='category_diensten' class='category' name='category' value='Diensten')
+                            label(for='category_diensten') Diensten  
+                        .input-container
+                            input(type='radio' id='category_carwash' class='category' name='category' value='Carwash')
+                            label(for='category_carwash') Carwash 
+                        .input-container
+                            input(type='radio' id='category_jst' class='category' name='category' value='JST')
+                            label(for='category_jst') JST
+                        .input-container
+                            input(type='radio' id='category_pcf_e' class='category' name='category' value='PriceCast E')
+                            label(for='category_pcf_e') PriceCast E 
+                        .input-container
+                            input(type='radio' id='category_pcf_n' class='category' name='category' value='PriceCast N')
+                            label(for='category_pcf_n') PriceCast N
+                    .input-container
                         label(for='amount') Bedrag
-                    .input-group
-                        input(type='number' name='scotsman' id='scotsman' required)
+                        input(type='number' name='amount' id='amount' required)
+                    .input-container
                         label(for='scotsman') Kans
-                    .input-group
+                        input(type='number' name='scotsman' id='scotsman' required)
+                    .input-container
+                        label(for='timing') Datum
                         input(type='date' name='timing' id='timing' required)
-                        label(for='timing' class='fixed') Datum
-                    .input-group
-                        input(type='text' name='status' id='status' required)
+                    .input-container
                         label(for='status') Status
+                        input(type='text' name='status' id='status' required)
                     button(type='submit') Maak nieuwe

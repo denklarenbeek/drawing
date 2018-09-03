@@ -17,14 +17,14 @@ block content
                 each user in users
                     .user-container
                         .input-container
+                            label(for='id' ) ID
                             input(type='text' name='id' value=user._id disabled)
-                            label(for='id' class='fixed') id
                         .input-container
+                            label(for='name') Naam
                             input(type='text' name='name' value=user.name disabled)
-                            label(for='name' class='fixed') Naam
                         .input-container
+                            label(for='email') E-mail
                             input(type='email' name='email' value=user.email disabled)
-                            label(for='email' class='fixed') E-mail
                         a(class='btn deleteOpps' data-userid=user._id) Delete all opportunities
                         
 

@@ -7,20 +7,16 @@ block content
         .content-tile
             .inner 
                 form(action="/register" method="POST")
-                    .input-group
-                        input(type='text' name='name' id='name' required)
+                    .input-container
                         label(for='name') Naam
-                        i(class='fal fa-user-circle')
-                    .input-group
-                        input(type='email'  name='email'  id='email' required onblur='movelabel(this)')
+                        input(type='text' name='name' id='name' required)
+                    .input-container
                         label(for='email') Email adres
-                        i(class='fal fa-envelope-square')
-                    .input-group
-                        input(type='password' name='password' id='password' required)
+                        input(type='email'  name='email'  id='email' required onblur='movelabel(this)')
+                    .input-container
                         label(for='password') Wachtwoord
-                        i(class="fal fa-unlock")
-                    .input-group.checkbox
-                        label(for='admin') Admin
+                        input(type='password' name='password' id='password' required)
+                    .input-container.checkbox
                         input(type='checkbox' name='admin' id='admin' value='true')
-                        i(class="fal fa-cogs")
+                        label(for='admin') Admin
                     input(type='submit' value='Registreer')

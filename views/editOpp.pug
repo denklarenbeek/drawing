@@ -7,43 +7,56 @@ block content
         .content-tile
             .inner
                 form(action=`/opportunities/${opportunity._id}` method="POST")
-                    .input-group
-                        input(type='text'  name='account_name'  id='account_name' value=opportunity.account_name required)
+                    .input-container
                         label(for='account_name') Naam
-                    .input-group
-                        input(type='text'  name='name'  id='name' value=opportunity.name required)
+                        input(type='text'  name='account_name'  id='account_name' value=opportunity.account_name required)
+                    .input-container
                         label(for='name') Naam
-                    .input-group
-                        label(for="category" class='fixed') Categorie
-                        select(type='text'  name='category'  id='category' required)
-                            option(value="Beveiliging E") Beveiliging E
-                            option(value="Diensten") Diensten
-                            option(value="PCF E") PriceCast E
-                            option(value="Carwash") Carwash
-                            option(value="JST") Just Start Technology
-                            option(value="PCF N") PriceCast N
-                            option(value="Beveiliging N") Beveiliging N
+                        input(type='text'  name='name'  id='name' value=opportunity.name required)
+                    label(for="category" class='fixed') Categorie
+                    .input-group#category(data-category=opportunity.category)
+                        .input-container
+                            input(type='radio' id='category_beveiliging_e' class='category' name='category' value='Beveiliging E')
+                            label(for='category_beveiliging_e') Beveiliging E 
+                        .input-container
+                            input(type='radio' id='category_beveiliging_n' class='category' name='category' value='Beveiliging N')
+                            label(for='category_beveiliging_n') Beveiliging N
+                        .input-container
+                            input(type='radio' id='category_diensten' class='category' name='category' value='Diensten')
+                            label(for='category_diensten') Diensten  
+                        .input-container
+                            input(type='radio' id='category_carwash' class='category' name='category' value='Carwash')
+                            label(for='category_carwash') Carwash 
+                        .input-container
+                            input(type='radio' id='category_jst' class='category' name='category' value='JST')
+                            label(for='category_jst') JST
+                        .input-container
+                            input(type='radio' id='category_pcf_e' class='category' name='category' value='PriceCast E')
+                            label(for='category_pcf_e') PriceCast E 
+                        .input-container
+                            input(type='radio' id='category_pcf_n' class='category' name='category' value='PriceCast N')
+                            label(for='category_pcf_n') PriceCast N
         
-                    .input-group
-                        input(type='number' name='amount' id='amount' value=opportunity.amount required)
+                    .input-container
                         label(for='amount') Bedrag
-                    .input-group
-                        input(type='number' name='scotsman' id='scotsman' value=opportunity.scotsman required)
+                        input(type='number' name='amount' id='amount' value=opportunity.amount required)
+                    .input-container
                         label(for='scotsman') Kans
-                    .input-group
+                        input(type='number' name='scotsman' id='scotsman' value=opportunity.scotsman required)
+                    .input-container
                         - var date = h.moment(opportunity.timing).format("YYYY-MM-DD")
-                        input(type='date' name='timing' id='timing' value=date required)
                         label(for='timing' class='fixed') Datum
-                    .input-group
-                        input(type='text' name='status' id='status' value=opportunity.status required)
+                        input(type='date' name='timing' id='timing' value=date required)
+                    .input-container
                         label(for='status') Status
-                    .input-group
-                        input(type='text' name='parent_id' id='parent_id' value=opportunity._id required)
+                        input(type='text' name='status' id='status' value=opportunity.status required)
+                    .input-container
                         label(for='parent_id' class='fixed') Vorige
-                    .input-group
-                        input(type='text' name='original_id' id='original_id' value=opportunity.original_id required)
+                        input(type='text' name='parent_id' id='parent_id' value=opportunity._id required)
+                    .input-container
                         label(for='original_id' class='fixed') Origineel
-                    .input-group
+                        input(type='text' name='original_id' id='original_id' value=opportunity.original_id required)
+                    .input-container.checkbox
                         input(type='checkbox' name='order_received' id='order_received' checked=opportunity.order_received )
-                        label(for='order_receiverd') Opdracht?
+                        label(for='order_received') Opdracht?
                     button(type='submit') Pas aan

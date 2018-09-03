@@ -18,29 +18,24 @@ block content
                     button(class='step' data-improvement='margin') Margin
                 section(id='pcf-margin')
                     form(action='/' class='pcf-calculate-form')
-                        .input-group
-                            input(type='number' name='volume' id='volume' required)
+                        .input-container
                             label(for='volume' ) Volume per week
-                            i(class="fal fa-car")
-                        .input-group.tooltip(data-tooltip='true' data-tooltipinfo='Marge verbetering per liter')
-                            input(type='number' name='marge-impr' id='marge-impr' step='0.001' pattern="^\d+(?:\.\d{1,2})?€" required)
+                            input(type='number' name='volume' id='volume' required)
+                        .input-container.tooltip(data-tooltip='true' data-tooltipinfo='Marge verbetering per liter')
                             label(for='marge-impr') Marge verbetering
-                            i(class="fal fa-chart-line")
+                            input(type='number' name='marge-impr' id='marge-impr' step='0.001' pattern="^\d+(?:\.\d{1,2})?€" required)
                         input(type='submit' value='Bereken')
                 section(id='pcf-volume')
                     form(action='/' class='pcf-calculate-form')
-                        .input-group
-                            input(type='number' name='volume2' id='volume' required)
+                        .input-container
                             label(for='volume2') Volume per week
-                            i(class="fal fa-car")
-                        .input-group.tooltip(data-tooltip='true' data-tooltipinfo='Volume boost per week')
-                            input(type='number' name='volume-impr' id='volume-impr' required)
+                            input(type='number' name='volume2' id='volume' required)
+                        .input-container.tooltip(data-tooltip='true' data-tooltipinfo='Volume boost per week')
                             label(for='volume-impr') Volume verbetering
-                            i(class="fal fa-chart-line")
-                        .input-group.tooltip(data-tooltip='true' data-tooltipinfo='Gemiddelde marge per liter')
-                            input(type='number' name='margin' id='margin' step='0.001' pattern="^\d+(?:\.\d{1,2})?€" required)
+                            input(type='number' name='volume-impr' id='volume-impr' required)
+                        .input-container.tooltip(data-tooltip='true' data-tooltipinfo='Gemiddelde marge per liter')
                             label(for='margin') Marge
-                            i(class="fas fa-euro-sign")
+                            input(type='number' name='margin' id='margin' step='0.001' pattern="^\d+(?:\.\d{1,2})?€" required)
                         input(type='submit' value='Bereken')
                 section(id='pcf-roi-table')
                     .roi-numbers

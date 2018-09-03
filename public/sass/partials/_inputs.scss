@@ -6,7 +6,7 @@
   & i {
     position: absolute;
     font-size: 1.5rem;
-    top: 10px;
+    top: 40px;
     left: -35px;
     color: #002f49;
   }
@@ -55,6 +55,9 @@ input[type="checkbox"]{
   margin-top: 20px;
   margin-left: 6px;
   border: 1px solid;
+
+
+
 }
 
 input[type="radio"]{
@@ -73,7 +76,12 @@ input[type="radio"]{
 
 input[type=checkbox]:checked {
 	background: url(../img/check_icon.png) center #ffcc33 no-repeat;
-	background-size: 10px 10px;
+  background-size: 10px 10px;
+  
+  & ~ label {
+    font-weight: bold;
+  }
+
 }
 
 
@@ -197,9 +205,17 @@ label[for="file"] i {
 
 .input-group.checkbox,
 .input-container.checkbox {
+
+  &:checked {
+    label {
+      font-weight: bold;
+    }
+  }
+
   label {
-    left: 40px;
-    top: 22px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 20px;
   }
 }
 

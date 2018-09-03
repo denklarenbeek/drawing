@@ -11,8 +11,8 @@ block content
                     input(type='checkbox' name='cron_jobs', id='cron_jobs' value=true checked=user.cron_jobs)
                     label(for='cron_jobs') Herinnering ontvangen?
                 .input-container.tooltip.job-days(class=(user.cron_jobs ? 'open' : '') data-tooltip='true' data-tooltipinfo='Binnen hoeveel dagen wil je een melding ontvangen')
+                    label(for='cron_jobs_timer') Aantal dagen
                     input(type='number' name='cron_jobs_timer' id='cron_jobs_timer' value=user.cron_jobs_timer)
-                    label(for='cron_jobs_timer' class='fixed') Aantal dagen
                 .input-container-checkboxes-group.job-day(class=(user.cron_jobs ? 'open' : ''))
                     .input-container
                         input(type='checkbox' data-day='monday'  class="cron-job-day" name='cron_job_monday' id='cron_job_monday' value=true checked=user.cron_jobs_day.monday)
